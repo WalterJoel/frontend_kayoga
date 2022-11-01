@@ -17,7 +17,7 @@ import InsertInsertosPage from './Pages/InsertInsertosPage';
 import InsertNewLotePage from './Pages/InsertNewLotePage';
 import LoginPage from './Pages/LoginPage';
 import AparadorPage from './Pages/AparadorPage';
-/*ADDING COMENTARY y mas*/ 
+
 /*
 const THEME = createMuiTheme({
   typography: {

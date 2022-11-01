@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import HashLoader from "react-spinners/HashLoader";
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ import {
 //Netamente informativo los JSON que traigo
 import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../Elements/TallasGeneralJson';
 
-const InsertNewLotePage=()=> {
+const InsertNewLotePage=(props)=> {
     const [validarStar,setValidarStar] = useState(false);
     let [loading, setLoading] = useState(false);
     let navigate = useNavigate();
@@ -39,6 +39,7 @@ const InsertNewLotePage=()=> {
         etiquetas:false,
         estado: 'Cortado',
     });
+
     //Funcion para cambiar el valor del Select
     const handleChangeSelect = (e) => {
         const name = e.target.name;
@@ -79,7 +80,6 @@ const InsertNewLotePage=()=> {
         setFormSeriado((prev)=>{
             return {...prev, [name]:value};
         });
-
     }
     const handleSubmit=(e)=>{
         e.preventDefault()
