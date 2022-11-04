@@ -42,7 +42,7 @@ const columns = [
     label: 'Fecha de Corte',
     minWidth: 100,
     align: 'right',
-    format: (value) => value.toLocaleString('America/Lima'),
+    format: (date) => date.toLocaleString('America/Lima'),
   },
   {
     id: 'ss',
@@ -76,7 +76,7 @@ const ListLotesPage=()=>{
     
     useEffect(()=>{
             console.log('entertaiment')
-        fetch('https://backendkayoga-production.up.railway.app/getLotesCortados',{
+        fetch('http://localhost:4000/getLotesCortados',{
         //For Develop
         //Llamo a la API mediante un FETCH, me retorna una promesa
         //fetch('http://localhost:4000/getLotesCortados',{

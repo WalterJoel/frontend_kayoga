@@ -1,11 +1,4 @@
-.prueba{
-
-}
 html {
 	height: 100%;
-
-  font-family: 'Pacifico', cursive;
-
-  background: rgb(254,182,0);
-  background: linear-gradient(180deg, rgba(254,182,0,1) 25%, rgba(255,255,255,1) 25%);
+  background: linear-gradient(180deg, rgba(254,182,0,1) 25%, rgba(255,255,255,1) 50%);
 }

@@ -1,34 +1,73 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import {useState,useEffect } from "react";
+import {useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import Grid from '@mui/material/Grid';
 /*De esta forma se cargan imagenes en avatar, etc, porque link directo en src, no funciona*/ 
 import logoKayoga from '../media/logoKayogaImage.png';
 import './LoginPage.css'
 
 
+//Hook creado por nosotros
+import useUser from '../Hooks/useUser';
+
+
 export default function LoginPage() {
+  //Uso mi hook
+  const {login,isLoggedIn}=useUser();
+  
+  const navigateToHomePage = useNavigate();
+  const [datosLogin,setDatosLogin] = useState({
+    email:'',
+    contrasena:''
+  });
+
+  useEffect(() =>{
+    if(isLoggedIn){
+      navigateToHomePage('/');
+    }
+  },[isLoggedIn]);
+
+  function handleChange(event){
+    const value = event.target.value;
+    const name  = event.target.name;
+    setDatosLogin((prev)=>{
+        return {...prev, [name]:value};
+    })
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    login();
+  }
+  /*const handleSubmit = async(event) => {
+    event.preventDefault();
+    //For Production
+    await fetch('http://localhost:4000/login',{
+      headers: {
+          'Content-Type': 'application/json'
+        },
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      body: JSON.stringify(datosLogin),
+      })
+      .then(function(response) {
+          if(response.ok) {
+              //console.log(response.json());setLoading(false);navigate('/ListLotesPage')
+              navigateToHomePage('/');
+          } else {
+            alert('La cuenta ingresada no esta registrada, revisa bien');
+          }
+        })
+        .catch(function(error) {
+          console.log('Hubo un problema con la petición Fetch:' + error.message);
+        });
+  };*/
   return (
-      <Container component="main" maxWidth="xs">
+      <Grid container sx={{mt:'7em',display:'flex',alignItems:'center',
+                      justifyContent:'center',position:'absolute'}}>
+        <Grid sx={{width:'60vw'}}>
         {/* CSS Baseline es como el normalize.css, setea todo lo que ya estaba predefinido */}
         <CssBaseline />
         {/* Imagen Animada */}
@@ -55,8 +94,8 @@ export default function LoginPage() {
             <TextField
               margin="normal"
               required
+              onChange={handleChange}
               fullWidth
-              id="email"
               label="Correo"
               name="email"
               autoComplete="email"
@@ -66,22 +105,23 @@ export default function LoginPage() {
               margin="normal"
               required
               fullWidth
-              name="password"
+              onChange={handleChange}
+              name="contrasena"
               label="Contraseña"
               type="password"
-              id="password"
               autoComplete="current-password"
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 4, mb: 2 }}
             >
               Entrar
             </Button>
           </Box>
         </Box>
-      </Container>
+        </Grid>
+      </Grid>
   );
 }

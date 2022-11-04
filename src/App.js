@@ -17,33 +17,40 @@ import InsertInsertosPage from './Pages/InsertInsertosPage';
 import InsertNewLotePage from './Pages/InsertNewLotePage';
 import LoginPage from './Pages/LoginPage';
 import AparadorPage from './Pages/AparadorPage';
-
-/*
-const THEME = createMuiTheme({
-  typography: {
-   "fontFamily": `"Roboto", "Helvetica", "Arial", sans-serif`,
-   "fontSize": 14,
-   "fontWeightLight": 300,
-   "fontWeightRegular": 400,
-   "fontWeightMedium": 500
-  }
-});*/
+import HeaderGeneral from './Components/HeaderGeneralComponent'
+import './App.css'
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Quattrocento',
+    fontFamily: 'Roboto Slab',
   },
   palette:{
     primary:{
       main:'#2b79b0'
+    },
+    textfield_kayoga:{
+      main:'rgb(254,182,0)'
+    },
+    celeste_kayoga:{
+      main:'#2b79b0'
+    },
+    // Cambiando el Color del body
+    background:{
+      default:'#f8f9fa' 
+    },
+    // Cambiando el color del texto
+    text:{
+      primary:'#344767'
     }
-  }
-
+  },
 });
+
+// Defino estilos que usare para toda mi app
 function App() {
   return (
     <>
-          <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+      <HeaderGeneral/>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" component={<HomePage/>}>

@@ -3,6 +3,7 @@ import HashLoader from "react-spinners/HashLoader";
 import { useNavigate } from 'react-router-dom';
 
 import React from "react";
+import { positions } from '@mui/system';
 import { TextField, Checkbox, Select } from '@mui/material';
 import {
   Typography,
@@ -10,11 +11,12 @@ import {
   Divider,
   Grid,
   Button,
-  CssBaseline,
+  Avatar,
   MenuItem,
   FormControlLabel,
 } from '@mui/material';
 
+import NewLoteIcon from '../media/NewLoteIcon.png';
 //Netamente informativo los JSON que traigo
 import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../Elements/TallasGeneralJson';
 
@@ -108,166 +110,179 @@ const InsertNewLotePage=(props)=> {
    }
     return (
         
-        <div style={{padding:16, margin:'auto', maxWidth:800}}>
-            <CssBaseline />
-            <Typography align='center' component='h3' variant="h3" gutterBottom>
-                Nuevo Lote
-            </Typography>
-
-            <form onSubmit={handleSubmit}>
-            <Paper style ={{padding:20 }} >
-                <Grid container alignItems="flex-start" justifyContent='center' spacing={2}>
-                    <Grid item xs={3}>
-                        <TextField
-                            name="metraje"
-                            value={formSeriado.metraje}
-                            onChange={handleChange}
-                            fullWidth
-                            required
-                            type="number"
-                            label="Metraje"
-                        />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <TextField
-                            name="color"
-                            value={formSeriado.color}
-                            onChange={handleChange}
-                            fullWidth
-                            type="string"
-                            label="Color de Lona"
-                            required
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            name="descripcion"
-                            value={formSeriado.descripcion}
-                            onChange={handleChange}
-                            fullWidth
-                            required
-                            multiline
-                            type="string"
-                            label="Descripcion / Tipo de Sarga"
-                        />
-                    </Grid>
-                    {/* Seccion Checkbox  */}
-                    <Grid item xs={6}>
-                        <FormControlLabel control={<Checkbox checked={formSeriado.garibaldi} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <FormControlLabel control={<Checkbox checked={formSeriado.contrafuerte} name="contrafuerte" onChange={handleChangeCheckBox} />} label="Contrafuerte" />
-                    </Grid>
-
-                    <Divider style={{width:'100%'}} />
-                    <Divider style={{width:'100%'}} />
-            {/* Seleccionar la serie                */}
-                    <Grid item  xs={6} >
-                        <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                            Selecciona la serie
-                        </Typography>
-                        <Select
-                            name="serie"
-                            required
-                            value={formSeriado.serie}
-                            onChange={handleChangeSelect}
-                            >
-                            <MenuItem key={1} value='nino'>NIÑO</MenuItem>
-                            <MenuItem key={2} value='dama'>DAMA</MenuItem>
-                            <MenuItem key={3} value='varon'>VARON</MenuItem>                                                        
-                        </Select>
-                    </Grid>
-            {/* Seccion Agregar una talla mas */}
-                    <Grid item xs={6}>
-                        <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                            Puedes agregar Tallas
-                        </Typography>
-                        <FormControlLabel control={<Checkbox  checked={validarStar} onChange={handleChangeValidarStar} />} label="Agregar talla?" />
-                    </Grid>
-            {/* Seccion Seriado */}
-                    <Divider style={{width:'100%',padding:5 }} />
-                    <Divider style={{width:'100%' }} />
-                    { validarStar&&(
-                        <Grid item sx={{flexGrow:1}}>
-                            <TextField  
-                                name="talla1"
-                                value={formSeriado.talla1}
-                                onChange={handleChange}
-                                fullWidth
-                                required    
-                                type="number"
-                                label={talla.talla1}
-                            />
+        <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
+                mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
+            {/* Cuadro Plomo Nuevo Lote */}
+            <Grid sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5}}>
+                <Grid item container >
+                    <Grid item container sx={{alignItems:'center',m:1}} >
+                        <Grid>
+                            <Avatar src={NewLoteIcon} sx={{width:70,height:70}}/>
                         </Grid>
-                    )}  
-                    <Grid item sx={{flexGrow:1}}>
-                        <TextField
-                            name="talla2"
-                            required
-                            value={formSeriado.talla2}
-                            onChange={handleChange}
-                            fullWidth
-                            type="number"
-                            label={talla.talla2}
-                        />
+                        <Grid>
+                        <Typography variant='h4' sx={{p:1,fontWeight:'bold'}}>
+                            Nuevo Lote
+                        </Typography>
+                        </Grid>           
                     </Grid>
-                    <Grid item sx={{flexGrow:1}}>
-                        <TextField
-                            name="talla3"
-                            value={formSeriado.talla3}
-                            onChange={handleChange}
-                            fullWidth
-                            required
-                            type="number"
-                            label={talla.talla3}
-                        />
-                    </Grid>
-                    <Grid item sx={{flexGrow:1}}>
-                        <TextField
-                            name="talla4"
-                            value={formSeriado.talla4}
-                            onChange={handleChange}                        
-                            fullWidth
-                            required
-                            type="number"
-                            label={talla.talla4}
-                        />  
-                    </Grid>
+                    <form onSubmit={handleSubmit}>
+            {/* Cuadro Blanco que encierra todo el form */}
+                    <Grid sx ={{mt:1,pt:5,pl:3,pr:3, backgroundColor:'#f8f9fa',borderRadius:5  }} >
+                        <Grid container alignItems="flex-start" justifyContent='center' spacing={2}>
+                            <Grid item xs={6}>
+                                <TextField
+                                    name="metraje"
+                                    value={formSeriado.metraje}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
+                                    type="number"
+                                    label="Metraje"
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    name="color"
+                                    value={formSeriado.color}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    type="string"
+                                    label="Color de Lona"
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    name="descripcion"
+                                    value={formSeriado.descripcion}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
+                                    multiline
+                                    type="string"
+                                    label="Descripcion / Tipo de Sarga"
+                                />
+                            </Grid>
+                            {/* Seccion Checkbox  */}
+                            <Grid item xs={6} sx={{mt:2}}>
+                                <FormControlLabel control={<Checkbox checked={formSeriado.garibaldi} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
+                            </Grid>
+                            <Grid item xs={6} sx={{mt:2}}>
+                                <FormControlLabel control={<Checkbox checked={formSeriado.contrafuerte} name="contrafuerte" onChange={handleChangeCheckBox} />} label="Contrafuerte" />
+                            </Grid>
 
-                    <Grid item sx={{flexGrow:1}}>
-                        <TextField
-                            name="talla5"
-                            value={formSeriado.talla5}
-                            onChange={handleChange}                        
-                            fullWidth
-                            required
-                            type="number"
-                            label={talla.talla5}
-                        />  
+                            <Divider style={{width:'100%'}} />
+                            <Divider style={{width:'100%'}} />
+                    {/* Seleccionar la serie                */}
+                            <Grid item  xs={6} sx={{mt:2}} >
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Selecciona la serie
+                                </Typography>
+                                <Select
+                                    name="serie"
+                                    required
+                                    value={formSeriado.serie}
+                                    onChange={handleChangeSelect}
+                                    >
+                                    <MenuItem key={1} value='nino'>NIÑO</MenuItem>
+                                    <MenuItem key={2} value='dama'>DAMA</MenuItem>
+                                    <MenuItem key={3} value='varon'>VARON</MenuItem>                                                        
+                                </Select>
+                            </Grid>
+                    {/* Seccion Agregar una talla mas */}
+                            <Grid item xs={6} sx={{mt:2}}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Puedes agregar mas tallas
+                                </Typography>
+                                <FormControlLabel control={<Checkbox  checked={validarStar} onChange={handleChangeValidarStar} />} label="Agregar talla?" />
+                            </Grid>
+                    {/* Seccion Seriado */}
+                            <Divider style={{width:'100%',padding:5 }} />
+                            <Divider style={{width:'100%' }} />
+                            { validarStar&&(
+                                <Grid item sx={{flexGrow:1}}>
+                                    <TextField  
+                                        name="talla1"
+                                        value={formSeriado.talla1}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        required    
+                                        type="number"
+                                        label={talla.talla1}
+                                    />
+                                </Grid>
+                            )}  
+                            <Grid item sx={{flexGrow:1}}>
+                                <TextField
+                                    name="talla2"
+                                    required
+                                    value={formSeriado.talla2}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    type="number"
+                                    label={talla.talla2}
+                                />
+                            </Grid>
+                            <Grid item sx={{flexGrow:1}}>
+                                <TextField
+                                    name="talla3"
+                                    value={formSeriado.talla3}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
+                                    type="number"
+                                    label={talla.talla3}
+                                />
+                            </Grid>
+                            <Grid item sx={{flexGrow:1}}>
+                                <TextField
+                                    name="talla4"
+                                    value={formSeriado.talla4}
+                                    onChange={handleChange}                        
+                                    fullWidth
+                                    required
+                                    type="number"
+                                    label={talla.talla4}
+                                />  
+                            </Grid>
+
+                            <Grid item sx={{flexGrow:1}}>
+                                <TextField
+                                    name="talla5"
+                                    value={formSeriado.talla5}
+                                    onChange={handleChange}                        
+                                    fullWidth
+                                    required
+                                    type="number"
+                                    label={talla.talla5}
+                                />  
+                            </Grid>
+                            <Grid item container style={{marginTop: 16,justifyContent:'center' }}>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    type="submit"
+                                    sx={{fontWeight: 'bold'}}
+                                >
+                                    Guardar
+                                </Button>
+                            </Grid>    
+                        {/* Spinner                   */}
+                            <Grid item container xs={5}  style={{marginTop: 16}}>
+                                <HashLoader
+                                    color={'orange'}
+                                    loading={loading}
+                                    size={50}
+                                    aria-label="Loading Spinner"
+                                    data-testid="loader"
+                                />
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={7}  style={{marginTop: 16 }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                        >
-                            Guardar
-                        </Button>
-                {/* Spinner                   */}
-                    <Grid item xs={5}  style={{marginTop: 16 }}>
-                        <HashLoader
-                            color={'orange'}
-                            loading={loading}
-                            size={50}
-                            aria-label="Loading Spinner"
-                            data-testid="loader"
-                        />
-                    </Grid>
-                    </Grid>
-                </Grid>
-            </Paper>
-            </form>
-      </div>
+                </form>
+            </Grid>
+        </Grid> 
+      </Grid>
     )
   }
   export default InsertNewLotePage;

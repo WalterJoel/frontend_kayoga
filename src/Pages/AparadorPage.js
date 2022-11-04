@@ -1,7 +1,7 @@
 import {BottomNavigation, 
         Grid,
         Chip,
-        Card, Divider,
+        Card, Button,
         Avatar,  
         BottomNavigationAction,Container, Typography, CardContent, CssBaseline } from "@mui/material";
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -13,17 +13,18 @@ import {React,useEffect, useRef} from 'react';
 import AcordionLotesComponent from '../Components/AcordionLotesComponent';
 //Uso un ref para usar el scroll del React Dom
 
-
 function AparadorPage(props) {
   const ref = useRef(null);
 
-  const [selected, setSelected] = useState(0);
+  //En el front se pone on Focused la opcion aparado
+  const [selected, setSelected] = useState('Aparado');
   const [lotes,setLotes]  = useState([]); 
-  const [estadoLote,setEstadoLote] = useState('aparado');
+  //La pantalla me obliga a traer solamente los Aparado
+  const [estadoLote,setEstadoLote] = useState('Aparado');
 
 
   function handleChange(e,newValue){
-    //console.log('name',e.target.name);
+    console.log('name',e.target.name);
     console.log('nEW VALUE',newValue);
     setEstadoLote(newValue);
     setSelected(newValue);
@@ -57,7 +58,7 @@ function AparadorPage(props) {
   useEffect(() => {
     getLotesByIdAparadorAndEstado();
     //ref.current.scrollTop = 0;
-    console.log(' en efect')
+    console.log(selected)
     //setMessages(refreshMessages());
   }, [selected]);
 
@@ -82,8 +83,17 @@ function AparadorPage(props) {
       <Chip
           label="Rol -  Aparador"
           color="primary"
-          deleteIcon={<DoneIcon />}
+        
         />
+        <Chip></Chip>
+        <Button
+          label="Rol -  Aparador"
+          color="primary"
+          variant="contained"
+        >
+          ss
+        </Button>
+        
       </Grid>
     </Container>
   {/* Contenedor General del body */}
@@ -99,10 +109,8 @@ function AparadorPage(props) {
               onChange={handleChange}
               style={{ width: "100%",backgroundColor:'#f2f3f4' }}
               >
-              <BottomNavigationAction name='aparado' value='aparado' label="Lotes por Entregar" icon={<ListAltIcon/>}/>
-              <Divider orientation="vertical" flexItem />
-              <BottomNavigationAction name='resuelto' value='resuelto' label="Lotes Entregados" icon={<ListAltIcon/>}/>
-              <Divider orientation="vertical" flexItem />
+              <BottomNavigationAction name='Aparado' value='Aparado' label="Lotes por Entregar" icon={<ListAltIcon/>}/>
+              <BottomNavigationAction name='Resuelto' value='Resuelto' label="Lotes Entregados" icon={<ListAltIcon/>}/>
               <BottomNavigationAction label="Third"  icon={<ListAltIcon/>}/>
           </BottomNavigation>
       </Grid>         
@@ -112,9 +120,12 @@ function AparadorPage(props) {
           {
           lotes.map((lote,i)=>(
             //Envio los props necesario 
-            <AcordionLotesComponent key={i} idLote={lote.idlote} infomodelo={lote.infomodelo} serieLote={lote.serieLote} />
+            <AcordionLotesComponent key={i} idLoteProps={lote.idlote} 
+                                    infomodeloProps={lote.infomodelo}
+                                    serieLoteProps={lote.serieLote} 
+                                    talla1Props={lote.talla1}
+                                    totalSeriadoInicialProps={lote.total_pares_seriado_inicial}/>
             ))
-
           }
       </Grid>
     </Container>

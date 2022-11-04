@@ -1,10 +1,13 @@
 import React,{useEffect,useState} from "react";
-import {useParams } from 'react-router-dom';
+import {useParams,useNavigate } from 'react-router-dom';
 import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../Elements/TallasGeneralJson';
 
-import {Autocomplete,Divider,MenuItem,TextField,List,ListItem,ListItemText,Button,Box,Typography,Grid, Paper, Select} from '@mui/material';
+import {Avatar,Autocomplete,Divider,MenuItem,TextField,List,ListItem,ListItemText,Button,Box,Typography,Grid, Paper, Select} from '@mui/material';
+
+import DataIcon from '../media/DataIcon2.png';
 
 const DetailLotesPage =() => {
+    const navigateTo = useNavigate();
     //Obtengo el ID que viene de otro Page
     let {idLoteParam,serieParam}  = useParams();
     const [detalleLote,SetDetalleLote] = useState([]);
@@ -84,6 +87,7 @@ const DetailLotesPage =() => {
         .then(function(response) {
             if(response.ok) {
                 console.log('all good')
+                navigateTo('');
             } else {
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
@@ -136,39 +140,43 @@ const DetailLotesPage =() => {
         .catch((error)=> console.log('Algo salio mal al requerir aparadores'+ error.message));
     },[]);
     return(
-        <div style={{padding:16, margin:'auto', maxWidth:1000}}>
-            <Grid  container flexWrap='wrap' justifyContent="center">
-                <Grid item sx={{flexGrow:1}}>
-                    <Paper >
-                        <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                            INFORMACIÓN DE LOTE
+        <Grid sx={{padding:16,position:'absolute',zIndex:1}}>
+            <Grid  container sx={{display:'flex',justifyContent:"center"}}>
+                <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
+                    <Grid item container sx={{alignItems:'center'}} >
+                        <Grid>
+                            <Avatar src={DataIcon} sx={{width:70,height:70}}/>
+                        </Grid>
+                        <Grid>
+                        <Typography variant='h6' sx={{padding:1,fontWeight:'bold'}}>
+                            Información del Lote
                         </Typography>
+                        </Grid>           
+                    </Grid>
+                    <List >
+                        <ListItem >
+                            <ListItemText primary="Lote" secondary={'# '+detalleLote.idlote} />
+                            <ListItemText primary="Metraje" secondary={detalleLote.metraje} />
+                            <ListItemText primary="Color" secondary={detalleLote.color} />
+                            <ListItemText primary="Serie" secondary={detalleLote.serie} />
+                        </ListItem>
+                        <Divider/>
 
-                        <List >
-                            <ListItem>
-                                <ListItemText primary="Lote" secondary={'# '+detalleLote.idlote} />
-                                <ListItemText primary="Metraje" secondary={detalleLote.metraje} />
-                                <ListItemText primary="Color" secondary={detalleLote.color} />
-                                <ListItemText primary="Serie" secondary={detalleLote.serie} />
-                            </ListItem>
-                            <Divider/>
-
-                            <ListItem>
-                                <ListItemText primary="Descripcion del Cortador" secondary={detalleLote.descripcion} />
-                                <ListItemText primary="Fecha de Corte" secondary={detalleLote.fecha_creacion} />
-                                <ListItemText primary="Estado" secondary={detalleLote.estado} />
-                            </ListItem>
-                            <Divider/>
-                            <ListItem>
-                                <ListItemText primary="Garibaldi" secondary={detalleLote.garibaldi} />
-                                <ListItemText primary="Contrafuerte" secondary={detalleLote.contrafuerte} />
-                            </ListItem>
-                        </List>
-                    </Paper>
+                        <ListItem>
+                            <ListItemText primary="Descripcion del Cortador" secondary={detalleLote.descripcion} />
+                            <ListItemText primary="Fecha de Corte" secondary={detalleLote.fecha_creacion} />
+                            <ListItemText primary="Estado" secondary={detalleLote.estado} />
+                        </ListItem>
+                        <Divider/>
+                        <ListItem>
+                            <ListItemText primary="Garibaldi" secondary={detalleLote.garibaldi} />
+                            <ListItemText primary="Contrafuerte" secondary={detalleLote.contrafuerte} />
+                        </ListItem>
+                    </List>
                 </Grid>
                 {/* Lista de Seriado Inicial */}
                 <Grid item  sx={{flexGrow:1 ,m:1} }>
-                    <Paper>
+                    <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                             SERIADO DE CORTE INICIAL
                         </Typography>
@@ -184,14 +192,14 @@ const DetailLotesPage =() => {
                                 <ListItemText primary={talla.talla5} secondary={detalleLote.talla5} />                                                                
                             </ListItem>
                         </List>
-                    </Paper>
+                    </Grid>
                 </Grid>
             </Grid>
             <form onSubmit={handleSubmit}>
             <Grid  container flexWrap='wrap' justifyContent="center">
                 {/* Asignar Aparador */}
                 <Grid item  sx={{flexGrow:1 ,m:1}} >
-                    <Paper>
+                    <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                             ASIGNA UN APARADOR 
                         </Typography>
@@ -212,11 +220,11 @@ const DetailLotesPage =() => {
                                 </MenuItem>
                             ))}
                         </Select>
-                    </Paper>
+                    </Grid>
                 </Grid>
                 {/* Distribucion de Seriado */}
                 <Grid item  sx={{flexGrow:2 ,m:1}} >
-                    <Paper>
+                    <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                             ASIGNA UN MODELO  
                         </Typography>
@@ -234,10 +242,10 @@ const DetailLotesPage =() => {
                             )}
                             renderInput={(params) => <TextField  {...params} required label="Buscar" />}
                         />
-                    </Paper>
+                    </Grid>
                 </Grid>
                 <Grid item>
-                    <Paper>
+                    <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                            Agrega Detalles e insumos de Aparado  
                         </Typography>
@@ -250,13 +258,14 @@ const DetailLotesPage =() => {
                             type="string"
                             label="Descripcion"
                         />
-                    </Paper>
+                    </Grid>
                 </Grid>
 
                 <Grid item xs={7}  style={{marginTop: 16 }}>
                         <Button
-                            variant="contained"
+                            variant="outlined"
                             color="primary"
+                            sx={{fontWeight:'bold'}}
                             type="submit"
                         >
                             Guardar
@@ -267,7 +276,7 @@ const DetailLotesPage =() => {
             <Paper>
 
             </Paper>
-        </div>
+        </Grid>
         
     )
 }
