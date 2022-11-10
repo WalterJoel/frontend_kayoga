@@ -19,14 +19,14 @@ const DetailLotesPage =() => {
     const[formUpdateLote,setFormUpdateLote] = useState({
         idmodelo:'',
         idaparador:'',
-        detalle_insumos_aparado:'...',
+        detalle_insumos_aparado:'',
         estado:'Aparado'
     })
     //Funcion para la busqueda de modelos
     const peticionModelos=async()=>{
         console.log('serie',serieParam);
         console.log('probando ', detalleLote.serie)
-        const url = 'http://localhost:4000/getAllModelosBySerieAndColor/'+ serieParam;
+        const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getAllModelosBySerieAndColor/'+ serieParam;
         await fetch(url,{
         //await fetch('https://backendkayoga-production.up.railway.app/getAllModelos',{
             headers: {
@@ -75,7 +75,7 @@ const DetailLotesPage =() => {
         */
         //For Develop
         //id lote param es el id que se envia cuando viene de lotesListPage
-        const url= 'http://localhost:4000/updateLoteById/' + idLoteParam;
+        const url= 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/updateLoteById/' + idLoteParam;
         console.log('id param',idLoteParam)
         fetch(url,{
             headers: {
@@ -87,8 +87,9 @@ const DetailLotesPage =() => {
         .then(function(response) {
             if(response.ok) {
                 console.log('all good')
-                navigateTo('');
+                navigateTo('/');
             } else {
+                alert('No se pudo guardar')
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
           })
@@ -100,7 +101,7 @@ const DetailLotesPage =() => {
         peticionModelos();
         //Obtengo informacion sobre el lote
         const url='https://backendkayoga-production.up.railway.app/getLoteById/'+idLoteParam;
-        //const url='http://localhost:4000/getLoteById/'+idLote;
+        //const url='https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLoteById/'+idLote;
         fetch(url,{
             headers: {
                 'Content-Type': 'application/json'
@@ -128,7 +129,7 @@ const DetailLotesPage =() => {
 
         //Obtengo informacion sobre los aparadores
         fetch('https://backendkayoga-production.up.railway.app/getAllAparadores',{
-        //fetch('http://localhost:4000/getAllAparadores',{
+        //fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getAllAparadores',{
             headers: {
                 'Content-Type': 'application/json'
               },
@@ -254,6 +255,7 @@ const DetailLotesPage =() => {
                             value={formUpdateLote.detalle_insumos_aparado}
                             onChange={handleChangeSelect}
                             fullWidth
+                            required
                             multiline
                             type="string"
                             label="Descripcion"

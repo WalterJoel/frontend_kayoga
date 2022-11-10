@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
     Grid,
     Accordion,AccordionDetails,AccordionSummary,
-    TextField,Divider,Button,
+    TextField,Divider,Button,CardContent,Card,
     Avatar,Typography} from "@mui/material";
 
 import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../Elements/TallasGeneralJson';
@@ -16,8 +16,9 @@ const AcordionLotesComponent=(props)=>{
   let navigateToAparadorPage = useNavigate();
   const [talla,setTallas]= useState({});
   const validarTalla1= props.talla1Props;
+  console.log('validando si hay talla 1',validarTalla1);
   const [formSeriadoRestante, setFormSeriadoRestante] = useState({
-    talla1:'0',
+    talla1:'',
     talla2:'',
     talla3:'',
     talla4:'',
@@ -38,7 +39,7 @@ const AcordionLotesComponent=(props)=>{
       diferenciaCortes = diferenciaCortes*(-1);
     }
     if(diferenciaCortes<5){
-      await fetch('http://localhost:4000/createSeriadoRestante',{
+      await fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/createSeriadoRestante',{
         headers: {
             'Content-Type': 'application/json'
           },
@@ -90,7 +91,7 @@ const AcordionLotesComponent=(props)=>{
   },[]);
   
   return (
-    <Grid item sx={{borderRadius:3}} >
+    <Grid item  sx={{borderRadius:3}} >
       <Accordion sx={{m:2}} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -101,95 +102,212 @@ const AcordionLotesComponent=(props)=>{
             <Avatar src={agujaImage} sx={{pr:2}}/>
             <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
           </Grid>
+          
         </AccordionSummary>
 
         <AccordionDetails >
-          <Grid container >
-            <Typography variant="h6" color='primary' sx={{mb:2}}>
-                    {props.infomodeloProps.toUpperCase()}
+          <Grid xs={12} container sx={{backgroundColor:''}}>
+            {props.infomodeloProps ?(
+                <Typography variant="h6" color='primary' sx={{mb:2}}>
+                  {props.infomodeloProps.toUpperCase()}
+                </Typography>
+            ):(
+              <Typography variant="h6" color='primary' sx={{mb:2}}>
+                  Los lotes cortados aun no tienen un modelo definido, asignale uno
               </Typography>
+            )}
+
           </Grid>
+    {/* Informacion del Lote*/}
+        <Grid container sx={{backgroundColor:'rgb(242, 243, 244)',p:1,borderRadius:5,mt:2,justifyContent:'space-between'}}>
+        {/* Info 1 */}
+          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',m:0}} >
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Metraje
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  {props.metrajeProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Fecha de Corte
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  {props.fechaCorteProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Garibaldi
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  {props.garibaldiProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Contrafuerte
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                {props.contrafuerteProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Estado Lote
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                {props.estadoLoteProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Fecha Entrega Aparador
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Fecha Conteo
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                 Total Pares Cortados
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
+              </Grid>
+            </Grid>
             
-          {/* Formulario de Tallas */}
-          <form onSubmit={handleSubmit}>
-            <Grid container  spacing={1}>
-              { validarTalla1>0 &&
-              <Grid item sx={{flexGrow:1, display:'flex'}}>
-                <TextField  
-                  name="talla1"
-                  value={formSeriadoRestante.talla1}
-                  onChange={handleChange}
-                  required 
-                  type="number"
-                  label={talla.talla1}
-                  />
-              </Grid>
-              }
-              <Grid item sx={{flexGrow:1}}>
-                  <TextField
-                    name="talla2"
-                    required
-                    value={formSeriadoRestante.talla2}
-                    onChange={handleChange}
-                    color='textfield_kayoga'                       
-                    type="number"
-                    label={talla.talla2}
-                  />
-              </Grid>
-              <Grid item sx={{flexGrow:1}}>
-                  <TextField
-                    name="talla3"
-                    value={formSeriadoRestante.talla3}
-                    onChange={handleChange}
-                    color='textfield_kayoga'                       
-                    required
-                    type="number"
-                    label={talla.talla3}
-                  />
-              </Grid>
-              <Grid item sx={{flexGrow:1}}>
-                  <TextField
-                    name="talla4"
-                    value={formSeriadoRestante.talla4}
-                    onChange={handleChange}                        
-                    color='textfield_kayoga'                       
-                    required
-                    sx={{mr:1}}
-                    type="number"
-                    label={talla.talla4}
-                  />  
-              </Grid>
-              <Grid item sx={{flexGrow:1}}>
-                  <TextField
-                    name="talla5"
-                    value={formSeriadoRestante.talla5}
-                    onChange={handleChange}                        
-                    color='textfield_kayoga'                       
-                    required
-                    type="number"
-                    sx={{mb:1}}
-                    label={talla.talla5}
-                  />  
-              </Grid>
-              <Grid item sx={{flexGrow:1}}>
-                  <TextField
-                    name="descripcion_aparador"
-                    value={formSeriadoRestante.descripcion_aparador}
-                    onChange={handleChange}                        
-                    multiline
-                    fullWidth
-                    required
-                    color='textfield_kayoga'                       
-                    sx={{mb:1}}
-                    label='Descripción'
-                  />  
+            
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Total Pares Aparado
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
               </Grid>
             </Grid>
-            <Divider />                
-            <Grid item container sx={{m:1, justifyContent:'center'}}>
-              <Button size="small" variant='contained' type="submit" >Entregar</Button>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Total Pares Contado
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
+              </Grid>
             </Grid>
-          </form>
+
+
+
+          </Grid>
+          
+        {/* Info 2 */}
+          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',m:0}} >
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Descripción Cortador
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                {props.descripcionCortadorProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                Descripción Aparador
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                Descripción Contador
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  Color de Lona
+                </Typography>
+              </Grid>
+            </Grid>
+
+          </Grid>
+
+          
+
+
+        </Grid> 
+            
+  {/* Fin Informacion del Lote*/}
+          
         </AccordionDetails>
       </Accordion>
     </Grid>

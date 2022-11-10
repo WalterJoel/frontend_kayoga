@@ -12,6 +12,15 @@ export const tallasNinoJson={
     talla4:'30',
     talla5:'32',
 }
+/* Creo otro para no generar confusion porque talla 1 es otra cosa, talla */
+export const tallasDamaDivision={
+    talla1:'34', //Para caso Star
+    talla21:'34', //Para caso vans
+    talla2:'35',
+    talla3:'36',
+    talla4:'37',
+    talla5:'38',
+}
 export const tallasNinoDivision={
     talla1:'24',
     talla2:'26',

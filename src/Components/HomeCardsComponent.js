@@ -10,7 +10,7 @@ import { Link} from 'react-router-dom';
 
 export default function HomeCardsComponent(props){
     return(
-        <Card sx={{ maxWidth: 160, padding:2,margin:2, height:190 }}>
+        <Card sx={{ maxWidth: 180, padding:2,margin:2, height:220,borderRadius:5 }}>
             <Link to={props.linkTo}>
                 <Button>
                     <CardMedia
@@ -23,7 +23,7 @@ export default function HomeCardsComponent(props){
                 </Button>
             </Link>
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div" align="center">
+                <Typography  align="center">
                 {props.action}
                 </Typography>
             </CardContent>

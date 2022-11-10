@@ -110,17 +110,17 @@ const InsertNewLotePage=(props)=> {
    }
     return (
         
-        <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
-                mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
+        <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5
+                ,display:'flex',alignItems:'center',justifyContent:'center'}}>
             {/* Cuadro Plomo Nuevo Lote */}
-            <Grid sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5}}>
+            <Grid sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5}}>
                 <Grid item container >
                     <Grid item container sx={{alignItems:'center',m:1}} >
                         <Grid>
                             <Avatar src={NewLoteIcon} sx={{width:70,height:70}}/>
                         </Grid>
                         <Grid>
-                        <Typography variant='h4' sx={{p:1,fontWeight:'bold'}}>
+                        <Typography variant='h4' sx={{p:1}}>
                             Nuevo Lote
                         </Typography>
                         </Grid>           

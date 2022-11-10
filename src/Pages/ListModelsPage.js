@@ -118,7 +118,7 @@ const DetailLotesPage =() => {
     
     useEffect(()=>{
         const url='https://backendkayoga-production.up.railway.app/getAllModelos';
-        //const url='http://localhost:4000/getLoteById/'+idLote;
+        //const url='https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLoteById/'+idLote;
         fetch(url,{
             headers: {
                 'Content-Type': 'application/json'

@@ -1,67 +1,71 @@
 import {BottomNavigation, 
     Grid,
-    Chip,
-    Card, Button,
-    Avatar,  
-    BottomNavigationAction,Container, Typography, CardContent, CssBaseline } from "@mui/material";
-import '../App.css'
+    Chip,Box,
+    CardMedia, Button,Typography, } from "@mui/material";
 import aparadorImage from '../media/aparadorImage.jpg'
-import {React,useEffect, useRef} from 'react';
+import {React,useEffect} from 'react';
+import letraK from '../media/letrak.png';
+import logoK from '../media/k.png';
+import letterK from '../media/letter-k.png';
 
-
-//Uso un ref para usar el scroll del React Dom
-import useUser from '../Hooks/useUser';
+import { Link} from 'react-router-dom';
 
 const HeaderGeneralComponent=()=>{
-  const isLoggedIn= useUser();
     return(
         <>
         {/* Encabezado */}
-        <CssBaseline />
-        <Grid container   sx={{justifyContent:'center',position:'absolute',zIndex:1}}>
-          <Grid sx={{width:'80vw',height:'25vh',
-                  display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-          <Grid item sx={{pr:2}}>
-            <Avatar src={aparadorImage} sx={{width:90,height:90}}>
-            </Avatar>
-          </Grid>
-          <Grid item  sx={{display:'flex',flexDirection: 'column',p:1,alignItems:'center',pl:2}}>
-            <Typography component="h1" variant="h4" sx={{fontWeight:'bold',fontSize:'1em' }}>
-                Bienvenido PROPS
-            </Typography>
-            <Typography component="h1" variant="h6" sx={{fontSize:'1em' }}>
-                Detalles de Aparado
-            </Typography>
-           
-          </Grid>
-          <Grid item sx={{pl:4}}>
-          <Chip
-              label="Rol -  Props"
-              color="primary"
-              sx={{m:1}}        
-            />
-        {isLoggedIn
-            ?<Button
-              label="Rol -  Aparador"
-              color="primary"
-              //onClick={handleCerrarSesion}
-              variant="contained"
-              sx={{borderRadius:5}}
-            >
-              Cerrar Sesión
-            </Button>
-            :
-            <Button
-              label="Rol -  Props"
-              color="primary"
-              //onClick={handleCerrarSesion}
-              variant="contained"
-              sx={{borderRadius:5}}
-            >
-              Iniciar Sesión
-            </Button>
-        }
-          </Grid>
+        
+        <Grid container   sx={{justifyContent:'center',zIndex:1,mt:2,height:'15vh'}}>
+        
+          <Grid item sx={{width:'100vw',
+                  display:'flex',flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
+          
+            <Link to='/'  >
+                  <Button>
+                      <CardMedia
+                          component="img"
+                          height="100"
+                          image={logoK}
+                      />
+                  </Button>
+            </Link>
+            <Grid item  sx={{display:'flex',flexDirection: 'column',p:1,alignItems:'center',pl:1}}>
+              <Typography component="h1" variant="h4" sx={{fontWeight:'bold',fontSize:'1em' }}>
+                  Bienvenido PROPS
+              </Typography>
+              <Typography component="h1" variant="h6" sx={{fontSize:'1em' }}>
+                  Detalles de Aparado
+              </Typography>
+            
+            </Grid>
+            <Grid item sx={{pr:1}}>
+            <Chip
+                label="Rol -  Props"
+                color="primary"
+              />
+              {/* <Button
+                label="Rol -  Aparador"
+                color="primary"
+                //onClick={handleCerrarSesion}
+                variant="contained"
+                sx={{borderRadius:5}}
+              >
+                Cerrar Sesión
+              </Button> */}
+            </Grid>
+            <Grid item>          
+              <Box
+
+                className='logoKayoga'
+                sx={{
+                  maxHeight: { xs: 160 },
+                  maxWidth: { xs: 160 },
+                }}
+                component="img"
+                src={letraK}
+              />
+            </Grid>
+
           </Grid>
         </Grid>
         </>

@@ -18,11 +18,19 @@ import InsertNewLotePage from './Pages/InsertNewLotePage';
 import LoginPage from './Pages/LoginPage';
 import AparadorPage from './Pages/AparadorPage';
 import HeaderGeneral from './Components/HeaderGeneralComponent'
-import './App.css'
+import InfoAparadoresPage from './Pages/InfoAparadoresPage'
+import ListAllLotesByState from './Pages/ListAllLotesByState';
+import LotesPorContarPage from './Pages/LotePorContarPage';
+import SepararLotePage from './Pages/SepararLotePage';
+import OrdenInyeccionPage from './Pages/Inyeccion/OrdenInyeccionPage';
+import InsertZapatillasPage from './Pages/Stock/InsertZapatillasPage';
 
 const theme = createTheme({
   typography: {
     fontFamily: 'Roboto Slab',
+    h4:{
+      color:'#143975'
+    }
   },
   palette:{
     primary:{
@@ -50,8 +58,8 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-      <HeaderGeneral/>
       <BrowserRouter>
+      <HeaderGeneral/>
         <Routes>
           <Route exact path="/" component={<HomePage/>}>
           <Route index element={<HomePage/>} />
@@ -62,6 +70,12 @@ function App() {
           <Route path="ListModelsPage" element={<ListModelsPage/>} />
           <Route path="LoginPage" element={<LoginPage/>} />
           <Route path="AparadorPage" element={<AparadorPage/>} />
+          <Route path="InfoAparadoresPage" element={<InfoAparadoresPage/>} />
+          <Route path="ListAllLotesByState" element={<ListAllLotesByState/>} />          
+          <Route path="LotesPorContarPage" element={<LotesPorContarPage/>} />       
+          <Route path="SepararLotePage" element={<SepararLotePage/>} />             
+          <Route path="OrdenInyeccionPage" element={<OrdenInyeccionPage/>} />       
+          <Route path="InsertZapatillasPage" element={<InsertZapatillasPage/>} />               
           </Route>
         </Routes>
       </BrowserRouter>

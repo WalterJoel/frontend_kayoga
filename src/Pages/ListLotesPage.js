@@ -2,15 +2,17 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import {Paper,
-        Table,
+        Table,Grid,Avatar,
         Button,
         TableBody,TableCell,TableContainer,TableHead, tableCellClasses ,TablePagination,TableRow, Typography} from '@mui/material';
 
 import { styled } from '@mui/material/styles';
+import ListLotesIcon from '../media/ListaLotesIcon.png';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
+      backgroundColor: '#585858',
+      borderRadius:8,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -76,10 +78,10 @@ const ListLotesPage=()=>{
     
     useEffect(()=>{
             console.log('entertaiment')
-        fetch('http://localhost:4000/getLotesCortados',{
+        fetch('https://backendkayoga-production.up.railway.app/getLotesCortados',{
         //For Develop
         //Llamo a la API mediante un FETCH, me retorna una promesa
-        //fetch('http://localhost:4000/getLotesCortados',{
+        //fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesCortados',{
             headers: {
                 'Content-Type': 'application/json'
               },
@@ -93,75 +95,87 @@ const ListLotesPage=()=>{
 
     },[]);
     return(
-        <div style={{padding:16, margin:'auto', maxWidth:1000, backgroundColor:'#f1f1f1'}}>
-        <Typography  variant='h5' style={{color:'#143975', margin:'1em' }}>
-            Lotes Cortados
-        </Typography>
-        <Paper >
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table  stickyHeader aria-label="sticky table">
-            <TableHead>
-            <TableRow >
-              <StyledTableCell align="center" colSpan={3}>
-                Country
-              </StyledTableCell>
-              <StyledTableCell align="center" colSpan={3}>
-                Details
-              </StyledTableCell>
-            </TableRow>
-              <TableRow>
-                {columns.map((column,e) => (
-                  <StyledTableCell
-                    key={e}
-                    align={column.align}
-                    style={{ top: 57, minWidth: column.minWidth }}
-                  > 
-                    {column.label}
-                  </StyledTableCell>
-                ))}
+        <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
+        mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <Grid item container sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5}}>
+            <Grid item container sx={{alignItems:'center',m:1}} >
+              <Grid>
+                  <Avatar src={ListLotesIcon} sx={{width:70,height:70}}/>
+              </Grid>
+              <Grid>     
+                <Typography  variant='h4' style={{color:'#143975' }}>
+                  Lotes Cortados
+                </Typography>
+              </Grid>           
+            </Grid>
+
+          <Grid item container sx={{backgroundColor:'#f8f9fa',borderRadius:5}}>
+          <TableContainer sx={{p:3,justifyContent:'center'}}>
+            <Table  stickyHeader aria-label="sticky table">
+              <TableHead>
+              <TableRow >
+                <StyledTableCell align="center" colSpan={3}>
+                  Country
+                </StyledTableCell>
+                <StyledTableCell align="center" colSpan={3}>
+                  Details
+                </StyledTableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .map((row,i) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={i}>
-                      {columns.map((column,f) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={f} align={column.align}>
-                            {/* Si es un numero */}
-                            {column.format && typeof value === 'number'
-                              ? column.format(value) 
-                            //   Si es una accion
-                              :column.label==='acciones' ?
-                                //column.format(value)
-                                <Button component={Link} to={'/DetailLotesPage/'+value+'/'+row['serie']} variant='contained'>
-                                    Ver Detalle
-                                </Button>
-                                // caso contrario 
-                              :value
-                            }
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-      </div>
+                <TableRow>
+                  {columns.map((column,e) => (
+                    <StyledTableCell
+                      key={e}
+                      align={column.align}
+                      style={{ top: 57, minWidth: column.minWidth }}
+                    > 
+                      {column.label}
+                    </StyledTableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .map((row,i) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={i}>
+                        {columns.map((column,f) => {
+                          const value = row[column.id];
+                          const aa=row['fecha_creacion'];
+                          return (
+                            <TableCell key={f} align={column.align}>
+                              {/* Si es un numero */}
+                              {column.format && typeof value === 'number'
+                                ? column.format(value) 
+                              //   Si es una accion
+                                :column.label==='acciones' ?
+                                  //column.format(value)
+                                  <Button component={Link} to={'/DetailLotesPage/'+value+'/'+row['serie']} variant='outlined'>
+                                      Enviar Aparado
+                                  </Button>
+                                  // caso contrario 
+                                :value
+                              }
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Grid>
+        </Grid>
+      </Grid>
     );
 }
 export default ListLotesPage;

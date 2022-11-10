@@ -45,7 +45,7 @@ export default function LoginPage() {
   /*const handleSubmit = async(event) => {
     event.preventDefault();
     //For Production
-    await fetch('http://localhost:4000/login',{
+    await fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/login',{
       headers: {
           'Content-Type': 'application/json'
         },
