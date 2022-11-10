@@ -36,7 +36,7 @@ const AcordionForLotesPorContarComponent =(props)=>{
     //Validando que el aparador entregue completo
     const totalCortes = parseInt(formSeriadoRestante.talla1)+parseInt(formSeriadoRestante.talla2)+parseInt(formSeriadoRestante.talla3)+parseInt(formSeriadoRestante.talla4)+parseInt(formSeriadoRestante.talla5);
     
-      await fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/updateWatchAparado',{
+      await fetch('https://backendkayoga-production.up.railway.app/updateWatchAparado',{
         headers: {
             'Content-Type': 'application/json'
           },

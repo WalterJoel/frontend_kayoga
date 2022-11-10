@@ -178,7 +178,7 @@ export default function InsertZapatillasPage() {
     alert('Estas seguro de enviar la informacion?');
    
     //For Production
-    await fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/UpdateAllZapatillas',{
+    await fetch('https://backendkayoga-production.up.railway.app/UpdateAllZapatillas',{
         headers: {
             'Content-Type': 'application/json'
           },

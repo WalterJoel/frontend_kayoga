@@ -39,7 +39,7 @@ const AcordionLotesComponent=(props)=>{
       diferenciaCortes = diferenciaCortes*(-1);
     }
     if(diferenciaCortes<5){
-      await fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/createSeriadoRestante',{
+      await fetch('https://backendkayoga-production.up.railway.app/createSeriadoRestante',{
         headers: {
             'Content-Type': 'application/json'
           },

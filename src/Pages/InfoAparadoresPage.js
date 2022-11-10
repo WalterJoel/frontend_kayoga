@@ -49,7 +49,7 @@ function InfoAparadoresPage(props) {
 
   async function getLotesByIdAparadorAndEstado(idAparador){
 //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
+    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
     await fetch(url,{
       headers: {
           'Content-Type': 'application/json'

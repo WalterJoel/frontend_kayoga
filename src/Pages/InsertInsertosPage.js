@@ -60,7 +60,7 @@ export default function App() {
 
   async function getInsertosBySerie(){
 //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getInsertosBySerie/'+selected;
+    const url = 'https://backendkayoga-production.up.railway.app/getInsertosBySerie/'+selected;
       await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ export default function App() {
     alert('Estas seguro de enviar la informacion?');
    
     //For Production
-    fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/UpdateAllInsertos',{
+    fetch('https://backendkayoga-production.up.railway.app/UpdateAllInsertos',{
         headers: {
             'Content-Type': 'application/json'
           },

@@ -75,7 +75,7 @@ const DetailLotesPage =() => {
         */
         //For Develop
         //id lote param es el id que se envia cuando viene de lotesListPage
-        const url= 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/updateLoteById/' + idLoteParam;
+        const url= 'https://backendkayoga-production.up.railway.app/updateLoteById/' + idLoteParam;
         console.log('id param',idLoteParam)
         fetch(url,{
             headers: {

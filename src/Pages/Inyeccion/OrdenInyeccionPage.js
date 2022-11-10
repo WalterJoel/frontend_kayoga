@@ -73,7 +73,7 @@ export default function OrdenInyeccionPage() {
     alert('Estas seguro de enviar la informacion?');
    
     //For Production
-    fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/UpdateAllInsertos',{
+    fetch('https://backendkayoga-production.up.railway.app/UpdateAllInsertos',{
         headers: {
             'Content-Type': 'application/json'
           },

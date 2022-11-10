@@ -36,7 +36,7 @@ const AcordionForSepararLoteComponent =(props)=>{
     alert('Estas seguro de enviar la informacion?');
     //Validando que el aparador entregue completo
     
-      await fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/updateSeriadoRestanteAlSeparar',{
+      await fetch('https://backendkayoga-production.up.railway.app/updateSeriadoRestanteAlSeparar',{
         headers: {
             'Content-Type': 'application/json'
           },

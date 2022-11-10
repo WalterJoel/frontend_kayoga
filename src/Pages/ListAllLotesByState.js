@@ -26,7 +26,7 @@ function ListAllLotesByState(props) {
     }
     async function getLotesByEstadoCortado(){
         //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesByEstadoWithoutModels/'+estadoLote;
+        const url = 'https://backendkayoga-production.up.railway.app/getLotesByEstadoWithoutModels/'+estadoLote;
         await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ function ListAllLotesByState(props) {
 
     async function getLotesByEstado(){
         //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesByEstado/'+estadoLote;
+        const url = 'https://backendkayoga-production.up.railway.app/getLotesByEstado/'+estadoLote;
         await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
