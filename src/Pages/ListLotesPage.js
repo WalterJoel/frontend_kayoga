@@ -32,33 +32,24 @@ const columns = [
     id: 'metraje',
     name:'metraje',
     label: 'Metraje',
-    minWidth: 100,
-    align: 'right',
-    format: (value) => value + ' metros ',
   },
 
-  { id: 'color', name:'color', label: 'Color', minWidth: 100 },
+  { id: 'color', name:'color', label: 'Color de Lona'},
+  {
+    id: 'serie', name:'serie', label: 'Serie'},
   {
     id: 'fecha_creacion',
     name:'fecha_creacion',
     label: 'Fecha de Corte',
-    minWidth: 100,
-    align: 'right',
-    format: (date) => date.toLocaleString('America/Lima'),
   },
   {
     id: 'ss',
-    label: 'Total de Pares',
-    minWidth: 50,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    label: 'Total de Pares'
   },
   {
     id: 'idlote',
     name:'acciones',
-    label: 'acciones',
-    minWidth: 50,
-    align: 'right',
+    label: 'acciones'
   }
 ];
 
@@ -114,11 +105,8 @@ const ListLotesPage=()=>{
             <Table  stickyHeader aria-label="sticky table">
               <TableHead>
               <TableRow >
-                <StyledTableCell align="center" colSpan={3}>
-                  Country
-                </StyledTableCell>
-                <StyledTableCell align="center" colSpan={3}>
-                  Details
+                <StyledTableCell align="center" colSpan={7}>
+                  Detalles
                 </StyledTableCell>
               </TableRow>
                 <TableRow>
@@ -140,7 +128,6 @@ const ListLotesPage=()=>{
                       <TableRow hover role="checkbox" tabIndex={-1} key={i}>
                         {columns.map((column,f) => {
                           const value = row[column.id];
-                          const aa=row['fecha_creacion'];
                           return (
                             <TableCell key={f} align={column.align}>
                               {/* Si es un numero */}

@@ -26,7 +26,7 @@ const DetailLotesPage =() => {
     const peticionModelos=async()=>{
         console.log('serie',serieParam);
         console.log('probando ', detalleLote.serie)
-        const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getAllModelosBySerieAndColor/'+ serieParam;
+        const url = 'https://backendkayoga-production.up.railway.app/getAllModelosBySerieAndColor/'+ serieParam;
         await fetch(url,{
         //await fetch('https://backendkayoga-production.up.railway.app/getAllModelos',{
             headers: {
@@ -141,9 +141,11 @@ const DetailLotesPage =() => {
         .catch((error)=> console.log('Algo salio mal al requerir aparadores'+ error.message));
     },[]);
     return(
-        <Grid sx={{padding:16,position:'absolute',zIndex:1}}>
-            <Grid  container sx={{display:'flex',justifyContent:"center"}}>
-                <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
+        <Grid container sx={{zIndex:2,position:'absolute',padding:5
+                ,display:'flex',alignItems:'center',justifyContent:'center',backgroundColor:''}}>
+            <Grid  container sx={{display:'flex',justifyContent:"space-around",backgroundColor:'#dfe3e9',p:2,
+                                    borderRadius:5}}>
+                <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3,flexGrow:1}}>
                     <Grid item container sx={{alignItems:'center'}} >
                         <Grid>
                             <Avatar src={DataIcon} sx={{width:70,height:70}}/>
@@ -164,14 +166,14 @@ const DetailLotesPage =() => {
                         <Divider/>
 
                         <ListItem>
-                            <ListItemText primary="Descripcion del Cortador" secondary={detalleLote.descripcion} />
                             <ListItemText primary="Fecha de Corte" secondary={detalleLote.fecha_creacion} />
-                            <ListItemText primary="Estado" secondary={detalleLote.estado} />
+                            <ListItemText primary=" Garibaldi" secondary={detalleLote.garibaldi} />
+                            <ListItemText primary=" Contrafuerte" secondary={detalleLote.contrafuerte} />
                         </ListItem>
                         <Divider/>
                         <ListItem>
-                            <ListItemText primary="Garibaldi" secondary={detalleLote.garibaldi} />
-                            <ListItemText primary="Contrafuerte" secondary={detalleLote.contrafuerte} />
+                            <ListItemText primary="Estado" secondary={detalleLote.estado} />
+                            <ListItemText primary="Descripcion del Cortador" secondary={detalleLote.descripcion} />
                         </ListItem>
                     </List>
                 </Grid>
@@ -195,9 +197,8 @@ const DetailLotesPage =() => {
                         </List>
                     </Grid>
                 </Grid>
-            </Grid>
-            <form onSubmit={handleSubmit}>
-            <Grid  container flexWrap='wrap' justifyContent="center">
+                <form onSubmit={handleSubmit}>
+            <Grid  item container sx={{justifyContent:'center'}} >
                 {/* Asignar Aparador */}
                 <Grid item  sx={{flexGrow:1 ,m:1}} >
                     <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
@@ -224,7 +225,7 @@ const DetailLotesPage =() => {
                     </Grid>
                 </Grid>
                 {/* Distribucion de Seriado */}
-                <Grid item  sx={{flexGrow:2 ,m:1}} >
+                <Grid item  sx={{flexGrow:2 ,m:1,flexGrow:1}} >
                     <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                             ASIGNA UN MODELO  
@@ -245,8 +246,8 @@ const DetailLotesPage =() => {
                         />
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
+                <Grid item >
+                    <Grid  sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                            Agrega Detalles e insumos de Aparado  
                         </Typography>
@@ -263,21 +264,19 @@ const DetailLotesPage =() => {
                     </Grid>
                 </Grid>
 
-                <Grid item xs={7}  style={{marginTop: 16 }}>
+                <Grid item container sx={{marginTop:1,justifyContent:'center'}}>
                         <Button
                             variant="outlined"
                             color="primary"
                             sx={{fontWeight:'bold'}}
                             type="submit"
                         >
-                            Guardar
+                            Enviar Lote
                         </Button>
                 </Grid>
             </Grid>
             </form>
-            <Paper>
-
-            </Paper>
+            </Grid>
         </Grid>
         
     )

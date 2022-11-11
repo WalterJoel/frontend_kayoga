@@ -28,7 +28,7 @@ function SepararLotePage(props) {
     }
     async function getLotesPorContar(){
         //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesPorSeparar';
+        const url = 'https://backendkayoga-production.up.railway.app/getLotesPorSeparar';
         await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ function SepararLotePage(props) {
     <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
                 mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
 
-        <Grid sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5}}>
+        <Grid sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5}}>
             <Grid item container >
                 {/* Info Title */}
                 <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                

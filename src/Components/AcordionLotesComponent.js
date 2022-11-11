@@ -195,7 +195,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.fechaEntregaAparadoProps}
                 </Typography>
               </Grid>
             </Grid>
@@ -208,7 +208,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.fechaConteoProps}
                 </Typography>
               </Grid>
             </Grid>
@@ -221,7 +221,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.totalSeriadoInicialProps}
                 </Typography>
               </Grid>
             </Grid>
@@ -235,7 +235,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.totalParesSegunAparadorProps}
                 </Typography>
               </Grid>
             </Grid>
@@ -248,7 +248,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.totalParesSegunContadorProps}
                 </Typography>
               </Grid>
             </Grid>
@@ -281,7 +281,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.descripcionAparadorProps}
                 </Typography>
               </Grid>
             </Grid>
@@ -294,7 +294,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid> 
               <Grid item>
                 <Typography variant="body2" color='primary'>
-                  Color de Lona
+                  {props.descripcionContadorProps}
                 </Typography>
               </Grid>
             </Grid>

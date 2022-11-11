@@ -133,13 +133,22 @@ function ListAllLotesByState(props) {
                                                 garibaldiProps={lote.garibaldi}
                                                 contrafuerteProps={lote.contrafuerte}
                                                 estadoLoteProps={lote.estado_lote}
+
                                                 descripcionCortadorProps={lote.descripcion_cortador}
-                                                totalParesCortadosProps={lote.infomodelo}
+                                                descripcionAparadorProps={lote.descripcion_aparador}
+                                                descripcionContadorProps={lote.descripcion_contador}
+                                                
                                                 serieLoteProps={lote.serieLote} 
                                                 talla1Props={lote.talla1}
                                                 colorLonaProps={lote.color_lona}
+                                                infomodeloProps={lote.infomodelo}
                                                 fechaCreacionLoteProps={lote.lotefechacreacion}
-                                                totalSeriadoInicialProps={lote.total_pares_seriado_inicial}/>
+                                                totalSeriadoInicialProps={lote.total_pares_seriado_inicial}
+                                                fechaConteoProps={lote.fecha_conteo}
+                                                fechaEntregaAparadoProps={lote.fechaEntregaAparado}
+                                                totalParesSegunAparadorProps={lote.total_pares_segun_aparador}
+                                                totalParesSegunContadorProps={lote.total_pares_segun_contador}
+                                            />
                         ))
                     }
                 

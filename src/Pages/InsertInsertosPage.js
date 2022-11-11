@@ -130,10 +130,10 @@ export default function App() {
   return (
     <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
     mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
-      <Grid container sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
+      <Grid container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
 
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
-          <Grid item container sx={{p:2}} xs={7}  >
+          <Grid item container sx={{p:2}}  >
               <Grid >
                   <Avatar  sx={{width:70,height:70}}/>
               </Grid>
@@ -141,7 +141,7 @@ export default function App() {
                   <Typography variant='h4' sx={{p:1}}>
                       Stock Insertos
                   </Typography>
-              </Grid>   
+              </Grid>      
           </Grid> 
         </Grid>
         <Grid item container>

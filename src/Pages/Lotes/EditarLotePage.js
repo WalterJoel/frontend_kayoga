@@ -16,9 +16,9 @@ import {
   FormControlLabel,
 } from '@mui/material';
 
-import NewLoteIcon from '../media/NewLoteIcon.png';
+import NewLoteIcon from '../../media/NewLoteIcon.png';
 //Netamente informativo los JSON que traigo
-import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../Elements/TallasGeneralJson';
+import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../../Elements/TallasGeneralJson';
 
 const InsertNewLotePage=(props)=> {
     const [validarStar,setValidarStar] = useState(false);

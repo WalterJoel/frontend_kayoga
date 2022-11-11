@@ -24,6 +24,7 @@ import LotesPorContarPage from './Pages/LotePorContarPage';
 import SepararLotePage from './Pages/SepararLotePage';
 import OrdenInyeccionPage from './Pages/Inyeccion/OrdenInyeccionPage';
 import InsertZapatillasPage from './Pages/Stock/InsertZapatillasPage';
+import EditarLotePage from './Pages/Lotes/EditarLotePage';
 
 const theme = createTheme({
   typography: {
@@ -64,6 +65,7 @@ function App() {
           <Route exact path="/" component={<HomePage/>}>
           <Route index element={<HomePage/>} />
           <Route path="InsertNewLotePage" element={<InsertNewLotePage/>} />
+          <Route path="EditarLotePage" element={<EditarLotePage/>} />
           <Route path="ListLotesPage" element={<ListLotesPage />} />
           <Route path="DetailLotesPage/:idLoteParam/:serieParam" element={<DetailLotesPage />} />
           <Route path="InsertInsertosPage" element={<InsertInsertosPage />} />
