@@ -36,7 +36,7 @@ function ListAllLotesByState(props) {
         if(response.ok) {
             const promesa = response.json();
             promesa.then(function(lotes) {
-                setLotes(lotes);
+                setLotes(lotes.reverse());
             });
             console.log('all good',lotes)
         } else {
@@ -60,7 +60,7 @@ function ListAllLotesByState(props) {
         if(response.ok) {
             const promesa = response.json();
             promesa.then(function(lotes) {
-                setLotes(lotes);
+                setLotes(lotes.reverse());
             });
             console.log('all good',lotes)
         } else {
@@ -90,9 +90,9 @@ function ListAllLotesByState(props) {
     <>
     {/* Contenedor General del body */}
     <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
-                mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                display:'flex',alignItems:'center',justifyContent:'center'}}>
 
-        <Grid sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5}}>
+        <Grid sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5}}>
             <Grid item container >
                 {/* Info Title */}
                 <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                

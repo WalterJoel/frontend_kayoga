@@ -121,7 +121,7 @@ export default function InsertZapatillasPage() {
 
   async function getZapatillasBySerie(){
 //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getZapatillasBySerie/'+serieSelected+'/'+modelo;
+    const url = 'https://backendkayoga-production.up.railway.app/getZapatillasBySerie/'+serieSelected+'/'+modelo;
       await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
@@ -210,7 +210,7 @@ export default function InsertZapatillasPage() {
   return (
     <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
     mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
-      <Grid container sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
+      <Grid container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
 
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2}} xs={7}  >

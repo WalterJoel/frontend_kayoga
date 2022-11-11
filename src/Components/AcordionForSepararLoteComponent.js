@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import {
-    Grid,
+    Grid,List,ListItem,ListItemText,
     Accordion,AccordionDetails,AccordionSummary,
     TextField,Divider,Button,
     Avatar,Typography} from "@mui/material";
@@ -102,17 +102,70 @@ const AcordionForSepararLoteComponent =(props)=>{
 
         <AccordionDetails >
           <Grid container >
-                <Typography variant="h6" color='primary' sx={{mb:2}}>
-                  {props.infomodeloProps.toUpperCase()}
-
+            <Grid item>
+              <Typography variant="h6" color='primary' sx={{mb:2}}>
+                {props.infomodeloProps.toUpperCase()}
+              </Typography>
+            </Grid>
+            <Grid item container sx={{borderRadius:5,backgroundColor:'#dfe3e9',flexGrow:1,m:2,justifyContent:'center'}}>
+              <Grid item sx={{justifyContent:'center'}}>
+                <Typography variant="h6" color='primary' sx={{mt:2}}>
+                  Seriado Contado
                 </Typography>
+              </Grid>
+              <Grid item container sx={{display:'flex',justifyContent:'space-around'}}>
+                <List  sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+                  
+                  <ListItem>
+                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
+                      {props.talla1Props>0&&(
+                          <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
+                      )}                                                                
+                  </ListItem>
+                  <ListItem sx={{display:'flex',flexDirection:'row',justifyContent:'space-around'}} >
+                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
+                      {props.talla1Props>0&&(
+                          <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
+                      )}
+                  </ListItem>
+                  
+                  <ListItem >
+                      <ListItemText primary={talla.talla2} secondary={props.talla2Props} />
+                  </ListItem>
+                  <ListItem  >
+                      <ListItemText primary={talla.talla3} secondary={props.talla3Props} />
+                  </ListItem>
+                  {props.serieLoteProps==='nino'&&
+                    <ListItem  >
+                        <ListItemText primary={talla.talla31} secondary={props.talla31Props} />
+                    </ListItem>
+                  }
+                  <ListItem >
+                      <ListItemText primary={talla.talla4} secondary={props.talla4Props} />
+                  </ListItem>
+                  {props.serieLoteProps==='nino'&&
+                    <ListItem  >
+                        <ListItemText primary={talla.talla41} secondary={props.talla41Props} />
+                    </ListItem>
+                  }
+                  <ListItem  >
+                      <ListItemText primary={talla.talla5} secondary={props.talla5Props} />
+                  </ListItem>
+                  {props.serieLoteProps==='nino'&&
+                    <ListItem  >
+                        <ListItemText primary={talla.talla51} secondary={props.talla51Props} />
+                    </ListItem>
+                  }
+                </List>
+              </Grid>
+          </Grid>
           </Grid>
           <Grid container >
                 <Typography variant="h6" color='primary' sx={{mb:2}}>
                    {'Conteo Según Aparador: '+ props.conteoAparadorProps}
                 </Typography>
                 <Typography variant="h6" color='primary' sx={{mb:2,ml:2}}>
-                   {'Tu Conteo Actual: '+ conteoActual}
+                   {'Conteo Según Contador: '+ props.conteoContadorProps}
                 </Typography>
           </Grid>
             

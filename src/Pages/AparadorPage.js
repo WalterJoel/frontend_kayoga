@@ -62,9 +62,11 @@ function AparadorPage(props) {
   }
 
   useEffect(() => {
+    setLotes([]);// ver si funciona
     getLotesByIdAparadorAndEstado();
     //ref.current.scrollTop = 0;
     console.log(selected)
+
     //setMessages(refreshMessages());
   }, [selected]);
 

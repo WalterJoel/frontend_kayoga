@@ -38,7 +38,8 @@ function SepararLotePage(props) {
         if(response.ok) {
             const promesa = response.json();
             promesa.then(function(lotes) {
-                setLotes(lotes);
+                setLotes(lotes.reverse());
+                console.log(lotes);
             });
             console.log('all good',lotes)
         } else {
@@ -87,9 +88,19 @@ function SepararLotePage(props) {
                 <AcordionForSepararLoteComponent key={i} idLoteProps={lote.idlote} 
                                         infomodeloProps={lote.infomodelo}
                                         serieLoteProps={lote.serieLote} 
-                                        talla1Props={lote.talla1}
                                         idSeriadoRestanteProps={lote.idseriadorestante}
-                                        conteoAparadorProps={lote.conteoAparador}
+                                        conteoAparadorProps={lote.total_pares_segun_aparador}
+                                        conteoContadorProps={lote.total_pares_segun_contador}
+                                        talla1Props={lote.talla1}
+                                        talla2Props={lote.talla2}
+                                        talla21Props={lote.talla21}
+                                        talla3Props={lote.talla3}
+                                        talla31Props={lote.talla31}
+                                        talla4Props={lote.talla4}
+                                        talla41Props={lote.talla41}
+                                        talla5Props={lote.talla5}
+                                        talla51Props={lote.talla51}
+
                                         //totalSeriadoInicialProps={lote.total_pares_seriado_inicial}
                 />
                 ))

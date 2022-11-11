@@ -88,7 +88,7 @@ const ListLotesPage=()=>{
     return(
         <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
         mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <Grid item container sx={{backgroundColor:'#dfe3e9',mt:'7em',p:2,borderRadius:5}}>
+          <Grid item container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5}}>
             <Grid item container sx={{alignItems:'center',m:1}} >
               <Grid>
                   <Avatar src={ListLotesIcon} sx={{width:70,height:70}}/>
