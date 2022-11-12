@@ -15,7 +15,7 @@ import AcordionLotesComponent from '../Components/AcordionLotesComponent';
 function InfoAparadoresPage(props) {
 
   //En el front se pone on Focused la opcion aparado
-  const [selected, setSelected] = useState('Aparado');
+  const [selected, setSelected] = useState('');
   const [lotes,setLotes]  = useState([]); 
   const [aparadorSelected,setSelectedAparador]  = useState(''); 
   //La pantalla me obliga a traer solamente los Aparado

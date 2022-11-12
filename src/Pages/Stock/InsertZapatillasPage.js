@@ -132,7 +132,7 @@ export default function InsertZapatillasPage() {
           const promesa = response.json();
           promesa.then(function(zapatillas) {
             setZapatillas(zapatillas);
-            console.log(zapatillas);
+            //console.log(zapatillas);
           });
       } else {
         console.log('Respuesta de red OK pero respuesta HTTP no OK');
@@ -150,7 +150,6 @@ export default function InsertZapatillasPage() {
     setModelo(arraySerieModelo[1]);
     
     if(arraySerieModelo[0] ==='nino'){
-        console.log('entro a ninos')
       setTallas(tallasNinoDivision);  
       setColumn(columnsForNinos);
     }
@@ -158,17 +157,14 @@ export default function InsertZapatillasPage() {
     else if(arraySerieModelo[0] ==='dama'){
         setTallas(tallasDamaDivision);
         if(arraySerieModelo[1]==='vans'){
-            console.log('dentro de vans dama')
             setColumn(columnsForVansDama);   
         }
         //Para casos como el Giana, star, etc, hablando de dama
         else{
-            console.log('dentro a cualquier dama')
             setColumn(columnsForModelosSerieCompleta);   
         }
     }
     else{
-        console.log('dentro de todo varon')
         setTallas(tallasVaronJson);  
         setColumn(columnsForModelosSerieCompleta);   
     }
@@ -340,7 +336,6 @@ export default function InsertZapatillasPage() {
     console.log(zapatillas);
   }
   function onChange(id, name_campo,e) {
-    console.log('aqyi: ',id,' ',name_campo,' ',e.target.value);
     const value = e.target.value;
 
     setZapatillas((prevState) =>

@@ -14,10 +14,10 @@ import AcordionLotesComponent from '../Components/AcordionLotesComponent';
 function ListAllLotesByState(props) {
 
     //En el front se pone on Focused la opcion aparado
-    const [selected, setSelected] = useState('Cortado');
+    const [selected, setSelected] = useState('');
     const [lotes,setLotes]  = useState([]); 
     //La pantalla me obliga a traer solamente los Aparado
-    const [estadoLote,setEstadoLote] = useState('Cortado');
+    const [estadoLote,setEstadoLote] = useState('');
 
 
     function handleChange(e,newValue){

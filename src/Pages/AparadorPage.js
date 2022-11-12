@@ -1,27 +1,23 @@
 import {BottomNavigation, 
         Grid,Select,MenuItem,
-        Card, Button,
         Avatar,  
-        BottomNavigationAction,Container, Typography, CardContent, CssBaseline } from "@mui/material";
+        BottomNavigationAction,Typography} from "@mui/material";
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import DoneIcon from '@mui/icons-material/ListAltSharp';
 import { useState } from "react";
 import '../App.css'
-import aparadorImage from '../media/aparadorImage.jpg'
 import {React,useEffect, useRef} from 'react';
 import AccordionForEntregaAparadorComponent from '../Components/AccordionForEntregaAparadorComponent';
 //Uso un ref para usar el scroll del React Dom
 
 function AparadorPage(props) {
-  const ref = useRef(null);
 
   //En el front se pone on Focused la opcion aparado
-  const [selected, setSelected] = useState('Aparado');
+  const [selected, setSelected] = useState('');
   const [lotes,setLotes]  = useState([]); 
   const [aparadorSelected,setSelectedAparador]  = useState(''); 
 
   //La pantalla me obliga a traer solamente los Aparado
-  const [estadoLote,setEstadoLote] = useState('Aparado');
+  const [estadoLote,setEstadoLote] = useState('');
 
 
   function handleChange(e,newValue){
@@ -65,7 +61,6 @@ function AparadorPage(props) {
     setLotes([]);// ver si funciona
     getLotesByIdAparadorAndEstado();
     //ref.current.scrollTop = 0;
-    console.log(selected)
 
     //setMessages(refreshMessages());
   }, [selected]);
@@ -119,7 +114,6 @@ function AparadorPage(props) {
                 >
                 <BottomNavigationAction name='Aparado' value='Aparado' label="Lotes por Entregar" icon={<ListAltIcon/>}/>
                 <BottomNavigationAction name='Resuelto' value='Resuelto' label="Lotes Entregados" icon={<ListAltIcon/>}/>
-                <BottomNavigationAction label="Third"  icon={<ListAltIcon/>}/>
             </BottomNavigation>
         </Grid>          
       
