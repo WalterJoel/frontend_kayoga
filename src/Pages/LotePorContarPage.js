@@ -37,7 +37,7 @@ function LotesPorContarPage(props) {
         if(response.ok) {
             const promesa = response.json();
             promesa.then(function(lotes) {
-                setLotes(lotes);
+                setLotes(lotes.reverse());
             });
             console.log('all good',lotes)
         } else {
