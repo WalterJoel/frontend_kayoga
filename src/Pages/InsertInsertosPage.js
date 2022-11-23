@@ -111,6 +111,7 @@ export default function App() {
     .then(function(response) {
         if(response.ok) {
             //console.log(response.json());setLoading(false);navigate('/ListLotesPage')
+            alert('Datos Guardados Correctamente')
         } else {
           console.log('Respuesta de red OK pero respuesta HTTP no OK');
         }
@@ -209,42 +210,14 @@ export default function App() {
       </Grid>  
     </Grid>
   );
-  /*function onChange(id, val) {
-    console.log(id,' ',val)
-    setState((prevState) =>
-      prevState.map((row) =>
-        row.map((col) => (col.id === id ? { ...col, value: val } : col))
-      )
-    );
-  }*/
+
   function onChange(id, name_campo,e) {
-    console.log('aqyi: ',id,' ',name_campo,' ',e.target.value);
     const value = e.target.value;
-  /*  setFormSeriado((prev)=>{
-        return {...prev, [name]:value};
-    });
-*/
-
-    //Hay que iterar porqe no sabes q posicion ir y eso lo obtiens en ROW, GIL
-    /*setState((prevState) =>
-      prevState.map((row) =>
-      row.map((col) => (col.id === id ? { ...col, value: val } : col))
-    //)
-      // (row['idinserto']===7? { ...row, ['talla1']: 123  )
-
-    );*/
-
     setInsertos((prevState) =>
       prevState.map((row) =>
        (row['idinserto']===id? { ...row, [name_campo]: value } : row)
       )
     );
-    
-    // setState((prevState) =>
-    //   prevState.map((row) =>
-    //    (row['idinserto']===7? { ...row, ['talla1']: 123 } : row)
-    //   )
-    // );
-
+   
 }}
 

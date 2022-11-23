@@ -75,7 +75,6 @@ function ListAllLotesByState(props) {
     useEffect(() => {
     console.log('selected',selected);
     if(selected==='Cortado'){
-        console.log('no tiene modelos')
         //En cortado tiene su propia fucnion porque no tinen asignado un modelo aun
         getLotesByEstadoCortado();
     }

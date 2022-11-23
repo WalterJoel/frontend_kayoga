@@ -66,7 +66,7 @@ export default function HomePage(props){
                 </Grid>
                 <Grid
                  item>
-                    <HomeCardsComponent action='Inyección' image={inyeccionImage} linkTo='/OrdenInyeccionPage' /> 
+                    <HomeCardsComponent action='Generar Orden Inyección' image={inyeccionImage} linkTo='/OrdenInyeccionPage' /> 
                 </Grid>    
                 <Grid
                  item>
@@ -79,6 +79,10 @@ export default function HomePage(props){
                 <Grid
                  item>
                     <HomeCardsComponent action='Lotes Por Contar'  image={contarImage} linkTo='/LotesPorContarPage' /> 
+                </Grid>    
+                <Grid
+                 item>
+                    <HomeCardsComponent action='Orden Inyección Generada'  image={contarImage} linkTo='/OrdenInyeccionGenerada' /> 
                 </Grid>    
  
             </Grid>    
