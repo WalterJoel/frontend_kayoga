@@ -138,6 +138,19 @@ const AcordionLotesComponent=(props)=>{
             <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Color de Lona
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  {props.colorLonaProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Fecha de Corte
                 </Typography>
               </Grid> 
