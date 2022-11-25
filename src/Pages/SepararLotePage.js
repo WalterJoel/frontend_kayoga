@@ -105,7 +105,6 @@ function SepararLotePage(props) {
                 />
                 ))
             }
-            
         </Grid>
         </Grid>
         </Grid>         

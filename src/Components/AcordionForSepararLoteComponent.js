@@ -57,7 +57,6 @@ const AcordionForSepararLoteComponent =(props)=>{
       .catch(function(error) {
         console.log('Hubo un problema con la petición Fetch:' + error.message);
       }); 
-    
     //setLoading(!loading);   
     //For Production
     //fetch('https://backendkayoga-production.up.railway.app/createSeriadoRestante',{
@@ -115,7 +114,6 @@ const AcordionForSepararLoteComponent =(props)=>{
               </Grid>
               <Grid item container sx={{display:'flex',justifyContent:'space-around'}}>
                 <List  sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                  
                   <ListItem>
                       {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
                       {props.talla1Props>0&&(
@@ -128,7 +126,6 @@ const AcordionForSepararLoteComponent =(props)=>{
                           <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
                       )}
                   </ListItem>
-                  
                   <ListItem >
                       <ListItemText primary={talla.talla2} secondary={props.talla2Props} />
                   </ListItem>
