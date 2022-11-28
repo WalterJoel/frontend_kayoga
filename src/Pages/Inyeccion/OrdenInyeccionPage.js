@@ -52,7 +52,7 @@ export default function OrdenInyeccionPage() {
   async function verificarOrdenInyeccionAbierta(){
     //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
         console.log(moldeSelected,serieSelected,tallaSelected )
-        const url = 'http://localhost:4000/verificarOrdenInyeccionAbierta';
+        const url = 'https://backendkayoga-production.up.railway.app/verificarOrdenInyeccionAbierta';
           await fetch(url,{
             headers: {
                 'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ export default function OrdenInyeccionPage() {
   async function getSeriadoRestanteByTalla(){
 //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
     console.log(moldeSelected,serieSelected,tallaSelected )
-    const url = 'http://localhost:4000/getSeriadoRestanteByTalla/'+moldeSelected+'/'+serieSelected+'/'+tallaSelected;
+    const url = 'https://backendkayoga-production.up.railway.app/getSeriadoRestanteByTalla/'+moldeSelected+'/'+serieSelected+'/'+tallaSelected;
       await fetch(url,{
         headers: {
             'Content-Type': 'application/json'

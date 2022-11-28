@@ -60,7 +60,7 @@ export default function TransferList(props) {
       e.preventDefault()
       alert('Estas seguro de enviar la informacion?');
       //Inserto los datos el tabla watch produccion
-      fetch('http://localhost:4000/saveOrdenInyeccion',{        
+      fetch('https://backendkayoga-production.up.railway.app/saveOrdenInyeccion',{        
           headers: {
               'Content-Type': 'application/json'
             },
