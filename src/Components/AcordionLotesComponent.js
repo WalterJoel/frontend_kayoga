@@ -300,6 +300,23 @@ const AcordionLotesComponent=(props)=>{
             </Grid>
 
           </Grid>
+          {/* Info 3 */}
+          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:1}} >
+
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Insumos de Aparado
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                {props.detalleInsumosAparadoProps}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          
 
           
 

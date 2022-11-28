@@ -147,6 +147,8 @@ function ListAllLotesByState(props) {
                                                 fechaEntregaAparadoProps={lote.fechaEntregaAparado}
                                                 totalParesSegunAparadorProps={lote.total_pares_segun_aparador}
                                                 totalParesSegunContadorProps={lote.total_pares_segun_contador}
+
+                                                detalleInsumosAparadoProps = {lote.detalle_insumos_aparado}
                                             />
                         ))
                     }
