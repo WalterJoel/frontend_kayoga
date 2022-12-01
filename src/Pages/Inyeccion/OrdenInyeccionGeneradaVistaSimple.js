@@ -14,17 +14,11 @@ import {
           name:'talla_name',
         },
         {
-          name:'color_inserto'
-        },
-        {
-          name:'cantidad'
-        },
-        {
           name:'vacio'
         }
       ];
     
-const OrdenInyeccionGenerada = () => {
+const OrdenInyeccionGeneradaVistaSimple = () => {
     
     const [ordenInyeccionGenerada,setOrdenInyeccionGenerada] = useState([]);
     const [paresInyectados,setParesInyectados] = useState([]);
@@ -124,13 +118,11 @@ const OrdenInyeccionGenerada = () => {
         </Grid>
        
         <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
-          <Table sx={{maxWidth:'60%',maxHeight:'80%'}}>
+          <Table sx={{maxWidth:'100%',maxHeight:'100%'}}>
           <TableHead>
             <TableRow >
               <TableCell sx={{fontWeight:'bold',color:'red'}}> Modelo </TableCell>
               <TableCell  sx={{fontWeight:'bold',color:'red'}} >Talla</TableCell>
-              <TableCell  sx={{fontWeight:'bold',color:'red'}} >Color Inserto</TableCell>              
-              <TableCell  sx={{fontWeight:'bold',color:'red'}} >Cantidad</TableCell>
               <TableCell  sx={{fontWeight:'bold',color:'blue'}} >Pares Inyectados</TableCell>
             </TableRow>
           </TableHead>
@@ -141,7 +133,7 @@ const OrdenInyeccionGenerada = () => {
                       return (
                         <TableRow hover role="checkbox" tabIndex={-1} key={i} >
                           {columns.map((column,f) => {
-                            if(f>3){
+                            if(f>1){
                             return(
                               <TableCell key={f} align={column.align}>
                                 <TextField 
@@ -177,4 +169,4 @@ const OrdenInyeccionGenerada = () => {
     }
 }
 
-export default OrdenInyeccionGenerada;
+export default OrdenInyeccionGeneradaVistaSimple;
