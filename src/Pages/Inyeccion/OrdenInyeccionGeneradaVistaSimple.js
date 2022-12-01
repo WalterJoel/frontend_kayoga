@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import {
     Table,Grid,Avatar,
-    Button,
+    Button, Snackbar,
     TableBody,TableCell,TableHead,TableRow, Typography, TextField} from '@mui/material';
 
     const columns = [
@@ -25,26 +25,37 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
     let navigate = useNavigate();
 
     async function handleSubmit(){
-      console.log(paresInyectados);
-      await fetch('http://localhost:4000/saveOrdenInyeccionMaquinista',{
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(paresInyectados),
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        })
-        .then(function(response) {
-            if(response.ok) {
-              alert('Datos Guardados Correctamente');
-              navigate('/')
-            }
-            else {
-                console.log('Respuesta de red OK pero respuesta HTTP no OK');
-                }
-        })
-        .catch(function(error) {
-            alert('El servidor ha fallado, intenta de nuevo, sino comunicate con el programador')
-        });
+      //Sumo la cantidad de pares que ingreso el maquinista
+      let pares_inyectados = 0;
+      paresInyectados.forEach(element => pares_inyectados += parseInt(element['cantidad']));
+
+      let answer = window.confirm(" Has inyectado: "+ pares_inyectados +' pares?');
+      if (answer) {
+        console.log(paresInyectados);
+        await fetch('http://localhost:4000/saveOrdenInyeccionMaquinista',{
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(paresInyectados),
+              method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          })
+          .then(function(response) {
+              if(response.ok) {
+                alert('Datos Guardados Correctamente');
+                navigate('/')
+              }
+              else {
+                  console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                  }
+          })
+          .catch(function(error) {
+              alert('El servidor ha fallado, intenta de nuevo, sino comunicate con el programador')
+          });
+      }
+      else {
+          alert('Revisa las cantidades y guarda de nuevo')
+      }
+
     }
     function onChange(idseriadorestante, talla_name,e) {
         const value = e.target.value;
@@ -88,6 +99,8 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
     }, []);
     if(ordenInyeccionGenerada.length>0) {
     return( 
+        <>
+
         <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
              mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
          <Grid container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
@@ -164,7 +177,7 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
         </Grid>
       </Grid>  
     </Grid>
-
+    </>
     );
     }
 }
