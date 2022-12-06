@@ -67,6 +67,7 @@ function App() {
         <Routes>
           <Route exact path="/" component={<HomePage/>}>
           <Route index element={<HomePage/>} />
+          <Route path="*" component={Index} />
           <Route path="InsertNewLotePage" element={<InsertNewLotePage/>} />
           <Route path="EditarLotePage/:idLote" element={<EditarLotePage/>} />
           <Route path="ListLotesPage" element={<ListLotesPage />} />
