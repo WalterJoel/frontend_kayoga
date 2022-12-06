@@ -27,6 +27,7 @@ import InsertZapatillasPage from './Pages/Stock/InsertZapatillasPage';
 import EditarLotePage from './Pages/Lotes/EditarLotePage';
 import OrdenInyeccionGenerada from './Pages/Inyeccion/OrdenInyeccionGenerada';
 import OrdenInyeccionGeneradaVistaSimple from './Pages/Inyeccion/OrdenInyeccionGeneradaVistaSimple';
+import ListaLotesPorEditar from './Pages/Lotes/ListaLotesPorEditar';
 
 const theme = createTheme({
   typography: {
@@ -67,7 +68,7 @@ function App() {
           <Route exact path="/" component={<HomePage/>}>
           <Route index element={<HomePage/>} />
           <Route path="InsertNewLotePage" element={<InsertNewLotePage/>} />
-          <Route path="EditarLotePage" element={<EditarLotePage/>} />
+          <Route path="EditarLotePage/:idLote" element={<EditarLotePage/>} />
           <Route path="ListLotesPage" element={<ListLotesPage />} />
           <Route path="DetailLotesPage/:idLoteParam/:serieParam" element={<DetailLotesPage />} />
           <Route path="InsertInsertosPage" element={<InsertInsertosPage />} />
@@ -82,6 +83,7 @@ function App() {
           <Route path="InsertZapatillasPage" element={<InsertZapatillasPage/>} />       
           <Route path="OrdenInyeccionGenerada" element={<OrdenInyeccionGenerada/>} />    
           <Route path="OrdenInyeccionGeneradaVistaSimple" element={<OrdenInyeccionGeneradaVistaSimple/>} />               
+          <Route path="ListaLotesPorEditar" element={<ListaLotesPorEditar/>} />               
           </Route>
         </Routes>
       </BrowserRouter>

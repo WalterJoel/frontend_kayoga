@@ -1,6 +1,6 @@
-import {useState } from "react";
+import {useState,useEffect } from "react";
 import HashLoader from "react-spinners/HashLoader";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 
 import React from "react";
 import { positions } from '@mui/system';
@@ -21,9 +21,10 @@ import NewLoteIcon from '../../media/NewLoteIcon.png';
 import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../../Elements/TallasGeneralJson';
 
 const InsertNewLotePage=(props)=> {
+    let { idLote } = useParams();
     const [validarStar,setValidarStar] = useState(false);
-    let [loading, setLoading] = useState(false);
     let navigate = useNavigate();
+    const [lote,setLote] = useState([]);
     const [talla,setTallas]=useState({});
     const [formSeriado, setFormSeriado] = useState({
     
@@ -78,13 +79,43 @@ const InsertNewLotePage=(props)=> {
     function handleChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        setFormSeriado((prev)=>{
+        console.log('name: ',name, ' value: '+value             )
+        setLote((prev)=>{
             return {...prev, [name]:value};
         });
+        //console.log(lote);
     }
+    async function getLoteById(){
+        await fetch('https://backendkayoga-production.up.railway.app/getLoteById/'+idLote,{
+            headers: {
+                'Content-Type': 'application/json'
+              }
+        })
+        .then(function(response) {
+            if(response.ok) {
+                const promesa = response.json();
+                promesa.then(function(lotes) {
+                  setLote(lotes);
+                  console.log(lotes)
+                });      
+                //setLote(response);
+                //console.log(response)
+            } else {
+              console.log('Respuesta de red OK pero respuesta HTTP no OK');
+            }
+          })
+          .catch(function(error) {
+            alert('Hubo un problema con la petición Fetch:' + error.message);
+          });
+    }
+
+  useEffect(() => {
+    getLoteById();
+  }, []);
+
     const handleSubmit=(e)=>{
+        console.log(lote)
         e.preventDefault()
-        setLoading(!loading);
         alert('Estas seguro de enviar la informacion?');
        
         //For Production
@@ -97,9 +128,8 @@ const InsertNewLotePage=(props)=> {
         })
         .then(function(response) {
             if(response.ok) {
-                console.log(response.json());setLoading(false);navigate('/ListLotesPage')
+                console.log(response.json()); navigate('/ListLotesPage')
             } else {
-              setLoading(false)
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
           })
@@ -107,6 +137,7 @@ const InsertNewLotePage=(props)=> {
             alert('Hubo un problema con la petición Fetch:' + error.message);
           });
    }
+   if(lote.length > 0){
     return (
         
         <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5
@@ -120,7 +151,7 @@ const InsertNewLotePage=(props)=> {
                         </Grid>
                         <Grid>
                         <Typography variant='h4' sx={{p:1}}>
-                            Nuevo Lote
+                            Editando Lote # {idLote}
                         </Typography>
                         </Grid>           
                     </Grid>
@@ -131,7 +162,7 @@ const InsertNewLotePage=(props)=> {
                             <Grid item xs={6}>
                                 <TextField
                                     name="metraje"
-                                    value={formSeriado.metraje}
+                                    value={lote[0].metraje}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -142,7 +173,7 @@ const InsertNewLotePage=(props)=> {
                             <Grid item xs={6}>
                                 <TextField
                                     name="color"
-                                    value={formSeriado.color}
+                                    value={lote[0].color}
                                     onChange={handleChange}
                                     fullWidth
                                     type="string"
@@ -153,21 +184,33 @@ const InsertNewLotePage=(props)=> {
                             <Grid item xs={12}>
                                 <TextField
                                     name="descripcion"
-                                    value={formSeriado.descripcion}
+                                    value={lote[0].descripcion}
                                     onChange={handleChange}
                                     fullWidth
                                     required
                                     multiline
                                     type="string"
-                                    label="Descripcion / Tipo de Sarga"
+                                    label="Descripcion Cortador"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    name="descripcion"
+                                    value={lote[0].detalle_insumos_aparado}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
+                                    multiline
+                                    type="string"
+                                    label="Descripcion Aparador"
                                 />
                             </Grid>
                             {/* Seccion Checkbox  */}
                             <Grid item xs={6} sx={{mt:2}}>
-                                <FormControlLabel control={<Checkbox checked={formSeriado.garibaldi} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
+                                <FormControlLabel control={<Checkbox checked={lote[0].garibaldi} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
                             </Grid>
                             <Grid item xs={6} sx={{mt:2}}>
-                                <FormControlLabel control={<Checkbox checked={formSeriado.contrafuerte} name="contrafuerte" onChange={handleChangeCheckBox} />} label="Contrafuerte" />
+                                <FormControlLabel control={<Checkbox checked={lote[0].contrafuerte} name="contrafuerte" onChange={handleChangeCheckBox} />} label="Contrafuerte" />
                             </Grid>
 
                             <Divider style={{width:'100%'}} />
@@ -266,16 +309,6 @@ const InsertNewLotePage=(props)=> {
                                     Guardar
                                 </Button>
                             </Grid>    
-                        {/* Spinner                   */}
-                            <Grid item container xs={5}  style={{marginTop: 16}}>
-                                <HashLoader
-                                    color={'orange'}
-                                    loading={loading}
-                                    size={50}
-                                    aria-label="Loading Spinner"
-                                    data-testid="loader"
-                                />
-                            </Grid>
                         </Grid>
                     </Grid>
                 </form>
@@ -283,5 +316,8 @@ const InsertNewLotePage=(props)=> {
         </Grid> 
       </Grid>
     )
+    }
   }
   export default InsertNewLotePage;
+
+  //agergo este cmentario para pushear
