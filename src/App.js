@@ -28,6 +28,7 @@ import EditarLotePage from './Pages/Lotes/EditarLotePage';
 import OrdenInyeccionGenerada from './Pages/Inyeccion/OrdenInyeccionGenerada';
 import OrdenInyeccionGeneradaVistaSimple from './Pages/Inyeccion/OrdenInyeccionGeneradaVistaSimple';
 import ListaLotesPorEditar from './Pages/Lotes/ListaLotesPorEditar';
+import ListLotesCortadosPorEstampar from './Pages/Estampado/ListLotesCortadosPorEstampar';
 
 const theme = createTheme({
   typography: {
@@ -70,6 +71,7 @@ function App() {
           <Route path="InsertNewLotePage" element={<InsertNewLotePage/>} />
           <Route path="EditarLotePage/:idLote" element={<EditarLotePage/>} />
           <Route path="ListLotesPage" element={<ListLotesPage />} />
+          <Route path="ListLotesCortadosPorEstampar" element={<ListLotesCortadosPorEstampar/>} />
           <Route path="DetailLotesPage/:idLoteParam/:serieParam" element={<DetailLotesPage />} />
           <Route path="InsertInsertosPage" element={<InsertInsertosPage />} />
           <Route path="ListModelsPage" element={<ListModelsPage/>} />

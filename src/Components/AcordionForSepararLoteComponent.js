@@ -22,26 +22,35 @@ const AcordionForSepararLoteComponent =(props)=>{
   const validarTalla3= props.talla3Props;
   const validarTalla4= props.talla4Props;
   const validarTalla5= props.talla5Props;
-
+  /* Tener cuidado aqui al separar lote
+  1.- Seteo mis variables a sus valores reales, en caso no se toquen debe ir tar cual
+  */ 
   const [formSeriadoRestante, setFormSeriadoRestante] = useState({
     //talla1:'', No hay talla1 xq esos no se separan
-    talla2:'',
-    talla21:'0',
-    talla3:'',
-    talla31:'0',
-    talla4:'',
-    talla41:'0',
-    talla5:'',
-    talla51:'0',
+    talla2:props.talla2Props,
+    talla21:0,
+    talla3:props.talla3Props,
+    talla31:0,
+    talla4:props.talla4Props,
+    talla41:0,
+    talla5:props.talla5Props,
+    talla51:0,
     idseriadorestante:props.idSeriadoRestanteProps
   });
   
   const  handleSubmit= async(e)=>{
     e.preventDefault();
     alert('Estas seguro de enviar la informacion?');
-    //Validando que el aparador entregue completo
-    
-      await fetch('https://backendkayoga-production.up.railway.app/updateSeriadoRestanteAlSeparar',{
+    //Validando que el separador no divida mas de lo que viene por talla
+    const suma2 = parseInt(formSeriadoRestante.talla2)+parseInt(formSeriadoRestante.talla21);
+    const suma3 = parseInt(formSeriadoRestante.talla3)+parseInt(formSeriadoRestante.talla31);  
+    const suma4 = parseInt(formSeriadoRestante.talla4)+parseInt(formSeriadoRestante.talla41);  
+    const suma5 = parseInt(formSeriadoRestante.talla5)+parseInt(formSeriadoRestante.talla51);
+
+    if(suma2===props.talla2Props && suma3===props.talla3Props &&
+       suma4===props.talla4Props && suma5===props.talla5Props) {
+
+        await fetch('https://backendkayoga-production.up.railway.app/updateSeriadoRestanteAlSeparar',{
         headers: {
             'Content-Type': 'application/json'
           },
@@ -51,7 +60,6 @@ const AcordionForSepararLoteComponent =(props)=>{
         .then(function(response) {
             if(response.ok) {
               //Navego a la misma pagina porq cuando renderiza manda a los lotes aparados
-              console.log(response.json()); 
               navigateToAparadorPage('/');
             } else {
             //setLoading(false)
@@ -61,16 +69,16 @@ const AcordionForSepararLoteComponent =(props)=>{
         })
       .catch(function(error) {
         console.log('Hubo un problema con la petición Fetch:' + error.message);
-      }); 
-    //setLoading(!loading);   
-    //For Production
-    //fetch('https://backendkayoga-production.up.railway.app/createSeriadoRestante',{
+      });
+    }
+    else{
+      alert('No coinciden las cantidades, separa bien Gil')
+    }
   }
 
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(e.target.value);
     setFormSeriadoRestante((prev)=>{
         return {...prev, [name]:value};
     });
@@ -155,7 +163,7 @@ const AcordionForSepararLoteComponent =(props)=>{
           <form onSubmit={handleSubmit}>
             <Grid container  spacing={1}>
               
-              { (props.serieLoteProps==='dama') && //Caso vans cuando validartalla1 es cero
+              { (props.serieLoteProps==='dama' && validarTalla2>0) && //Caso vans cuando validartalla1 es cero
               <Grid item sx={{flexGrow:1, display:'flex'}}>
                 <TextField  
                   name="talla21"
@@ -167,7 +175,7 @@ const AcordionForSepararLoteComponent =(props)=>{
                   />
               </Grid>
               }
-              
+              { validarTalla2>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla2"
@@ -179,7 +187,8 @@ const AcordionForSepararLoteComponent =(props)=>{
                     label={talla.talla2}
                   />
               </Grid>
-              { props.serieLoteProps==='nino' &&
+              }
+              { (props.serieLoteProps==='nino' && validarTalla2>0) &&
               <Grid item sx={{flexGrow:1, display:'flex'}}>
                 <TextField  
                   name="talla21"
@@ -191,6 +200,7 @@ const AcordionForSepararLoteComponent =(props)=>{
                   />
               </Grid>
               }
+              { (props.serieLoteProps==='nino' && validarTalla3>0) &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla3"
@@ -202,7 +212,8 @@ const AcordionForSepararLoteComponent =(props)=>{
                     label={talla.talla3}
                   />
               </Grid>
-              { props.serieLoteProps==='nino' &&
+              }
+              { (props.serieLoteProps==='nino' && validarTalla3>0) &&
               <Grid item sx={{flexGrow:1, display:'flex'}}>
                 <TextField  
                   name="talla31"
@@ -214,6 +225,7 @@ const AcordionForSepararLoteComponent =(props)=>{
                   />
               </Grid>
               }
+              {(props.serieLoteProps==='nino' && validarTalla4>0) &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla4"
@@ -226,7 +238,8 @@ const AcordionForSepararLoteComponent =(props)=>{
                     label={talla.talla4}
                   />  
               </Grid>
-              { props.serieLoteProps==='nino' &&
+              }
+              { (props.serieLoteProps==='nino' && validarTalla4>0) &&
               <Grid item sx={{flexGrow:1, display:'flex'}}>
                 <TextField  
                   name="talla41"
@@ -238,6 +251,7 @@ const AcordionForSepararLoteComponent =(props)=>{
                   />
               </Grid>
               }
+              { (props.serieLoteProps==='nino' && validarTalla5>0) &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla5"
@@ -250,7 +264,9 @@ const AcordionForSepararLoteComponent =(props)=>{
                     label={talla.talla5}
                   />  
               </Grid>
-              { props.serieLoteProps==='nino' &&
+              }
+              {/* Valido si es ninio y ademas si su talla raiz es mayor que cero para separar */}
+              { (props.serieLoteProps==='nino' && validarTalla5>0) &&
               <Grid item sx={{flexGrow:1, display:'flex'}}>
                 <TextField  
                   name="talla51"

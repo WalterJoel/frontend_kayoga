@@ -73,7 +73,6 @@ const AcordionForLotesPorContarComponent =(props)=>{
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(e.target.value);
     setFormSeriadoRestante((prev)=>{
         return {...prev, [name]:value};
     });
@@ -81,7 +80,6 @@ const AcordionForLotesPorContarComponent =(props)=>{
 
     //Apenas renderiza debo setear las tallas
   useEffect(() =>{
-    console.log('en use effect')
     if(props.serieLoteProps==='nino'){
         setTallas(tallasNinoJson);  
     }

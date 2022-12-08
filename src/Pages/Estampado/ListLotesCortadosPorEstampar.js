@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 import {Paper,
         Table,Grid,Avatar,
@@ -7,7 +8,7 @@ import {Paper,
         TableBody,TableCell,TableContainer,TableHead, tableCellClasses ,TablePagination,TableRow, Typography} from '@mui/material';
 
 import { styled } from '@mui/material/styles';
-import ListLotesIcon from '../media/ListaLotesIcon.png';
+import ListLotesIcon from '../../media/ListaLotesIcon.png';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -26,7 +27,6 @@ const columns = [
     label: '#Lote', 
     minWidth: 50 ,    
     format: (value) => '# '+value ,
-
   },
   {
     id: 'metraje',
@@ -43,21 +43,17 @@ const columns = [
     label: 'Fecha de Corte',
   },
   {
-    id: 'estado',
-    name:'estado',
-    label: 'Estado'
-  },
-  {
     id: 'idlote',
     name:'acciones',
-    label: 'acciones'
+    label: 'Acciones'
   }
 ];
 
-const ListLotesPage=()=>{
+const ListLotesCortadosPorEstampar=()=>{
     const [page, setPage] = React.useState(0);
     const [rows,setRows] = React.useState([]);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    let navigate = useNavigate();
 
     const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -66,11 +62,35 @@ const ListLotesPage=()=>{
     setRowsPerPage(+event.target.value);
     setPage(0);
     };
-
     
+    async function enviarEstampado(idLote){
+        alert('Estas seguro de enviar al estampador?')
+        alert(idLote)
+        const url = 'https://backendkayoga-production.up.railway.app/enviarLoteEstampadoById/'+idLote;
+        await fetch(url,{
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            body: JSON.stringify({"estado":'Estampado'}),
+            })
+        .then(function(response) {
+            if(response.ok) {
+                alert('Datos Guardados Correctamente')
+                navigate('/')
+            } else {
+                console.log('Respuesta de red OK pero respuesta HTTP no OK');
+            }
+            })
+            .catch(function(error) {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });  
+    }
+
     useEffect(()=>{
-        fetch('https://backendkayoga-production.up.railway.app/getLotesCortadoyEstampado',{
-        //fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesCortados',{
+        console.log('entertaiment')
+        fetch('https://backendkayoga-production.up.railway.app/getLotesCortados',{
+
             headers: {
                 'Content-Type': 'application/json'
               },
@@ -80,6 +100,7 @@ const ListLotesPage=()=>{
         //Finamente tenemos la respuesta en formato objeto
         //Utilizo reverse para mostrar primero los ultimos insertados
         .then((lote)=>setRows(lote.reverse()))
+        
         .catch(()=> console.log('Algo salio mal al requerir lotes cortados'));
 
     },[]);
@@ -93,7 +114,7 @@ const ListLotesPage=()=>{
               </Grid>
               <Grid>     
                 <Typography  variant='h4' style={{color:'#143975' }}>
-                  Lotes Cortados y Estampados
+                  Lotes Cortados
                 </Typography>
               </Grid>           
             </Grid>
@@ -132,10 +153,10 @@ const ListLotesPage=()=>{
                               {column.format && typeof value === 'number'
                                 ? column.format(value) 
                               //   Si es una accion
-                                :column.label==='acciones' ?
+                                :column.label==='Acciones' ?
                                   //column.format(value)
-                                  <Button component={Link} to={'/DetailLotesPage/'+value+'/'+row['serie']} variant='outlined'>
-                                      Enviar Aparado
+                                  <Button variant='outlined' onClick={()=>enviarEstampado(row.idlote)}>
+                                      Enviar Estampado
                                   </Button>
                                   // caso contrario 
                                 :value
@@ -163,4 +184,4 @@ const ListLotesPage=()=>{
       </Grid>
     );
 }
-export default ListLotesPage;
+export default ListLotesCortadosPorEstampar;

@@ -32,7 +32,7 @@ const OrdenInyeccionGenerada = () => {
 
     async function handleSubmit(){
       console.log(paresInyectados);
-      await fetch('http://localhost:4000/saveOrdenInyeccionMaquinista',{
+      await fetch('https://backendkayoga-production.up.railway.app/saveOrdenInyeccionMaquinista',{
             headers: {
                 'Content-Type': 'application/json'
             },
