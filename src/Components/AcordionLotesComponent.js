@@ -325,7 +325,7 @@ const AcordionLotesComponent=(props)=>{
 
           </Grid>
         {/* Info 3 Seriado de Corte y Conteo*/}
-          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:1}} >
+          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
             <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid container sx={{justifyContent:'center'}}>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
@@ -429,8 +429,8 @@ const AcordionLotesComponent=(props)=>{
           </Grid>
           
            {/* Info 5 Insumos Aparado*/}
-           <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:1}} >
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+           <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
+            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:2}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Insumos de Aparado

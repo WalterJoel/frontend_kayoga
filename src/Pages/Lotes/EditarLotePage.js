@@ -1,10 +1,10 @@
 import {useState,useEffect } from "react";
 import HashLoader from "react-spinners/HashLoader";
 import { useNavigate,useParams } from 'react-router-dom';
-
+import WarningIcon from '@mui/icons-material/Warning';
 import React from "react";
 import { positions } from '@mui/system';
-import { TextField, Checkbox, Select } from '@mui/material';
+import { IconButton,TextField, Checkbox, Select } from '@mui/material';
 import {
   Typography,
   Paper,
@@ -22,31 +22,12 @@ import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../../Elements/Tall
 
 const InsertNewLotePage=(props)=> {
     let { idLote } = useParams();
-    const [validarStar,setValidarStar] = useState(false);
     let navigate = useNavigate();
-    const [lote,setLote] = useState([]);
+    const [lote,setLote] = useState();
     const [talla,setTallas]=useState({});
-    const [formSeriado, setFormSeriado] = useState({
     
-        talla1:'0',
-        talla2:'',
-        talla3:'',
-        talla4:'',
-        talla5:'',
-        metraje: '',
-        color:'',
-        descripcion:'',
-        serie:'',
-        garibaldi:false,
-        contrafuerte:false,
-        etiquetas:false,
-        estado: 'Cortado',
-    });
-
     //Funcion para cambiar el valor del Select
-    const handleChangeSelect = (e) => {
-        const name = e.target.name;
-        const value =e.target.value;
+    const asignarTalla = (value) => {
         //Valido que serie se va insertar
         if(value==='nino'){
             setTallas(tallasNinoJson);  
@@ -57,33 +38,28 @@ const InsertNewLotePage=(props)=> {
         else{
             setTallas(tallasVaronJson);  
         }
-
-        setFormSeriado((prev)=>{
-            return {...prev, [name]:value};
-        });
     };    
-    function handleChangeValidarStar(e){
-        const value=  e.target.checked;
-        setValidarStar(value)
-    }
     //Para los cambios en campos que tienen el valor en el .checked
     function handleChangeCheckBox(e){
         const name = e.target.name;
-        const value = e.target.checked;
-        setFormSeriado((prev)=>{
+        let value = e.target.checked;
+        if(value===true){
+            value = 1;
+        }
+        else{
+            value = 0;
+        }
+        setLote((prev)=>{
             return {...prev, [name]:value};
         });
-
     }
     //Para los cambios de campos normales
     function handleChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        console.log('name: ',name, ' value: '+value             )
         setLote((prev)=>{
             return {...prev, [name]:value};
         });
-        //console.log(lote);
     }
     async function getLoteById(){
         await fetch('https://backendkayoga-production.up.railway.app/getLoteById/'+idLote,{
@@ -95,11 +71,10 @@ const InsertNewLotePage=(props)=> {
             if(response.ok) {
                 const promesa = response.json();
                 promesa.then(function(lotes) {
-                  setLote(lotes);
-                  console.log(lotes)
+                  setLote(lotes[0]);
+                  asignarTalla(lotes[0].serie)
+                  console.log('lotes: ', lotes)
                 });      
-                //setLote(response);
-                //console.log(response)
             } else {
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
@@ -117,18 +92,40 @@ const InsertNewLotePage=(props)=> {
         console.log(lote)
         e.preventDefault()
         alert('Estas seguro de enviar la informacion?');
-       
         //For Production
-        fetch('https://backendkayoga-production.up.railway.app/postSeriados',{
+        fetch('https://backendkayoga-production.up.railway.app/updateSpecificInfoLoteById/'+lote.idlote,{
+        //fetch('http://localhost:4000/updateSpecificInfoLoteById/'+lote.idlote,{
             headers: {
                 'Content-Type': 'application/json'
               },
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            body: JSON.stringify(formSeriado),
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            body: JSON.stringify(lote),
         })
         .then(function(response) {
             if(response.ok) {
-                console.log(response.json()); navigate('/ListLotesPage')
+                console.log(response.json()); navigate('/ListaLotesPorEditar')
+            } else {
+              console.log('Respuesta de red OK pero respuesta HTTP no OK');
+            }
+          })
+          .catch(function(error) {
+            alert('Hubo un problema con la petición Fetch:' + error.message);
+          });
+    }
+    const handleDarBaja=async(e)=>{
+        e.preventDefault()
+        alert('Estas seguro de Dar de baja?');
+        //For Production
+        await fetch('https://backendkayoga-production.up.railway.app/darBajaLoteById/'+lote.idlote,{
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            body: JSON.stringify({"estado":'Anulado'}),
+        })
+        .then(function(response) {
+            if(response.ok) {
+                navigate('/ListaLotesPorEditar')
             } else {
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
@@ -137,7 +134,8 @@ const InsertNewLotePage=(props)=> {
             alert('Hubo un problema con la petición Fetch:' + error.message);
           });
    }
-   if(lote.length > 0){
+
+   if(lote){
     return (
         
         <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5
@@ -155,163 +153,180 @@ const InsertNewLotePage=(props)=> {
                         </Typography>
                         </Grid>           
                     </Grid>
-                    <form onSubmit={handleSubmit}>
             {/* Cuadro Blanco que encierra todo el form */}
                     <Grid sx ={{mt:1,pt:5,pl:3,pr:3, backgroundColor:'#f8f9fa',borderRadius:5  }} >
                         <Grid container alignItems="flex-start" justifyContent='center' spacing={2}>
                             <Grid item xs={6}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Metraje
+                                </Typography>
                                 <TextField
                                     name="metraje"
-                                    value={lote[0].metraje}
+                                    value={lote.metraje}
                                     onChange={handleChange}
                                     fullWidth
                                     required
                                     type="number"
-                                    label="Metraje"
                                 />
                             </Grid>
                             <Grid item xs={6}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Color de Lona
+                                </Typography>
                                 <TextField
                                     name="color"
-                                    value={lote[0].color}
+                                    value={lote.color}
                                     onChange={handleChange}
                                     fullWidth
                                     type="string"
-                                    label="Color de Lona"
                                     required
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Descripción del Cortador
+                                </Typography>
                                 <TextField
                                     name="descripcion"
-                                    value={lote[0].descripcion}
+                                    value={lote.descripcion}
                                     onChange={handleChange}
                                     fullWidth
                                     required
                                     multiline
                                     type="string"
-                                    label="Descripcion Cortador"
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Detalle de Insumos Entregados 
+                                </Typography>
                                 <TextField
-                                    name="descripcion"
-                                    value={lote[0].detalle_insumos_aparado}
+                                    name="detalle_insumos_aparado"
+                                    value={lote.detalle_insumos_aparado}
                                     onChange={handleChange}
                                     fullWidth
                                     required
                                     multiline
                                     type="string"
-                                    label="Descripcion Aparador"
                                 />
                             </Grid>
                             {/* Seccion Checkbox  */}
                             <Grid item xs={6} sx={{mt:2}}>
-                                <FormControlLabel control={<Checkbox checked={lote[0].garibaldi} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
+                                <FormControlLabel control={<Checkbox checked={parseInt(lote.garibaldi)} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
                             </Grid>
                             <Grid item xs={6} sx={{mt:2}}>
-                                <FormControlLabel control={<Checkbox checked={lote[0].contrafuerte} name="contrafuerte" onChange={handleChangeCheckBox} />} label="Contrafuerte" />
+                                <FormControlLabel control={<Checkbox checked={parseInt(lote.contrafuerte)} name="contrafuerte" onChange={handleChangeCheckBox} />} label="Contrafuerte" />
                             </Grid>
+
 
                             <Divider style={{width:'100%'}} />
                             <Divider style={{width:'100%'}} />
-                    {/* Seleccionar la serie                */}
-                            <Grid item  xs={6} sx={{mt:2}} >
-                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                                    Selecciona la serie
-                                </Typography>
-                                <Select
-                                    name="serie"
-                                    required
-                                    value={formSeriado.serie}
-                                    onChange={handleChangeSelect}
-                                    >
-                                    <MenuItem key={1} value='nino'>NIÑO</MenuItem>
-                                    <MenuItem key={2} value='dama'>DAMA</MenuItem>
-                                    <MenuItem key={3} value='varon'>VARON</MenuItem>                                                        
-                                </Select>
-                            </Grid>
-                    {/* Seccion Agregar una talla mas */}
-                            <Grid item xs={6} sx={{mt:2}}>
-                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                                    Puedes agregar mas tallas
-                                </Typography>
-                                <FormControlLabel control={<Checkbox  checked={validarStar} onChange={handleChangeValidarStar} />} label="Agregar talla?" />
-                            </Grid>
+                 
                     {/* Seccion Seriado */}
-                            <Divider style={{width:'100%',padding:5 }} />
-                            <Divider style={{width:'100%' }} />
-                            { validarStar&&(
+                           <Grid item container sx={{m:2}}>
+                                <Typography variant='h6' sx={{padding:1,fontWeight:'bold'}}>
+                                        Aún puedes modificar el seriado de corte
+                                </Typography>
+                            </Grid> 
+                            { lote.talla1>0 &&(
                                 <Grid item sx={{flexGrow:1}}>
+                                    <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                        Talla {talla.talla1}
+                                    </Typography>
                                     <TextField  
                                         name="talla1"
-                                        value={formSeriado.talla1}
+                                        value={lote.talla1}
                                         onChange={handleChange}
                                         fullWidth
                                         required    
                                         type="number"
-                                        label={talla.talla1}
                                     />
                                 </Grid>
                             )}  
+                            { lote.talla2>0 &&(
                             <Grid item sx={{flexGrow:1}}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Talla {talla.talla2}
+                                </Typography>
                                 <TextField
                                     name="talla2"
                                     required
-                                    value={formSeriado.talla2}
+                                    value={lote.talla2}
                                     onChange={handleChange}
                                     fullWidth
                                     type="number"
-                                    label={talla.talla2}
                                 />
                             </Grid>
+                            )}
+                            { lote.talla3>0 &&(
                             <Grid item sx={{flexGrow:1}}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Talla {talla.talla3}
+                                </Typography>
                                 <TextField
                                     name="talla3"
-                                    value={formSeriado.talla3}
+                                    value={lote.talla3}
                                     onChange={handleChange}
                                     fullWidth
                                     required
                                     type="number"
-                                    label={talla.talla3}
                                 />
                             </Grid>
+                            )}
+                            { lote.talla4>0 &&(
                             <Grid item sx={{flexGrow:1}}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Talla {talla.talla4}
+                                </Typography>
                                 <TextField
                                     name="talla4"
-                                    value={formSeriado.talla4}
+                                    value={lote.talla4}
                                     onChange={handleChange}                        
                                     fullWidth
                                     required
                                     type="number"
-                                    label={talla.talla4}
                                 />  
                             </Grid>
-
+                            )}
+                            { lote.talla5>0 &&(
                             <Grid item sx={{flexGrow:1}}>
+                                <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
+                                    Talla {talla.talla5}
+                                </Typography>
                                 <TextField
                                     name="talla5"
-                                    value={formSeriado.talla5}
+                                    value={lote.talla5}
                                     onChange={handleChange}                        
                                     fullWidth
                                     required
                                     type="number"
-                                    label={talla.talla5}
                                 />  
                             </Grid>
+                            )}
                             <Grid item container style={{marginTop: 16,justifyContent:'center' }}>
                                 <Button
                                     variant="outlined"
                                     color="primary"
                                     type="submit"
-                                    sx={{fontWeight: 'bold'}}
+                                    sx={{fontWeight: 'bold',m:2}}
+                                    onClick={handleSubmit}
                                 >
                                     Guardar
+                                </Button>
+                                <Button
+                                    variant="outlined"
+                                    color="warning"
+                                    sx={{fontWeight: 'bold',m:2}}                                    
+                                    onClick={handleDarBaja}
+                                >
+                                    <IconButton sx ={{    color: "orange" }}>
+                                        <WarningIcon/>
+                                    </IconButton>
+                                    Dar de Baja
                                 </Button>
                             </Grid>    
                         </Grid>
                     </Grid>
-                </form>
             </Grid>
         </Grid> 
       </Grid>

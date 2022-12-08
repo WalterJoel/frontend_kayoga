@@ -16,8 +16,13 @@ const AcordionForSepararLoteComponent =(props)=>{
   let navigateToAparadorPage = useNavigate();
   const [talla,setTallas]= useState({});
   const [conteoActual,setConteoActual]= useState(0);
+  
   const validarTalla1= props.talla1Props;
-  console.log('validando si hay talla 1',validarTalla1);
+  const validarTalla2= props.talla2Props;
+  const validarTalla3= props.talla3Props;
+  const validarTalla4= props.talla4Props;
+  const validarTalla5= props.talla5Props;
+
   const [formSeriadoRestante, setFormSeriadoRestante] = useState({
     //talla1:'', No hay talla1 xq esos no se separan
     talla2:'',
@@ -116,15 +121,9 @@ const AcordionForSepararLoteComponent =(props)=>{
                 <List  sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
                   <ListItem>
                       {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
-                      {props.talla1Props>0&&(
+                      {validarTalla1>0&&(
                           <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
                       )}                                                                
-                  </ListItem>
-                  <ListItem sx={{display:'flex',flexDirection:'row',justifyContent:'space-around'}} >
-                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
-                      {props.talla1Props>0&&(
-                          <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
-                      )}
                   </ListItem>
                   <ListItem >
                       <ListItemText primary={talla.talla2} secondary={props.talla2Props} />
@@ -132,27 +131,12 @@ const AcordionForSepararLoteComponent =(props)=>{
                   <ListItem  >
                       <ListItemText primary={talla.talla3} secondary={props.talla3Props} />
                   </ListItem>
-                  {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla31} secondary={props.talla31Props} />
-                    </ListItem>
-                  }
                   <ListItem >
                       <ListItemText primary={talla.talla4} secondary={props.talla4Props} />
                   </ListItem>
-                  {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla41} secondary={props.talla41Props} />
-                    </ListItem>
-                  }
                   <ListItem  >
                       <ListItemText primary={talla.talla5} secondary={props.talla5Props} />
                   </ListItem>
-                  {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla51} secondary={props.talla51Props} />
-                    </ListItem>
-                  }
                 </List>
               </Grid>
           </Grid>
@@ -183,7 +167,7 @@ const AcordionForSepararLoteComponent =(props)=>{
                   />
               </Grid>
               }
-
+              
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla2"

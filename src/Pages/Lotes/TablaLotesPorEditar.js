@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const columns = [
   { field: 'idlote', headerName: '# LOTE' },
-  { field: 'S', headerName: 'First name' },
+  { field: 'fecha_creacion', headerName: 'FECHA DE CORTE',width: 200 },
   { field: 'metraje', headerName: 'METRAJE'},
   {
     field: 'estado',

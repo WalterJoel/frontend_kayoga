@@ -91,15 +91,12 @@ function SepararLotePage(props) {
                                         idSeriadoRestanteProps={lote.idseriadorestante}
                                         conteoAparadorProps={lote.total_pares_segun_aparador}
                                         conteoContadorProps={lote.total_pares_segun_contador}
-                                        talla1Props={lote.talla1}
-                                        talla2Props={lote.talla2}
-                                        talla21Props={lote.talla21}
-                                        talla3Props={lote.talla3}
-                                        talla31Props={lote.talla31}
-                                        talla4Props={lote.talla4}
-                                        talla41Props={lote.talla41}
-                                        talla5Props={lote.talla5}
-                                        talla51Props={lote.talla51}
+                                        
+                                        talla1Props={lote.talla1SeriadoRes}
+                                        talla2Props={lote.talla2SeriadoRes}
+                                        talla3Props={lote.talla3SeriadoRes}
+                                        talla4Props={lote.talla4SeriadoRes}
+                                        talla5Props={lote.talla5SeriadoRes}
 
                                         //totalSeriadoInicialProps={lote.total_pares_seriado_inicial}
                 />

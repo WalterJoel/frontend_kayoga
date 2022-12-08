@@ -16,14 +16,21 @@ const AcordionForLotesPorContarComponent =(props)=>{
   let navigateToAparadorPage = useNavigate();
   const [talla,setTallas]= useState({});
   const [conteoActual,setConteoActual]= useState(0);
+  
   const validarTalla1= props.talla1Props;
+  const validarTalla2= props.talla2Props;
+  const validarTalla3= props.talla3Props;
+  const validarTalla4= props.talla4Props;
+  const validarTalla5= props.talla5Props;
+
+
   console.log('validando si hay talla 1',validarTalla1);
   const [formSeriadoRestante, setFormSeriadoRestante] = useState({
-    talla1:'',
-    talla2:'',
-    talla3:'',
-    talla4:'',
-    talla5:'',
+    talla1:'0',
+    talla2:'0',
+    talla3:'0',
+    talla4:'0',
+    talla5:'0',
     estado_tabla_watch_aparado:'Contado',
     descripcion_contador:'',
     idlote: props.idLoteProps,
@@ -131,6 +138,7 @@ const AcordionForLotesPorContarComponent =(props)=>{
                   />
               </Grid>
               }
+              { validarTalla2>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla2"
@@ -142,6 +150,8 @@ const AcordionForLotesPorContarComponent =(props)=>{
                     label={talla.talla2}
                   />
               </Grid>
+              }
+              { validarTalla3>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla3"
@@ -153,6 +163,8 @@ const AcordionForLotesPorContarComponent =(props)=>{
                     label={talla.talla3}
                   />
               </Grid>
+              }
+              { validarTalla4>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla4"
@@ -165,6 +177,8 @@ const AcordionForLotesPorContarComponent =(props)=>{
                     label={talla.talla4}
                   />  
               </Grid>
+              }
+              { validarTalla5>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla5"
@@ -177,6 +191,7 @@ const AcordionForLotesPorContarComponent =(props)=>{
                     label={talla.talla5}
                   />  
               </Grid>
+              }
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="descripcion_contador"

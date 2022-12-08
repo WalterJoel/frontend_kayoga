@@ -74,7 +74,7 @@ function ListAllLotesByState(props) {
 
     useEffect(() => {
     console.log('selected',selected);
-    if(selected==='Cortado'){
+    if(selected==='Cortado' ||selected==='Anulado' ){
         //En cortado tiene su propia fucnion porque no tinen asignado un modelo aun
         getLotesByEstadoCortado();
     }
@@ -116,6 +116,7 @@ function ListAllLotesByState(props) {
                         <BottomNavigationAction name='Aparado' value='Aparado' label="Lotes en Aparado" icon={<ListAltIcon/>}/>
                         <BottomNavigationAction name='Estampado' value='Estampado' label="Lotes en Estampado"  icon={<ListAltIcon/>}/>
                         <BottomNavigationAction name='Resuelto' value='Resuelto' label="Lotes Resueltos"  icon={<ListAltIcon/>}/>
+                        <BottomNavigationAction name='Anulado' value='Anulado' label="Lotes Dados de Baja"  icon={<ListAltIcon/>}/>
 
                     </BottomNavigation>
                 

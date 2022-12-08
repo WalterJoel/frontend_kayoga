@@ -14,13 +14,19 @@ import agujaImage from '../media/agujaImage.png';
 const AcordionLotesComponent=(props)=>{
   let navigateToAparadorPage = useNavigate();
   const [talla,setTallas]= useState({});
+  
   const validarTalla1= props.talla1Props;
+  const validarTalla2= props.talla2Props;
+  const validarTalla3= props.talla3Props;
+  const validarTalla4= props.talla4Props;
+  const validarTalla5= props.talla5Props;
+
   const [formSeriadoRestante, setFormSeriadoRestante] = useState({
     talla1:'0',
-    talla2:'',
-    talla3:'',
-    talla4:'',
-    talla5:'',
+    talla2:'0',
+    talla3:'0',
+    talla4:'0',
+    talla5:'0',
     estado_tabla_lote:'Resuelto',
     estado_tabla_watch_aparado:'Por Contar',
     descripcion_aparador:'',
@@ -134,6 +140,7 @@ const AcordionLotesComponent=(props)=>{
                   />
               </Grid>
               }
+              { validarTalla2>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla2"
@@ -145,6 +152,8 @@ const AcordionLotesComponent=(props)=>{
                     label={talla.talla2}
                   />
               </Grid>
+              }
+              { validarTalla3>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla3"
@@ -156,6 +165,8 @@ const AcordionLotesComponent=(props)=>{
                     label={talla.talla3}
                   />
               </Grid>
+              }
+              { validarTalla4>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla4"
@@ -168,6 +179,8 @@ const AcordionLotesComponent=(props)=>{
                     label={talla.talla4}
                   />  
               </Grid>
+              }
+              { validarTalla5>0 &&
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="talla5"
@@ -180,6 +193,7 @@ const AcordionLotesComponent=(props)=>{
                     label={talla.talla5}
                   />  
               </Grid>
+              }
               <Grid item sx={{flexGrow:1}}>
                   <TextField
                     name="descripcion_aparador"

@@ -99,7 +99,7 @@ function InfoAparadoresPage(props) {
                             </Typography>
                         </Grid>   
                     </Grid> 
-                    <Grid  item sx={{}} xs={5} >                   
+                    <Grid  item sx={{ml:2}} xs={7} >                   
                         <Grid>
                             <Select
                                 sx={{fontWeight:'bold'}}
@@ -137,11 +137,52 @@ function InfoAparadoresPage(props) {
             {
             lotes.map((lote,i)=>(
                 //Envio los props necesario 
-                <AcordionLotesComponent key={i} idLoteProps={lote.idlote} 
-                                        infomodeloProps={lote.infomodelo}
+                <AcordionLotesComponent key={i} 
+                                        idLoteProps={lote.idlote} 
+                                        metrajeProps={lote.metraje}
+                                        fechaCorteProps={lote.fechaCorte}
+                                        garibaldiProps={lote.garibaldi}
+                                        contrafuerteProps={lote.contrafuerte}
+                                        estadoLoteProps={lote.estado_lote}
+
+                                        nombreAparadorProps = {lote.nombreAparador}
+                                        
+                                        talla1Props={lote.talla1Seriado}
+                                        talla2Props={lote.talla2Seriado}
+                                        talla21Props={lote.talla21Seriado}
+                                        talla3Props={lote.talla3Seriado}
+                                        talla31Props={lote.talla31Seriado}
+                                        talla4Props={lote.talla4Seriado}
+                                        talla41Props={lote.talla41Seriado}
+                                        talla5Props={lote.talla5Seriado}
+                                        talla51Props={lote.talla51Seriado}
+
+                                        talla1ResProps={lote.talla1SeriadoRes}
+                                        talla2ResProps={lote.talla2SeriadoRes}
+                                        talla21ResProps={lote.talla21SeriadoRes}
+                                        talla3ResProps={lote.talla3SeriadoRes}
+                                        talla31ResProps={lote.talla31SeriadoRes}
+                                        talla4ResProps={lote.talla4SeriadoRes}
+                                        talla41ResProps={lote.talla41SeriadoRes}
+                                        talla5ResProps={lote.talla5SeriadoRes}
+                                        talla51ResProps={lote.talla51SeriadoRes}
+
+                                        descripcionCortadorProps={lote.descripcion_cortador}
+                                        descripcionAparadorProps={lote.descripcion_aparador}
+                                        descripcionContadorProps={lote.descripcion_contador}
+                                        
                                         serieLoteProps={lote.serieLote} 
-                                        talla1Props={lote.talla1}
-                                        totalSeriadoInicialProps={lote.total_pares_seriado_inicial}/>
+                                        colorLonaProps={lote.color_lona}
+                                        infomodeloProps={lote.infomodelo}
+                                        fechaCreacionLoteProps={lote.lotefechacreacion}
+                                        totalSeriadoInicialProps={lote.total_pares_seriado_inicial}
+                                        fechaConteoProps={lote.fecha_conteo}
+                                        fechaEntregaAparadoProps={lote.fechaEntregaAparado}
+                                        totalParesSegunAparadorProps={lote.total_pares_segun_aparador}
+                                        totalParesSegunContadorProps={lote.total_pares_segun_contador}
+
+                                        detalleInsumosAparadoProps = {lote.detalle_insumos_aparado}
+                                        />
                 ))
             }
             

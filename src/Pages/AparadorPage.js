@@ -125,7 +125,13 @@ function AparadorPage(props) {
             <AccordionForEntregaAparadorComponent key={i} idLoteProps={lote.idlote} 
                                     infomodeloProps={lote.infomodelo}
                                     serieLoteProps={lote.serieLote} 
-                                    talla1Props={lote.talla1}
+                                    
+                                    talla1Props={lote.talla1Seriado}
+                                    talla2Props={lote.talla2Seriado}
+                                    talla3Props={lote.talla3Seriado}
+                                    talla4Props={lote.talla4Seriado}
+                                    talla5Props={lote.talla5Seriado}
+
                                     totalSeriadoInicialProps={lote.total_pares_seriado_inicial}/>
             ))
           }

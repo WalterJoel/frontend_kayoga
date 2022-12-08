@@ -86,7 +86,13 @@ function LotesPorContarPage(props) {
                 <AcordionForLotesPorContarComponent key={i} idLoteProps={lote.idlote} 
                                         infomodeloProps={lote.infomodelo}
                                         serieLoteProps={lote.serieLote} 
-                                        talla1Props={lote.talla1}
+
+                                        talla1Props={lote.talla1Seriado}
+                                        talla2Props={lote.talla2Seriado}
+                                        talla3Props={lote.talla3Seriado}
+                                        talla4Props={lote.talla4Seriado}
+                                        talla5Props={lote.talla5Seriado}
+                                        
                                         idSeriadoRestanteProps={lote.idseriadorestante}
                                         conteoAparadorProps={lote.conteoAparador}
                                         //totalSeriadoInicialProps={lote.total_pares_seriado_inicial}
