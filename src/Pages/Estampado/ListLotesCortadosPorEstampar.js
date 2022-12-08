@@ -65,7 +65,6 @@ const ListLotesCortadosPorEstampar=()=>{
     
     async function enviarEstampado(idLote){
         alert('Estas seguro de enviar al estampador?')
-        alert(idLote)
         const url = 'https://backendkayoga-production.up.railway.app/enviarLoteEstampadoById/'+idLote;
         await fetch(url,{
             headers: {
