@@ -24,8 +24,6 @@ const DetailLotesPage =() => {
     })
     //Funcion para la busqueda de modelos
     const peticionModelos=async()=>{
-        console.log('serie',serieParam);
-        console.log('probando ', detalleLote.serie)
         const url = 'https://backendkayoga-production.up.railway.app/getAllModelosBySerieAndColor/'+ serieParam;
         await fetch(url,{
         //await fetch('https://backendkayoga-production.up.railway.app/getAllModelos',{
@@ -38,7 +36,6 @@ const DetailLotesPage =() => {
                 console.log('response',response);
                 const promesa = response.json();
                 promesa.then(function (modelo){
-                    console.log('modelo',modelo);
                     setModelos(modelo);
                 })
             }
@@ -52,7 +49,6 @@ const DetailLotesPage =() => {
     const handleChangeSelect = (event) => {
         const value =event.target.value;
         const name = event.target.name;
-        console.log('names',name,value);
         setFormUpdateLote((prev)=>{
             return {...prev, [name]:value};
         });
@@ -86,7 +82,6 @@ const DetailLotesPage =() => {
         })
         .then(function(response) {
             if(response.ok) {
-                console.log('all good')
                 navigateTo('/');
             } else {
                 alert('No se pudo guardar')
@@ -141,6 +136,8 @@ const DetailLotesPage =() => {
         .catch((error)=> console.log('Algo salio mal al requerir aparadores'+ error.message));
     },[]);
     return(
+        (detalleLote.garibaldi ==='1' && detalleLote.contrafuerte==='1')?
+        (
         <Grid container sx={{zIndex:2,position:'absolute',padding:5
                 ,display:'flex',alignItems:'center',justifyContent:'center',backgroundColor:''}}>
             <Grid  container sx={{display:'flex',justifyContent:"space-around",backgroundColor:'#dfe3e9',p:2,
@@ -277,6 +274,13 @@ const DetailLotesPage =() => {
             </Grid>
             </form>
             </Grid>
+        </Grid>
+        ):
+        
+        <Grid container sx={{mt:15,p:5,justifyContent:'center'}}>
+            <Typography variant='h3'>
+                No puedes enviar al aparado este lote, porque le falta garibaldi o contrafuerte.
+            </Typography>
         </Grid>
         
     )

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
-import {ListItem, Typography} from '@mui/material';
+import {ListItem,TextField, Typography} from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
@@ -25,10 +25,24 @@ export default function TransferList(props) {
   const [checked, setChecked] = useState([]);
   let [left, setLeft] = React.useState([]);
   const [right, setRight] = React.useState([]);
-
+  const mostrarEditTalla = true;
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
+  function handleChange(idlote,e){
+    const name = e.target.name;
+    const value = e.target.value;
+    const clave = idlote.toString()+name.toString();
+    console.log('name: ',name,' -','value : ',value,'-',idlote,'-',clave);
+    console.log('Right0: ',right)
+    
+    setRight((prevState) =>
+      prevState.map((row) =>
+       (row['clave_unica_generada']===clave? { ...row, ['cantidad']: value } : row)
+      )
+    );
+
+  }
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -58,6 +72,7 @@ export default function TransferList(props) {
   const handleSubmit=(e)=>{
     if(right.length > 0){
       e.preventDefault()
+      console.log(right);
       alert('Estas seguro de enviar la informacion?');
       //Inserto los datos el tabla watch produccion
       fetch('https://backendkayoga-production.up.railway.app/saveOrdenInyeccion',{        
@@ -88,7 +103,7 @@ export default function TransferList(props) {
     setLeft(props.seriadoByTallaProps);
   },[props.seriadoByTallaProps])
 
-  function customList(items){
+  function customList(items,mostrarEditTalla){
     return(
     <Paper sx={{ width: 550, minHeight:200,  overflow: 'auto',mt:3,backgroundColor:'#f2f3f4',borderRadius:5}}>
       <List dense component="div" role="list">
@@ -97,12 +112,17 @@ export default function TransferList(props) {
           const getTalla   = Object.keys(value);
         /***************** SOLO DEBEMOS ASEGURAR NO CAMBIAR LA QUERY QUE MANDA EN LA POS 0 LA TALLA  */
           // 0 porque la query en la posicion cero retorna el nombre de la talla segun la queryBD
+          //console.log('get TALLA: ',getTalla);
           let talla_name = getTalla[0];
           //Agrego un nuevo key/value al objeto, indicando la talla 34 o 35...
-          value['talla_name'] = props.nameTallasProps[talla_name.toString()];
-          console.log('talla_name: ',value);
-          // Agrego un nuevo key/value, indicando "talla1, talla2"
-          value['talla_insert'] = talla_name.toString();
+          if(!mostrarEditTalla){
+            value['talla_name'] = props.nameTallasProps[talla_name.toString()];
+            //console.log('talla_name: ',value);
+            // Agrego un nuevo key/value, indicando "talla1, talla2"
+            value['talla_insert'] = talla_name.toString();
+            // Agrego una clave para cada columna, ya que no hay un id especifico se puede repetir el lote y la talla en una misma orden
+            value['clave_unica_generada'] = value.idlote.toString()+props.nameTallasProps[talla_name.toString()];
+          }
           return (
             <ListItem
               key={value.idseriadorestante}
@@ -120,7 +140,18 @@ export default function TransferList(props) {
               </ListItemIcon>
               {/* Aqui pongo la info modelo */}
               <ListItemText id={labelId} primary={`${value.infomodelo} `} />
-              <ListItemText id={labelId}  sx={{fontWeight:'bold',color:'red'}} primary={` Talla: ${props.nameTallasProps[talla_name.toString()]+' / '+value.cantidad+' pares'} `} />
+              <ListItemText id={labelId}  sx={{fontWeight:'bold',color:'red',ml:1}} primary={'Talla: '+value['talla_name']+' / '+value.cantidad+' pares'} />
+              {mostrarEditTalla &&(
+              <TextField  
+                name={value['talla_name']}
+                value={value['cantidad']}
+                onChange={(e) => handleChange(value.idlote ,e)}
+                sx={{maxWidth: '5em',ml:2}}
+                required    
+                type="number"   
+                //label={talla.talla1}
+              />
+              )}
             </ListItem> 
           );
         })}
@@ -131,7 +162,7 @@ export default function TransferList(props) {
   
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="center">
-      <Grid item >{customList(left) }</Grid>
+      <Grid item >{customList(left,!mostrarEditTalla) }</Grid>
 
     {/* Grid para los botones */}
       <Grid item>
@@ -160,7 +191,7 @@ export default function TransferList(props) {
           
         </Grid>
       </Grid>
-      <Grid item>{customList(right)}</Grid>
+      <Grid item>{customList(right,mostrarEditTalla)}</Grid>
       
       <Grid item container sx={{justifyContent:'center'}}>
         <Button
