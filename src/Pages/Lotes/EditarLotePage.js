@@ -193,6 +193,7 @@ const InsertNewLotePage=(props)=> {
                                     fullWidth
                                     required
                                     multiline
+                                    label=""
                                     type="string"
                                 />
                             </Grid>
@@ -207,6 +208,7 @@ const InsertNewLotePage=(props)=> {
                                     fullWidth
                                     required
                                     multiline
+                                    label=""
                                     type="string"
                                 />
                             </Grid>

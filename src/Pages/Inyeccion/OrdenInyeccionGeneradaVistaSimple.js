@@ -31,7 +31,6 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
 
       let answer = window.confirm(" Has inyectado: "+ pares_inyectados +' pares?');
       if (answer) {
-        console.log(paresInyectados);
         await fetch('https://backendkayoga-production.up.railway.app/saveOrdenInyeccionMaquinista',{
               headers: {
                   'Content-Type': 'application/json'
