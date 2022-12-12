@@ -158,7 +158,7 @@ const InsertNewLotePage=(props)=> {
                                     required
                                     multiline
                                     type="string"
-                                    label="Descripcion / Tipo de Sarga"
+                                    label=" Molde( Giana/Vans/Star ) / Tipo de Sarga"
                                 />
                             </Grid>
                             {/* Seccion Checkbox  */}
