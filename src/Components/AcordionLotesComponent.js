@@ -340,12 +340,6 @@ const AcordionLotesComponent=(props)=>{
                           <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
                       )}                                                                
                   </ListItem>
-                  <ListItem sx={{display:'flex',flexDirection:'row',justifyContent:'space-around'}} >
-                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
-                      {props.talla1Props>0&&(
-                          <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
-                      )}
-                  </ListItem>
                   <ListItem >
                       <ListItemText primary={talla.talla2} secondary={props.talla2Props} />
                   </ListItem>
