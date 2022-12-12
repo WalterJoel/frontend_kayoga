@@ -69,8 +69,8 @@ const ListLotesPage=()=>{
 
     
     useEffect(()=>{
-        fetch('https://backendkayoga-production.up.railway.app/getLotesCortadoyEstampado',{
-        //fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLotesCortados',{
+        fetch('https://backendkayoga-production-fa5a.up.railway.app/getLotesCortadoyEstampado',{
+        //fetch('https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/getLotesCortados',{
             headers: {
                 'Content-Type': 'application/json'
               },

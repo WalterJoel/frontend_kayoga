@@ -32,7 +32,7 @@ const OrdenInyeccionGenerada = () => {
 
     async function handleSubmit(){
       console.log(paresInyectados);
-      await fetch('https://backendkayoga-production.up.railway.app/saveOrdenInyeccionMaquinista',{
+      await fetch('https://backendkayoga-production-fa5a.up.railway.app/saveOrdenInyeccionMaquinista',{
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -65,7 +65,7 @@ const OrdenInyeccionGenerada = () => {
     //Obtengo el JSon que se guardo en la tabla watch_produccion_inyeccion
     async function  getOrdenInyeccionJson(){   
         //For Production
-        await fetch('https://backendkayoga-production.up.railway.app/getOrdenInyeccion',{
+        await fetch('https://backendkayoga-production-fa5a.up.railway.app/getOrdenInyeccion',{
             headers: {
                 'Content-Type': 'application/json'
             },

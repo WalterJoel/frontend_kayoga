@@ -31,8 +31,8 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
 
       let answer = window.confirm(" Has inyectado: "+ pares_inyectados +' pares?');
       if (answer) {
-        await fetch('http://localhost:4000/saveOrdenInyeccionMaquinista',{
-        //await fetch('https://backendkayoga-production.up.railway.app/saveOrdenInyeccionMaquinista',{
+        //await fetch('http://localhost:4000/saveOrdenInyeccionMaquinista',{
+        await fetch('https://backendkayoga-production-fa5a.up.railway.app/saveOrdenInyeccionMaquinista',{
               headers: {
                   'Content-Type': 'application/json'
               },
@@ -70,7 +70,7 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
     //Obtengo el JSon que se guardo en la tabla watch_produccion_inyeccion
     async function  getOrdenInyeccionJson(){   
         //For Production
-        await fetch('https://backendkayoga-production.up.railway.app/getOrdenInyeccion',{
+        await fetch('https://backendkayoga-production-fa5a.up.railway.app/getOrdenInyeccion',{
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -95,7 +95,7 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
 
     useEffect(() => {
         getOrdenInyeccionJson();
-        console.log(ordenInyeccionGenerada);
+        //console.log(ordenInyeccionGenerada);
     }, []);
     if(ordenInyeccionGenerada.length>0) {
     return( 

@@ -120,8 +120,8 @@ export default function InsertZapatillasPage() {
 
 
   async function getZapatillasBySerie(){
-//    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-    const url = 'https://backendkayoga-production.up.railway.app/getZapatillasBySerie/'+serieSelected+'/'+modelo;
+//    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
+    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getZapatillasBySerie/'+serieSelected+'/'+modelo;
       await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
@@ -174,7 +174,7 @@ export default function InsertZapatillasPage() {
     alert('Estas seguro de enviar la informacion?');
    
     //For Production
-    await fetch('https://backendkayoga-production.up.railway.app/UpdateAllZapatillas',{
+    await fetch('https://backendkayoga-production-fa5a.up.railway.app/UpdateAllZapatillas',{
         headers: {
             'Content-Type': 'application/json'
           },

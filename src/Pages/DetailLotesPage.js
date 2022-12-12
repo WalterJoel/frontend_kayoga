@@ -24,9 +24,9 @@ const DetailLotesPage =() => {
     })
     //Funcion para la busqueda de modelos
     const peticionModelos=async()=>{
-        const url = 'https://backendkayoga-production.up.railway.app/getAllModelosBySerieAndColor/'+ serieParam;
+        const url = 'https://backendkayoga-production-fa5a.up.railway.app/getAllModelosBySerieAndColor/'+ serieParam;
         await fetch(url,{
-        //await fetch('https://backendkayoga-production.up.railway.app/getAllModelos',{
+        //await fetch('https://backendkayoga-production-fa5a.up.railway.app/getAllModelos',{
             headers: {
                 'Content-Type': 'application/json'
               },
@@ -67,11 +67,11 @@ const DetailLotesPage =() => {
         alert('Estas seguro de enviar la informacion?');
        /*
         //For Production
-        fetch('https://backendkayoga-production.up.railway.app/postSeriados',{
+        fetch('https://backendkayoga-production-fa5a.up.railway.app/postSeriados',{
         */
         //For Develop
         //id lote param es el id que se envia cuando viene de lotesListPage
-        const url= 'https://backendkayoga-production.up.railway.app/updateLoteById/' + idLoteParam;
+        const url= 'https://backendkayoga-production-fa5a.up.railway.app/updateLoteById/' + idLoteParam;
         console.log('id param',idLoteParam)
         fetch(url,{
             headers: {
@@ -95,8 +95,8 @@ const DetailLotesPage =() => {
     useEffect(() =>{
         peticionModelos();
         //Obtengo informacion sobre el lote
-        const url='https://backendkayoga-production.up.railway.app/getLoteById/'+idLoteParam;
-        //const url='https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLoteById/'+idLote;
+        const url='https://backendkayoga-production-fa5a.up.railway.app/getLoteById/'+idLoteParam;
+        //const url='https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/getLoteById/'+idLote;
         fetch(url,{
             headers: {
                 'Content-Type': 'application/json'
@@ -123,8 +123,8 @@ const DetailLotesPage =() => {
         .catch(()=> console.log('Algo salio mal al requerir lotes cortados'));
 
         //Obtengo informacion sobre los aparadores
-        fetch('https://backendkayoga-production.up.railway.app/getAllAparadores',{
-        //fetch('https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getAllAparadores',{
+        fetch('https://backendkayoga-production-fa5a.up.railway.app/getAllAparadores',{
+        //fetch('https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/getAllAparadores',{
             headers: {
                 'Content-Type': 'application/json'
               },

@@ -37,7 +37,7 @@ const AcordionLotesComponent=(props)=>{
       diferenciaCortes = diferenciaCortes*(-1);
     }
     if(diferenciaCortes<5){
-      await fetch('https://backendkayoga-production.up.railway.app/createSeriadoRestante',{
+      await fetch('https://backendkayoga-production-fa5a.up.railway.app/createSeriadoRestante',{
         headers: {
             'Content-Type': 'application/json'
           },
@@ -63,7 +63,7 @@ const AcordionLotesComponent=(props)=>{
     }
     //setLoading(!loading);   
     //For Production
-    //fetch('https://backendkayoga-production.up.railway.app/createSeriadoRestante',{
+    //fetch('https://backendkayoga-production-fa5a.up.railway.app/createSeriadoRestante',{
   }
 
   function handleChange(e) {

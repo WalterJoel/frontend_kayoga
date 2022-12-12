@@ -117,8 +117,8 @@ const DetailLotesPage =() => {
     };
     
     useEffect(()=>{
-        const url='https://backendkayoga-production.up.railway.app/getAllModelos';
-        //const url='https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/getLoteById/'+idLote;
+        const url='https://backendkayoga-production-fa5a.up.railway.app/getAllModelos';
+        //const url='https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/getLoteById/'+idLote;
         fetch(url,{
             headers: {
                 'Content-Type': 'application/json'

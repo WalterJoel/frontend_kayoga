@@ -65,7 +65,7 @@ const ListLotesCortadosPorEstampar=()=>{
     
     async function enviarEstampado(idLote){
         alert('Estas seguro de enviar al estampador?')
-        const url = 'https://backendkayoga-production.up.railway.app/enviarLoteEstampadoById/'+idLote;
+        const url = 'https://backendkayoga-production-fa5a.up.railway.app/enviarLoteEstampadoById/'+idLote;
         await fetch(url,{
             headers: {
                 'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ const ListLotesCortadosPorEstampar=()=>{
 
     useEffect(()=>{
         console.log('entertaiment')
-        fetch('https://backendkayoga-production.up.railway.app/getLotesCortados',{
+        fetch('https://backendkayoga-production-fa5a.up.railway.app/getLotesCortados',{
 
             headers: {
                 'Content-Type': 'application/json'

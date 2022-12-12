@@ -50,7 +50,7 @@ const AcordionForSepararLoteComponent =(props)=>{
     if(suma2===props.talla2Props && suma3===props.talla3Props &&
        suma4===props.talla4Props && suma5===props.talla5Props) {
 
-        await fetch('https://backendkayoga-production.up.railway.app/updateSeriadoRestanteAlSeparar',{
+        await fetch('https://backendkayoga-production-fa5a.up.railway.app/updateSeriadoRestanteAlSeparar',{
         headers: {
             'Content-Type': 'application/json'
           },

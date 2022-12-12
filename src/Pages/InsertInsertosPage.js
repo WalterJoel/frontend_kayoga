@@ -59,8 +59,8 @@ export default function App() {
   const [selected, setSelected] = useState('');
 
   async function getInsertosBySerie(){
-//    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-    const url = 'https://backendkayoga-production.up.railway.app/getInsertosBySerie/'+selected;
+//    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
+    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getInsertosBySerie/'+selected;
       await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ export default function App() {
     alert('Estas seguro de enviar la informacion?');
    
     //For Production
-    fetch('https://backendkayoga-production.up.railway.app/UpdateAllInsertos',{
+    fetch('https://backendkayoga-production-fa5a.up.railway.app/UpdateAllInsertos',{
         headers: {
             'Content-Type': 'application/json'
           },

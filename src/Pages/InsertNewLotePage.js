@@ -87,7 +87,7 @@ const InsertNewLotePage=(props)=> {
         setLoading(!loading);
         alert('Estas seguro de enviar la informacion?');
         //For Production
-        fetch('https://backendkayoga-production.up.railway.app/postSeriados',{
+        fetch('https://backendkayoga-production-fa5a.up.railway.app/postSeriados',{
             headers: {
                 'Content-Type': 'application/json'
               },

@@ -62,7 +62,7 @@ const InsertNewLotePage=(props)=> {
         });
     }
     async function getLoteById(){
-        await fetch('https://backendkayoga-production.up.railway.app/getLoteById/'+idLote,{
+        await fetch('https://backendkayoga-production-fa5a.up.railway.app/getLoteById/'+idLote,{
             headers: {
                 'Content-Type': 'application/json'
               }
@@ -93,7 +93,7 @@ const InsertNewLotePage=(props)=> {
         e.preventDefault()
         alert('Estas seguro de enviar la informacion?');
         //For Production
-        fetch('https://backendkayoga-production.up.railway.app/updateSpecificInfoLoteById/'+lote.idlote,{
+        fetch('https://backendkayoga-production-fa5a.up.railway.app/updateSpecificInfoLoteById/'+lote.idlote,{
         //fetch('http://localhost:4000/updateSpecificInfoLoteById/'+lote.idlote,{
             headers: {
                 'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ const InsertNewLotePage=(props)=> {
         e.preventDefault()
         alert('Estas seguro de Dar de baja?');
         //For Production
-        await fetch('https://backendkayoga-production.up.railway.app/darBajaLoteById/'+lote.idlote,{
+        await fetch('https://backendkayoga-production-fa5a.up.railway.app/darBajaLoteById/'+lote.idlote,{
             headers: {
                 'Content-Type': 'application/json'
               },

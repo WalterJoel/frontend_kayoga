@@ -14,8 +14,8 @@ function ListaLotesPorEditar(props) {
     const [lotes,setLotes]  = useState([]); 
 
     async function getLotesPorEditar(){
-        //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        const url = 'https://backendkayoga-production.up.railway.app/getLotesPorEditar';
+        //    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
+        const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesPorEditar';
         await fetch(url,{
         headers: {
             'Content-Type': 'application/json'

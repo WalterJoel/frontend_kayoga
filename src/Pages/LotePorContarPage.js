@@ -26,8 +26,8 @@ function LotesPorContarPage(props) {
         setSelected(newValue);
     }
     async function getLotesPorContar(){
-        //    const url = 'https://backendkayoga-production.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        const url = 'https://backendkayoga-production.up.railway.app/getLotesPorContar';
+        //    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
+        const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesPorContar';
         await fetch(url,{
         headers: {
             'Content-Type': 'application/json'
