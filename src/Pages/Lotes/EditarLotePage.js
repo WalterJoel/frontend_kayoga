@@ -105,6 +105,7 @@ const InsertNewLotePage=(props)=> {
             if(response.ok) {
                 console.log(response.json()); navigate('/ListaLotesPorEditar')
             } else {
+              alert('No se pudo guardar, intenta otra vez')
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
           })
@@ -154,6 +155,7 @@ const InsertNewLotePage=(props)=> {
                         </Grid>           
                     </Grid>
             {/* Cuadro Blanco que encierra todo el form */}
+            <form onSubmit={handleSubmit}>
                     <Grid sx ={{mt:1,pt:5,pl:3,pr:3, backgroundColor:'#f8f9fa',borderRadius:5  }} >
                         <Grid container alignItems="flex-start" justifyContent='center' spacing={2}>
                             <Grid item xs={6}>
@@ -197,6 +199,7 @@ const InsertNewLotePage=(props)=> {
                                     type="string"
                                 />
                             </Grid>
+                            {lote.estado === 'Aparado'&&
                             <Grid item xs={12}>
                                 <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                                     Detalle de Insumos Entregados 
@@ -206,12 +209,11 @@ const InsertNewLotePage=(props)=> {
                                     value={lote.detalle_insumos_aparado}
                                     onChange={handleChange}
                                     fullWidth
-                                    required
-                                    multiline
-                                    label=""
                                     type="string"
+                                    required
                                 />
                             </Grid>
+                            }
                             {/* Seccion Checkbox  */}
                             <Grid item xs={6} sx={{mt:2}}>
                                 <FormControlLabel control={<Checkbox checked={parseInt(lote.garibaldi)} name="garibaldi" onChange={handleChangeCheckBox} />} label="Garibaldi" />
@@ -230,7 +232,6 @@ const InsertNewLotePage=(props)=> {
                                         Aún puedes modificar el seriado de corte
                                 </Typography>
                             </Grid> 
-                            { lote.talla1>0 &&(
                                 <Grid item sx={{flexGrow:1}}>
                                     <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                                         Talla {talla.talla1}
@@ -244,8 +245,6 @@ const InsertNewLotePage=(props)=> {
                                         type="number"
                                     />
                                 </Grid>
-                            )}  
-                            { lote.talla2>0 &&(
                             <Grid item sx={{flexGrow:1}}>
                                 <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                                     Talla {talla.talla2}
@@ -259,8 +258,6 @@ const InsertNewLotePage=(props)=> {
                                     type="number"
                                 />
                             </Grid>
-                            )}
-                            { lote.talla3>0 &&(
                             <Grid item sx={{flexGrow:1}}>
                                 <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                                     Talla {talla.talla3}
@@ -274,8 +271,6 @@ const InsertNewLotePage=(props)=> {
                                     type="number"
                                 />
                             </Grid>
-                            )}
-                            { lote.talla4>0 &&(
                             <Grid item sx={{flexGrow:1}}>
                                 <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                                     Talla {talla.talla4}
@@ -289,8 +284,6 @@ const InsertNewLotePage=(props)=> {
                                     type="number"
                                 />  
                             </Grid>
-                            )}
-                            { lote.talla5>0 &&(
                             <Grid item sx={{flexGrow:1}}>
                                 <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                                     Talla {talla.talla5}
@@ -301,20 +294,21 @@ const InsertNewLotePage=(props)=> {
                                     onChange={handleChange}                        
                                     fullWidth
                                     required
+                                    multiline
                                     type="number"
                                 />  
                             </Grid>
-                            )}
                             <Grid item container style={{marginTop: 16,justifyContent:'center' }}>
                                 <Button
                                     variant="outlined"
                                     color="primary"
                                     type="submit"
                                     sx={{fontWeight: 'bold',m:2}}
-                                    onClick={handleSubmit}
+                                    //onClick={handleSubmit}
                                 >
                                     Guardar
                                 </Button>
+                                {/* No le pongo submit  porq no quiero que verifique los campos required*/}
                                 <Button
                                     variant="outlined"
                                     color="warning"
@@ -329,6 +323,7 @@ const InsertNewLotePage=(props)=> {
                             </Grid>    
                         </Grid>
                     </Grid>
+            </form>
             </Grid>
         </Grid> 
       </Grid>
