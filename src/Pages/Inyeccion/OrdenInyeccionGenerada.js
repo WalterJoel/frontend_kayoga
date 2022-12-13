@@ -124,7 +124,7 @@ const OrdenInyeccionGenerada = () => {
         </Grid>
        
         <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
-          <Table >
+          <Table sx={{maxWidth:'50%'}} >
           <TableHead>
             <TableRow >
               <TableCell sx={{fontWeight:'bold',color:'red'}}> Modelo </TableCell>
