@@ -217,6 +217,11 @@ export default function InsertZapatillasPage() {
                   <Typography variant='h4' sx={{p:1}}>
                       Stock Zapatillas
                   </Typography>
+              </Grid> 
+              <Grid >
+                  <Typography variant='h4' sx={{p:1}}>
+                      Total Pares: {}
+                  </Typography>
               </Grid>   
           </Grid> 
         </Grid>

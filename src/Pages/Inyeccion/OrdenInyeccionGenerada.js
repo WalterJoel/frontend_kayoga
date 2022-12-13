@@ -124,7 +124,7 @@ const OrdenInyeccionGenerada = () => {
         </Grid>
        
         <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
-          <Table sx={{maxWidth:'60%',maxHeight:'80%'}}>
+          <Table >
           <TableHead>
             <TableRow >
               <TableCell sx={{fontWeight:'bold',color:'red'}}> Modelo </TableCell>
@@ -166,9 +166,9 @@ const OrdenInyeccionGenerada = () => {
                     })}
                 </TableBody>
           </Table>
-          <Grid item container sx={{justifyContent:'center',mt:4}}>
+          {/* <Grid item container sx={{justifyContent:'center',mt:4}}>
             <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit} type="submit">Guardar</Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>  
     </Grid>
