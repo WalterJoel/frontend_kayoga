@@ -243,6 +243,7 @@ export default function InsertZapatillasPage() {
           </BottomNavigation>
         </Grid>
         <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
+        <form onSubmit={handleSubmit}>
           <Table>
         {serieSelected==='nino' ?
             <TableHead>
@@ -320,11 +321,13 @@ export default function InsertZapatillasPage() {
                         </TableRow>
                       );
                     })}
-                </TableBody>
+                 
+              </TableBody>
           </Table>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
-            <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit} type="submit">Guardar</Button>
+            <Button variant='outlined' sx={{fontWeight:'bold'}} type="submit">Guardar</Button>
           </Grid>
+          </form>
         </Grid>
       </Grid>  
     </Grid>
