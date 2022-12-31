@@ -8,34 +8,38 @@ import letraK from '../media/letrak.png';
 import logoK from '../media/k.png';
 import letterK from '../media/letter-k.png';
 
-import { Link} from 'react-router-dom';
+import { Link,useLocation} from 'react-router-dom';
 
 const HeaderGeneralComponent=()=>{
+  const {pathname} = useLocation();
+  //Array donde coloco las rutas en las cuales prohibo el home
+  const ocultarDe = ["/AparadorPage"];
+
     return(
         <>
         {/* Encabezado */}
-        
         <Grid container   sx={{justifyContent:'center',zIndex:1,mt:2,height:'15vh'}}>
-        
           <Grid item sx={{width:'100vw',
-                  display:'flex',flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-          
-            <Link to='/'  >
-                  <Button>
-                      <CardMedia
-                          component="img"
-                          height="100"
-                          image={logoK}
-                      />
-                  </Button>
-            </Link>
+            display:'flex',flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
+            {/* Oculto el logo para cierta rutas */}
+            {!ocultarDe.includes(pathname) &&
+              <Link to='/'  >
+                    <Button>
+                        <CardMedia
+                            component="img"
+                            height="100"
+                            image={logoK}
+                        />
+                    </Button>
+              </Link>
+            }
             <Grid item  sx={{display:'flex',flexDirection: 'column',p:1,alignItems:'center',pl:1}}>
               <Typography component="h1" variant="h4" sx={{fontWeight:'bold',fontSize:'1em' }}>
                   Bienvenido PROPS
               </Typography>
-              <Typography component="h1" variant="h6" sx={{fontSize:'1em' }}>
+              {/* <Typography component="h1" variant="h6" sx={{fontSize:'1em' }}>
                   Detalles de Aparado
-              </Typography>
+              </Typography> */}
             
             </Grid>
             <Grid item sx={{pr:1}}>

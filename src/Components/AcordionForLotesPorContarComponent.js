@@ -54,7 +54,7 @@ const AcordionForLotesPorContarComponent =(props)=>{
             if(response.ok) {
               //Navego a la misma pagina porq cuando renderiza manda a los lotes aparados
               console.log(response.json()); 
-              navigateToAparadorPage('/');
+              navigateToAparadorPage(0);
             } else {
             //setLoading(false)
             alert('No se pudo guardar, algo ha fallado revisa los campos')

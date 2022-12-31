@@ -30,6 +30,12 @@ import OrdenInyeccionGeneradaVistaSimple from './Pages/Inyeccion/OrdenInyeccionG
 import ListaLotesPorEditar from './Pages/Lotes/ListaLotesPorEditar';
 import ListLotesCortadosPorEstampar from './Pages/Estampado/ListLotesCortadosPorEstampar';
 
+import AparadorElesbanPage from './Pages/Aparador/AparadorElesbanPage';
+import AparadorAlexPage from './Pages/Aparador/AparadorAlexPage';
+import AparadorJosePage from './Pages/Aparador/AparadorJosePage';
+
+
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Roboto Slab',
@@ -64,7 +70,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
       <BrowserRouter>
-      <HeaderGeneral/>
+        <HeaderGeneral />
         <Routes>
           <Route exact path="/" component={<HomePage/>}>
           <Route index element={<HomePage/>} />
@@ -76,7 +82,7 @@ function App() {
           <Route path="InsertInsertosPage" element={<InsertInsertosPage />} />
           <Route path="ListModelsPage" element={<ListModelsPage/>} />
           <Route path="LoginPage" element={<LoginPage/>} />
-          <Route path="AparadorPage" element={<AparadorPage/>} />
+          <Route path="AparadorPage" element={<AparadorPage/>}   />
           <Route path="InfoAparadoresPage" element={<InfoAparadoresPage/>} />
           <Route path="ListAllLotesByState" element={<ListAllLotesByState/>} />          
           <Route path="LotesPorContarPage" element={<LotesPorContarPage/>} />       
@@ -85,7 +91,12 @@ function App() {
           <Route path="InsertZapatillasPage" element={<InsertZapatillasPage/>} />       
           <Route path="OrdenInyeccionGenerada" element={<OrdenInyeccionGenerada/>} />    
           <Route path="OrdenInyeccionGeneradaVistaSimple" element={<OrdenInyeccionGeneradaVistaSimple/>} />               
-          <Route path="ListaLotesPorEditar" element={<ListaLotesPorEditar/>} />               
+          <Route path="ListaLotesPorEditar" element={<ListaLotesPorEditar/>} />        
+        {/* Rutas para Aparadores        */}
+          <Route path = "Elesban54" element={<AparadorElesbanPage/>} />        
+          <Route path = "Alex40"    element={<AparadorAlexPage/>} />        
+          <Route path = "Jose10"    element={<AparadorJosePage/>} />        
+        {/* Rutas para Aparadores        */}
           </Route>
         </Routes>
       </BrowserRouter>

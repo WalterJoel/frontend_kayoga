@@ -24,30 +24,30 @@ export default function HomePage(props){
         <Grid sx={{position:'absolute',padding:1,mt:'0em',display:'flex',justifyContent:'center'}}>
             <Grid container  sx={{display:'flex',justifyContent:'center'}}>
             {/* Portada Inicial */}
-            <Paper  style ={{padding:10, margin:10,borderRadius:20 }} >
+            {/* <Paper  style ={{padding:10, margin:10,borderRadius:20 }} >
                 <video id="vid"   className="video" src={ coverVideo } autoPlay loop muted   />
                 
-            </Paper>    
+            </Paper>     */}
             
             {/* Botones de accion */}
             <Grid  container sx={{justifyContent:"center"}} >
                 <Grid item > 
-                    <HomeCardsComponent action='Información de Aparadores' image={aparadorImage} linkTo='/InfoAparadoresPage' /> 
+                    <HomeCardsComponent action='Información de Aparadores' image={inyeccionImage} linkTo='/InfoAparadoresPage' /> 
                 </Grid>
                 <Grid item>
-                    <HomeCardsComponent action='Nuevo Lote' image={lotesImage} linkTo='/InsertNewLotePage'/> 
+                    <HomeCardsComponent action='Nuevo Lote' image={inyeccionImage} linkTo='/InsertNewLotePage'/> 
                 </Grid>    
                 <Grid item>
-                    <HomeCardsComponent action='Editar Lote' image={lotesImage} linkTo='/ListaLotesPorEditar'/> 
+                    <HomeCardsComponent action='Editar Lote' image={inyeccionImage} linkTo='/ListaLotesPorEditar'/> 
                 </Grid>    
                 <Grid item>
                     <HomeCardsComponent action='Lotes' image={inyeccionImage} linkTo='/ListAllLotesByState' /> 
                 </Grid>    
                 <Grid item>
-                    <HomeCardsComponent action='Enviar Lote Aparado' image={entregarLoteImage} linkTo='ListLotesPage'/> 
+                    <HomeCardsComponent action='Enviar Lote Aparado' image={inyeccionImage} linkTo='ListLotesPage'/> 
                 </Grid>    
                 <Grid item>
-                    <HomeCardsComponent action='Enviar Lote Estampado' image={entregarLoteImage} linkTo='ListLotesCortadosPorEstampar'/> 
+                    <HomeCardsComponent action='Enviar Lote Estampado' image={inyeccionImage} linkTo='ListLotesCortadosPorEstampar'/> 
                 </Grid>    
                 <Grid
                  item>
@@ -71,15 +71,19 @@ export default function HomePage(props){
                 </Grid>    
                 <Grid
                  item>
-                    <HomeCardsComponent action='Lotes Por Contar'  image={contarImage} linkTo='/LotesPorContarPage' /> 
+                    <HomeCardsComponent action='Lotes Por Contar'  image={inyeccionImage} linkTo='/LotesPorContarPage' /> 
                 </Grid>    
                 <Grid
                  item>
-                    <HomeCardsComponent action='Orden Inyección Generada'  image={contarImage} linkTo='/OrdenInyeccionGenerada' /> 
+                    <HomeCardsComponent action='Orden Inyección Generada'  image={inyeccionImage} linkTo='/OrdenInyeccionGenerada' /> 
                 </Grid>    
                 <Grid
                  item>
-                    <HomeCardsComponent action='Orden Inyección Generada Mini'  image={contarImage} linkTo='/OrdenInyeccionGeneradaVistaSimple' /> 
+                    <HomeCardsComponent action='Orden Inyección Generada Mini'  image={inyeccionImage} linkTo='/OrdenInyeccionGeneradaVistaSimple' /> 
+                </Grid>   
+                <Grid
+                 item>
+                    <HomeCardsComponent action='Para Gorlesban'  image={inyeccionImage} linkTo='/Elesban547' /> 
                 </Grid>    
             </Grid>    
             </Grid>

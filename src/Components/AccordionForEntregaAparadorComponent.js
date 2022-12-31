@@ -54,9 +54,8 @@ const AcordionLotesComponent=(props)=>{
         })
         .then(function(response) {
             if(response.ok) {
-              //Navego a la misma pagina porq cuando renderiza manda a los lotes aparados
-              console.log(response.json()); 
-              navigateToAparadorPage('/');
+              //Refresco la pagina
+              navigateToAparadorPage(0);
             } else {
             //setLoading(false)
             console.log('Respuesta de red OK pero respuesta HTTP no OK');
