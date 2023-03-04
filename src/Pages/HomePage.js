@@ -24,7 +24,7 @@ export default function HomePage(props){
     
     return(
         <>
-        <Grid sx={{position:'absolute',padding:1,mt:'0em',display:'flex',justifyContent:'center'}}>
+        <Grid sx={{position:'relative',padding:1,mt:'0em',display:'flex',justifyContent:'center'}}>
             <Grid container  sx={{display:'flex',justifyContent:'center'}}>
             {/* Portada Inicial */}
             {/* <Paper  style ={{padding:10, margin:10,borderRadius:20 }} >

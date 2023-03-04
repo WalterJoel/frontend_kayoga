@@ -38,11 +38,7 @@ const HeaderGeneralComponent=(props)=>{
             
             </Grid>
             <Grid item sx={{pr:1}}>
-            <Chip
-                label="Rol -  Props"
-                color="primary"
-              />
-              {/* <Button
+               <Button
                 label="Rol -  Aparador"
                 color="primary"
                 //onClick={handleCerrarSesion}
@@ -50,9 +46,9 @@ const HeaderGeneralComponent=(props)=>{
                 sx={{borderRadius:5}}
               >
                 Cerrar Sesión
-              </Button> */}
+              </Button>
             </Grid>
-            <Grid item>          
+            {/* <Grid item>          
               <Box
 
                 className='logoKayoga'
@@ -63,7 +59,7 @@ const HeaderGeneralComponent=(props)=>{
                 component="img"
                 src={letraK}
               />
-            </Grid>
+            </Grid> */}
 
           </Grid>
         </Grid>

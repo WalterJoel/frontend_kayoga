@@ -7,6 +7,8 @@ import { useState } from "react";
 import '../App.css'
 import {React,useEffect, useRef} from 'react';
 import AccordionForEntregaAparadorComponent from '../Components/AccordionForEntregaAparadorComponent';
+import avatarAparador from '../media/avatarAparador.png';
+
 //Uso un ref para usar el scroll del React Dom
 
 function AparadorPage(props) {
@@ -70,14 +72,14 @@ function AparadorPage(props) {
     <Grid sx={{backgroundColor:'#dfe3e9',mt:'0em',p:2,borderRadius:5}}>
         <Grid item container >
             {/* Info Title */}
-            <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
-                <Grid item container sx={{p:2}} xs={7}  >
-                    <Grid >
-                        <Avatar  sx={{width:70,height:70}}/>
+            <Grid item container sx={{ backgroundColor:'',flexDirection:'row',alignItems:'center',m:1}} >                
+                <Grid item container sx={{p:2,justifyContent:'space-around'}}   >
+                    <Grid item >
+                        <Avatar src={avatarAparador} sx={{width:70,height:70}}/>
                     </Grid>
-                    <Grid >
+                    <Grid item >
                         <Typography variant='h4' sx={{p:1}}>
-                            Página del Aparador
+                           Detalle  Lotes
                         </Typography>
                     </Grid>   
                 </Grid> 
