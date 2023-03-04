@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import './App.css';
 import { css, Global } from "@emotion/react";
 
@@ -29,7 +29,7 @@ import OrdenInyeccionGenerada from './Pages/Inyeccion/OrdenInyeccionGenerada';
 import OrdenInyeccionGeneradaVistaSimple from './Pages/Inyeccion/OrdenInyeccionGeneradaVistaSimple';
 import ListaLotesPorEditar from './Pages/Lotes/ListaLotesPorEditar';
 import ListLotesCortadosPorEstampar from './Pages/Estampado/ListLotesCortadosPorEstampar';
-
+import jwtDecode from 'jwt-decode';
 
 //Middleware para proteger las rutas
 import { ProtectedRoute} from './Middlewares/ProtectedRoutes';
@@ -72,8 +72,25 @@ function App() {
   const {token, setToken} = useToken() 
   if(!token){
       {return <LoginPage setToken={setToken}/>}
+    }
+  //Funcion para parsear mi token
+  const parseJwt = (token) => {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+  
+
+  //Verificamos si el token ha expirado
+  const dataJson     = localStorage.getItem('token')
+  const decodedToken = parseJwt(dataJson);
+  if(decodedToken.exp*1000 < Date.now() ){
+      localStorage.clear()
   }
-  const dataJson   = localStorage.getItem('token')
+
+
   const dataUser   = JSON.parse(dataJson)
   const rolUser    = dataUser.onlyDataUser.rol;
   const idAparador = dataUser.onlyDataUser.idusuario;
