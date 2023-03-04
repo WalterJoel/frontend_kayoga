@@ -165,7 +165,7 @@ const DetailLotesPage =() => {
                         <ListItem>
                             <ListItemText primary="Fecha de Corte" secondary={detalleLote.fecha_creacion} />
                             <ListItemText primary=" Garibaldi" secondary={detalleLote.garibaldi} />
-                            <ListItemText primary=" Contrafuerte" secondary={detalleLote.contrafuerte} />
+                            {/* <ListItemText primary=" Contrafuerte" secondary={detalleLote.contrafuerte} /> */}
                         </ListItem>
                         <Divider/>
                         <ListItem>

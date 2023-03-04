@@ -66,14 +66,6 @@ const AcordionLotesComponent=(props)=>{
     //fetch('https://backendkayoga-production-fa5a.up.railway.app/createSeriadoRestante',{
   }
 
-  function handleChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-    console.log(e.target.value);
-    setFormSeriadoRestante((prev)=>{
-        return {...prev, [name]:value};
-    });
-  }
 
     //Apenas renderiza debo setear las tallas
   useEffect(() =>{
@@ -98,7 +90,13 @@ const AcordionLotesComponent=(props)=>{
           >
           <Grid container sx={{display:'flex', flexDirection:'row',alignItems:'center'}} >
             <Avatar src={agujaImage} sx={{pr:2}}/>
-            <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
+
+            {props.infomodeloProps ?(
+                <Typography  color='primary'>Lote # {props.idLoteProps +'   '+  props.infomodeloProps}</Typography>
+            ):(
+              <Typography  color='primary'>Lote # {props.idLoteProps + '     Lona '+props.colorLonaProps + ' Serie '+ props.serieLoteProps}</Typography>
+            )}
+
           </Grid>
           
         </AccordionSummary>
@@ -325,7 +323,7 @@ const AcordionLotesComponent=(props)=>{
 
           </Grid>
         {/* Info 3 Seriado de Corte y Conteo*/}
-          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
+          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:1,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
             <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid container sx={{justifyContent:'center'}}>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
@@ -333,7 +331,7 @@ const AcordionLotesComponent=(props)=>{
                 </Typography>
               </Grid> 
               <Grid item container sx={{display:'flex',justifyContent:'space-around'}}>
-                <List  sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+                <List  sx={{display:'flex',flexDirection:'',justifyContent:'center'}}>
                   <ListItem>
                       {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
                       {props.talla1Props>0&&(

@@ -209,6 +209,7 @@ const InsertNewLotePage=(props)=> {
                                     value={lote.detalle_insumos_aparado}
                                     onChange={handleChange}
                                     fullWidth
+                                    multiline
                                     type="string"
                                     required
                                 />

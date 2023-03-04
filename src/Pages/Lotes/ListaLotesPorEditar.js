@@ -6,19 +6,23 @@ import { useState } from "react";
 import {React,useEffect, useRef} from 'react';
 import TablaLotesPorEditar from './TablaLotesPorEditar'
 
+import useToken from '../../Hooks/useToken';
+
 //Uso un ref para usar el scroll del React Dom
 
 function ListaLotesPorEditar(props) {
 
+    const {token, setToken} = useToken() 
     //En el front se pone on Focused la opcion aparado
     const [lotes,setLotes]  = useState([]); 
-
     async function getLotesPorEditar(){
         //    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesPorEditar';
+        const url = 'http://localhost:4000/getLotesPorEditar';
         await fetch(url,{
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+
             },
         })
         .then(function(response) {
@@ -27,7 +31,6 @@ function ListaLotesPorEditar(props) {
             promesa.then(function(lotes) {
                 setLotes(lotes.reverse());
             });
-            console.log('all good',lotes)
         } else {
             console.log('Respuesta de red OK pero respuesta HTTP no OK');
         }

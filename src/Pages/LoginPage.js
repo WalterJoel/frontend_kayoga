@@ -9,27 +9,19 @@ import Grid from '@mui/material/Grid';
 /*De esta forma se cargan imagenes en avatar, etc, porque link directo en src, no funciona*/ 
 import logoKayoga from '../media/logoKayogaImage.png';
 import './LoginPage.css'
+import PropTypes from 'prop-types'
 
 
-//Hook creado por nosotros
-import useUser from '../Hooks/useUser';
-
-
-export default function LoginPage() {
+// Obtengo el token que se envia desde HomePage 
+export default function LoginPage({setToken}) {
   //Uso mi hook
-  const {login,isLoggedIn}=useUser();
   
-  const navigateToHomePage = useNavigate();
   const [datosLogin,setDatosLogin] = useState({
     email:'',
-    contrasena:''
+    password:''
   });
 
-  useEffect(() =>{
-    if(isLoggedIn){
-      navigateToHomePage('/');
-    }
-  },[isLoggedIn]);
+  
 
   function handleChange(event){
     const value = event.target.value;
@@ -38,14 +30,11 @@ export default function LoginPage() {
         return {...prev, [name]:value};
     })
   }
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login();
-  }
-  /*const handleSubmit = async(event) => {
+  
+  const handleSubmit = async(event) => {
     event.preventDefault();
     //For Production
-    await fetch('https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/login',{
+    await fetch('https://backendkayoga-production-fa5a.up.railway.app/signIn',{
       headers: {
           'Content-Type': 'application/json'
         },
@@ -54,8 +43,11 @@ export default function LoginPage() {
       })
       .then(function(response) {
           if(response.ok) {
-              //console.log(response.json());setLoading(false);navigate('/ListLotesPage')
-              navigateToHomePage('/');
+              //setToken(response.json());
+            const promesa = response.json();
+            promesa.then(function(token) {
+              setToken(token);
+            });
           } else {
             alert('La cuenta ingresada no esta registrada, revisa bien');
           }
@@ -63,7 +55,8 @@ export default function LoginPage() {
         .catch(function(error) {
           console.log('Hubo un problema con la petición Fetch:' + error.message);
         });
-  };*/
+  };
+
   return (
       <Grid container sx={{mt:'7em',display:'flex',alignItems:'center',
                       justifyContent:'center',position:'absolute'}}>
@@ -106,7 +99,7 @@ export default function LoginPage() {
               required
               fullWidth
               onChange={handleChange}
-              name="contrasena"
+              name="password"
               label="Contraseña"
               type="password"
               autoComplete="current-password"
@@ -124,4 +117,9 @@ export default function LoginPage() {
         </Grid>
       </Grid>
   );
+}
+
+LoginPage.propTypes = {
+  //Es simplemente un props
+  setToken: PropTypes.func.isRequired
 }

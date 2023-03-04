@@ -30,11 +30,12 @@ import OrdenInyeccionGeneradaVistaSimple from './Pages/Inyeccion/OrdenInyeccionG
 import ListaLotesPorEditar from './Pages/Lotes/ListaLotesPorEditar';
 import ListLotesCortadosPorEstampar from './Pages/Estampado/ListLotesCortadosPorEstampar';
 
-import AparadorElesbanPage from './Pages/Aparador/AparadorElesbanPage';
-import AparadorAlexPage from './Pages/Aparador/AparadorAlexPage';
-import AparadorJosePage from './Pages/Aparador/AparadorJosePage';
 
-
+//Middleware para proteger las rutas
+import { ProtectedRoute} from './Middlewares/ProtectedRoutes';
+//Importo mi Hook Personalizado
+import useToken from './Hooks/useToken'
+//Importo el archivo login
 
 const theme = createTheme({
   typography: {
@@ -66,23 +67,37 @@ const theme = createTheme({
 
 // Defino estilos que usare para toda mi app
 function App() {
+
+  //Utilizo mi propio Hook
+  const {token, setToken} = useToken() 
+  if(!token){
+      {return <LoginPage setToken={setToken}/>}
+  }
+  const dataJson   = localStorage.getItem('token')
+  const dataUser   = JSON.parse(dataJson)
+  const rolUser    = dataUser.onlyDataUser.rol;
+  const idAparador = dataUser.onlyDataUser.idusuario;
+
   return (
     <>
       <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <HeaderGeneral />
+        <HeaderGeneral rolUser={rolUser} />
         <Routes>
-          <Route exact path="/" component={<HomePage/>}>
-          <Route index element={<HomePage/>} />
+          <Route exact path="/" component={<HomePage rolUser={rolUser}/>}>
+          <Route index element={<HomePage rolUser={rolUser}/>} />
           <Route path="InsertNewLotePage" element={<InsertNewLotePage/>} />
-          <Route path="EditarLotePage/:idLote" element={<EditarLotePage/>} />
+          <Route path="EditarLotePage/:idLote" element={ 
+              <EditarLotePage/>
+            } 
+          />
           <Route path="ListLotesPage" element={<ListLotesPage />} />
           <Route path="ListLotesCortadosPorEstampar" element={<ListLotesCortadosPorEstampar/>} />
           <Route path="DetailLotesPage/:idLoteParam/:serieParam" element={<DetailLotesPage />} />
           <Route path="InsertInsertosPage" element={<InsertInsertosPage />} />
           <Route path="ListModelsPage" element={<ListModelsPage/>} />
           <Route path="LoginPage" element={<LoginPage/>} />
-          <Route path="AparadorPage" element={<AparadorPage/>}   />
+          <Route path="AparadorPage" element={<AparadorPage idAparador={idAparador}/>}   />
           <Route path="InfoAparadoresPage" element={<InfoAparadoresPage/>} />
           <Route path="ListAllLotesByState" element={<ListAllLotesByState/>} />          
           <Route path="LotesPorContarPage" element={<LotesPorContarPage/>} />       
@@ -92,11 +107,7 @@ function App() {
           <Route path="OrdenInyeccionGenerada" element={<OrdenInyeccionGenerada/>} />    
           <Route path="OrdenInyeccionGeneradaVistaSimple" element={<OrdenInyeccionGeneradaVistaSimple/>} />               
           <Route path="ListaLotesPorEditar" element={<ListaLotesPorEditar/>} />        
-        {/* Rutas para Aparadores        */}
-          <Route path = "Elesban54" element={<AparadorElesbanPage/>} />        
-          <Route path = "Alex40"    element={<AparadorAlexPage/>} />        
-          <Route path = "Jose10"    element={<AparadorJosePage/>} />        
-        {/* Rutas para Aparadores        */}
+      
           </Route>
         </Routes>
       </BrowserRouter>

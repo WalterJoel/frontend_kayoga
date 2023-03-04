@@ -14,7 +14,6 @@ function AparadorPage(props) {
   //En el front se pone on Focused la opcion aparado
   const [selected, setSelected] = useState('');
   const [lotes,setLotes]  = useState([]); 
-  const [aparadorSelected,setSelectedAparador]  = useState(''); 
 
   //La pantalla me obliga a traer solamente los Aparado
   const [estadoLote,setEstadoLote] = useState('');
@@ -26,16 +25,11 @@ function AparadorPage(props) {
     setEstadoLote(newValue);
     setSelected(newValue);
   }
-  const handleChangeSelect = (event) => {
-    const idAparador =event.target.value;
-    setSelectedAparador(idAparador);
-    console.log('names',idAparador);
-    getLotesByIdAparadorAndEstado(idAparador);
-};
+  
 
   async function getLotesByIdAparadorAndEstado(){
 //    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-  const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+aparadorSelected+'/'+estadoLote;
+  const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+props.idAparador+'/'+estadoLote;
     await fetch(url,{
       headers: {
           'Content-Type': 'application/json'
@@ -45,7 +39,7 @@ function AparadorPage(props) {
       if(response.ok) {
           const promesa = response.json();
           promesa.then(function(lotes) {
-            setLotes(lotes);
+            setLotes(lotes.reverse());
           });
           console.log('all good',lotes)
       } else {
@@ -87,7 +81,7 @@ function AparadorPage(props) {
                         </Typography>
                     </Grid>   
                 </Grid> 
-                <Grid  item sx={{}} xs={5} >                   
+                {/* <Grid  item sx={{}} xs={5} >                   
                         <Grid>
                             <Select
                                 sx={{fontWeight:'bold'}}
@@ -103,7 +97,7 @@ function AparadorPage(props) {
 
                             </Select>
                         </Grid> 
-                </Grid>
+                </Grid> */}
             </Grid>  
         <Grid container >
             <BottomNavigation
@@ -113,7 +107,7 @@ function AparadorPage(props) {
                 style={{ width: "100%",backgroundColor:'#f2f3f4' }}
                 >
                 <BottomNavigationAction name='Aparado' value='Aparado' label="Lotes por Entregar" icon={<ListAltIcon/>}/>
-                <BottomNavigationAction name='Resuelto' value='Resuelto' label="Lotes Entregados" icon={<ListAltIcon/>}/>
+                {/* <BottomNavigationAction name='Resuelto' value='Resuelto' label="Lotes Entregados" icon={<ListAltIcon/>}/> */}
             </BottomNavigation>
         </Grid>          
       
