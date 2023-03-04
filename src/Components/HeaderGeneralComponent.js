@@ -12,6 +12,32 @@ import { Link,useLocation} from 'react-router-dom';
 
 const HeaderGeneralComponent=(props)=>{
 
+  const handleCerrarSesion = async(event) => {
+    event.preventDefault();
+    //For Production
+    // await fetch('https://backendkayoga-production-fa5a.up.railway.app/signIn',{
+    //   headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //   body: JSON.stringify(datosLogin),
+    //   })
+    //   .then(function(response) {
+    //       if(response.ok) {
+    //           //setToken(response.json());
+    //         const promesa = response.json();
+    //         promesa.then(function(token) {
+    //           setToken(token);
+    //         });
+    //       } else {
+    //         alert('La cuenta ingresada no esta registrada, revisa bien');
+    //       }
+    //     })
+    //     .catch(function(error) {
+    //       console.log('Hubo un problema con la petición Fetch:' + error.message);
+    //     });
+  };
+
     return(
         <>
         {/* Encabezado */}
@@ -39,11 +65,10 @@ const HeaderGeneralComponent=(props)=>{
             </Grid>
             <Grid item sx={{pr:1}}>
                <Button
-                label="Rol -  Aparador"
                 color="primary"
-                //onClick={handleCerrarSesion}
-                variant="contained"
-                sx={{borderRadius:5}}
+                onClick={handleCerrarSesion}
+                variant="outlined"
+                sx={{borderRadius:3}}
               >
                 Cerrar Sesión
               </Button>

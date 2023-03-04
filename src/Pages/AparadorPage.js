@@ -79,7 +79,7 @@ function AparadorPage(props) {
                     </Grid>
                     <Grid item >
                         <Typography variant='h4' sx={{p:1}}>
-                           Detalle  Lotes
+                           Lotes
                         </Typography>
                     </Grid>   
                 </Grid> 

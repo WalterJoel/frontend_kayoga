@@ -129,16 +129,16 @@ export default function App() {
   }, [selected ]);
 
   return (
-    <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
+    <Grid container sx={{zIndex:2,position:'relative',padding:3, borderRadius:5,
     mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
       <Grid container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
 
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2}}  >
-              <Grid >
+              <Grid item>
                   <Avatar  sx={{width:70,height:70}}/>
               </Grid>
-              <Grid >
+              <Grid item >
                   <Typography variant='h4' sx={{p:1}}>
                       Stock Insertos
                   </Typography>
@@ -157,7 +157,7 @@ export default function App() {
               <BottomNavigationAction name='varon' value='varon' label="Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
-        <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
+        <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'1em'}}>
           <Table>
           <TableHead>
             <TableRow >
@@ -169,7 +169,7 @@ export default function App() {
               <TableCell sx={{fontWeight:'bold'}} >{talla.talla5}</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
                   {insertos
                     .map((row,i) => {
                       return (
@@ -178,7 +178,7 @@ export default function App() {
                       //   La primera fila seteo con valores establecidos luego ya las tallas
                             if(f>0){
                             return (
-                              <TableCell key={f} align={column.align}>
+                              <TableCell key={f} align={column.align} sx={{ width: 100 }}>
                                 <TextField 
                                   name={column.name}
                                   required
