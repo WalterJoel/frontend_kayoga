@@ -1,7 +1,5 @@
 import {BottomNavigation, 
-    Grid,Select,
-    MenuItem,
-    Card, Button,
+    Grid,
     Avatar,  
     BottomNavigationAction,Container, Typography, CardContent, CssBaseline } from "@mui/material";
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -95,22 +93,24 @@ function ListAllLotesByState(props) {
             <Grid item container >
                 {/* Info Title */}
                 <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
-                    <Grid item container sx={{p:2}} xs={7}  >
-                        <Grid >
+                    <Grid item container sx={{p:2, display:'flex', flexWrap:'wrap'}} xs={7}   >
+                        <Grid item>
                             <Avatar  sx={{width:70,height:70}}/>
                         </Grid>
-                        <Grid >
+                        <Grid item>
                             <Typography variant='h4' sx={{p:1}}>
-                                Estado Actual de Lotes
+                                 Lotes
                             </Typography>
                         </Grid>   
                     </Grid> 
                 </Grid>
+                <Grid item container>
                     <BottomNavigation
                         showLabels
                         value={selected}
                         onChange={handleChange}
-                        style={{ width: "100%",backgroundColor:'#f2f3f4',padding:'0.5em',borderRadius:'15px' }}
+                        sx={{ width: "100%",height:'100%',backgroundColor:'#f2f3f4',padding:'0.5em',borderRadius:'15px', 
+                                display:'flex',justifyContent:'center',flexWrap:'wrap' }}
                         >
                         <BottomNavigationAction name='Cortado' value='Cortado' label="Lotes Cortados" icon={<ListAltIcon/>}/>
                         <BottomNavigationAction name='Aparado' value='Aparado' label="Lotes en Aparado" icon={<ListAltIcon/>}/>
@@ -119,7 +119,7 @@ function ListAllLotesByState(props) {
                         <BottomNavigationAction name='Anulado' value='Anulado' label="Lotes Dados de Baja"  icon={<ListAltIcon/>}/>
 
                     </BottomNavigation>
-                
+                </Grid>
         
         {/* Contenedor de los Acordiones  */}
                 <Grid item container sx={{display:'flex',mt:2,justifyContent:'center',p:1}}>

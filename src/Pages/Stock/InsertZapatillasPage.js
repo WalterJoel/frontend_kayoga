@@ -3,7 +3,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import {Table,Grid,Avatar,
     Button,BottomNavigation,BottomNavigationAction,
-    TableBody,TableCell,TableHead,TableRow, Typography, TextField} from '@mui/material';
+    TableBody,TableCell,TableHead,TableRow, Typography, TextField, TableContainer} from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
 //Importo mis JSON
@@ -212,18 +212,10 @@ export default function InsertZapatillasPage() {
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2}} xs={7}  >
               <Grid >
-                  <Avatar  sx={{width:70,height:70}}/>
-              </Grid>
-              <Grid >
                   <Typography variant='h4' sx={{p:1}}>
                       Stock Zapatillas
                   </Typography>
-              </Grid> 
-              <Grid >
-                  <Typography variant='h4' sx={{p:1}}>
-                      Total Pares: {}
-                  </Typography>
-              </Grid>   
+              </Grid>  
           </Grid> 
         </Grid>
         <Grid item container>
@@ -231,7 +223,8 @@ export default function InsertZapatillasPage() {
               showLabels
               value={botomSelected}
               onChange={handleChange}
-              style={{ width: "100%",backgroundColor:'#f2f3f4',padding:'0.5em',borderRadius:'15px' }}
+              style={{ width: "100%",height:'100%',backgroundColor:'#f2f3f4',padding:'0.5em',borderRadius:'15px',
+                      display:'flex',justifyContent:'center',flexWrap:'wrap'  }}
               >
         {/* Ojo aqui se debe respetar la posicion en el value, primero serie luego el caracter _ luego modelo */}
               <BottomNavigationAction  value='dama_giana' label="Giana Dama" icon={<ListAltIcon/>}/>
@@ -243,9 +236,8 @@ export default function InsertZapatillasPage() {
               <BottomNavigationAction  value='varon_star' label="Star Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
-        <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
-        <form onSubmit={handleSubmit}>
-          <Table>
+        <Grid item container sx={{backgroundColor:'#f2f3f4',borderRadius:5,mt:4}}>
+          <TableContainer>
         {serieSelected==='nino' ?
             <TableHead>
                 <TableRow >
@@ -274,7 +266,6 @@ export default function InsertZapatillasPage() {
                         <TableCell sx={{fontWeight:'bold'}} >{talla.talla3}</TableCell>
                         <TableCell sx={{fontWeight:'bold'}} >{talla.talla4}</TableCell>
                         <TableCell sx={{fontWeight:'bold'}} >{talla.talla5}</TableCell>
-                        <TableCell sx={{fontWeight:'bold'}} >Total</TableCell>
                     </TableRow>
             </TableHead>            
         //Else Para las serie Completas
@@ -302,6 +293,8 @@ export default function InsertZapatillasPage() {
                                 <TextField 
                                   name={column.name}
                                   required
+                                  sx={{width: '4rem'}} 
+
                                   //id={row.id}
                                   //value={insertos[i][column.name]}
                                   type="number"
@@ -324,11 +317,10 @@ export default function InsertZapatillasPage() {
                     })}
                  
               </TableBody>
-          </Table>
+          </TableContainer>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
-            <Button variant='outlined' sx={{fontWeight:'bold'}} type="submit">Guardar</Button>
+            <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit}  type="submit">Guardar</Button>
           </Grid>
-          </form>
         </Grid>
       </Grid>  
     </Grid>

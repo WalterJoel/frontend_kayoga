@@ -66,6 +66,14 @@ const AcordionLotesComponent=(props)=>{
     //fetch('https://backendkayoga-production-fa5a.up.railway.app/createSeriadoRestante',{
   }
 
+  function handleChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(e.target.value);
+    setFormSeriadoRestante((prev)=>{
+        return {...prev, [name]:value};
+    });
+  }
 
     //Apenas renderiza debo setear las tallas
   useEffect(() =>{
@@ -81,20 +89,36 @@ const AcordionLotesComponent=(props)=>{
   },[]);
   
   return (
-    <Grid item  sx={{borderRadius:3}} >
-      <Accordion sx={{m:2}} >
+    <Grid item  sx={{display:'flex',justifyContent:'center'}} >
+      <Accordion sx={{mt:2}} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1c-content"
           id="panel1c-header"
+          
           >
-          <Grid container sx={{display:'flex', flexDirection:'row',alignItems:'center'}} >
+          <Grid container sx={{display:'flex', flexDirection:'row',alignItems:'center',justifyContent:'center'}} >
             <Avatar src={agujaImage} sx={{pr:2}}/>
 
             {props.infomodeloProps ?(
-                <Typography  color='primary'>Lote # {props.idLoteProps +'   '+  props.infomodeloProps}</Typography>
+              <>
+                <Grid item sx={{display:'flex',justifyContent:'center'}}>
+                  <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
+                </Grid>
+                <Grid item container sx={{display:'flex',justifyContent:'center'}}>
+                  {/* <Typography color='primary'>{ props.infomodeloProps.toUpperCase()}</Typography> */}
+                <Typography color='primary'>{ props.infomodeloProps}</Typography> 
+                </Grid> 
+              </>
             ):(
-              <Typography  color='primary'>Lote # {props.idLoteProps + '     Lona '+props.colorLonaProps + ' Serie '+ props.serieLoteProps}</Typography>
+              <>
+                <Grid item container sx={{display:'flex',justifyContent:'center'}}>
+                  <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
+                </Grid>
+                <Grid item container sx={{display:'flex',justifyContent:'center'}}>
+                  <Typography  color='primary'>{' Lona '+props.colorLonaProps + ' Serie '+ props.serieLoteProps}</Typography>
+                </Grid>
+              </>
             )}
 
           </Grid>
@@ -102,36 +126,12 @@ const AcordionLotesComponent=(props)=>{
         </AccordionSummary>
 
         <AccordionDetails >
-          <Grid xs={12} container sx={{backgroundColor:''}}>
-            {props.infomodeloProps ?(
-                <Typography variant="h6" color='primary' sx={{mb:2}}>
-                  {props.infomodeloProps.toUpperCase()}
-                </Typography>
-            ):(
-              <Typography variant="h6" color='primary' sx={{mb:2}}>
-                  Los lotes cortados aun no tienen un modelo definido, asignale uno
-              </Typography>
-            )}
-
-          </Grid>
+          
     {/* Informacion del Lote*/}
         <Grid container sx={{backgroundColor:'rgb(242, 243, 244)',p:1,borderRadius:5,mt:2,justifyContent:'space-between'}}>
         {/* Info 1 */}
-          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',m:0}} >
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid item>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Metraje
-                </Typography>
-              </Grid> 
-              <Grid item>
-                <Typography variant="body2" color='primary'>
-                  {props.metrajeProps}
-                </Typography>
-              </Grid>
-            </Grid>
-
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+          <Grid container  sx={{backgroundColor:'#ffffff',p:2,borderRadius:5,display:'flex',flexWrap:'wrap',m:0}} >
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Color de Lona
@@ -144,7 +144,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid>
             </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Aparador
@@ -157,7 +157,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid>
             </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Fecha de Corte
@@ -170,46 +170,9 @@ const AcordionLotesComponent=(props)=>{
               </Grid>
             </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid item>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Garibaldi
-                </Typography>
-              </Grid> 
-              <Grid item>
-                <Typography variant="body2" color='primary'>
-                  {props.garibaldiProps}
-                </Typography>
-              </Grid>
-            </Grid>
+            
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid item>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Contrafuerte
-                </Typography>
-              </Grid> 
-              <Grid item>
-                <Typography variant="body2" color='primary'>
-                {props.contrafuerteProps}
-                </Typography>
-              </Grid>
-            </Grid>
-
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid item>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Estado Lote
-                </Typography>
-              </Grid> 
-              <Grid item>
-                <Typography variant="body2" color='primary'>
-                {props.estadoLoteProps}
-                </Typography>
-              </Grid>
-            </Grid>
-
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Fecha Entrega Aparador
@@ -222,20 +185,9 @@ const AcordionLotesComponent=(props)=>{
               </Grid>
             </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid item>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Fecha Conteo
-                </Typography>
-              </Grid> 
-              <Grid item>
-                <Typography variant="body2" color='primary'>
-                  {props.fechaConteoProps}
-                </Typography>
-              </Grid>
-            </Grid>
+           
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item  container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                  Total Pares Cortados
@@ -249,7 +201,7 @@ const AcordionLotesComponent=(props)=>{
             </Grid>
             
             
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Total Pares Aparado
@@ -262,7 +214,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid>
             </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                   Total Pares Contado
@@ -280,22 +232,10 @@ const AcordionLotesComponent=(props)=>{
           </Grid>
           
         {/* Info 2 */}
-          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',m:0}} >
+          <Grid container  sx={{backgroundColor:'#ffffff',p:2,mt:2,borderRadius:5}} >
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid item>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Descripción Cortador
-                </Typography>
-              </Grid> 
-              <Grid item>
-                <Typography variant="body2" color='primary'>
-                {props.descripcionCortadorProps}
-                </Typography>
-              </Grid>
-            </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                 Descripción Aparador
@@ -308,7 +248,7 @@ const AcordionLotesComponent=(props)=>{
               </Grid>
             </Grid>
 
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
                 Descripción Contador
@@ -323,105 +263,40 @@ const AcordionLotesComponent=(props)=>{
 
           </Grid>
         {/* Info 3 Seriado de Corte y Conteo*/}
-          <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:1,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
-              <Grid container sx={{justifyContent:'center'}}>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Seriado de Corte
-                </Typography>
-              </Grid> 
-              <Grid item container sx={{display:'flex',justifyContent:'space-around'}}>
-                <List  sx={{display:'flex',flexDirection:'',justifyContent:'center'}}>
-                  <ListItem>
-                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
-                      {props.talla1Props>0&&(
-                          <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
-                      )}                                                                
-                  </ListItem>
-                  <ListItem >
-                      <ListItemText primary={talla.talla2} secondary={props.talla2Props} />
-                  </ListItem>
-                  <ListItem  >
-                      <ListItemText primary={talla.talla3} secondary={props.talla3Props} />
-                  </ListItem>
+          <Grid container sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,mt:2}} >
+            <Grid container sx={{justifyContent:'center'}}>
+              <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                Seriado de Corte
+              </Typography>
+            </Grid >
+            <Grid container sx={{display:'flex', justifyContent:'center'}}>
+              <List sx={{maxWidth:'100%'}}>
+                <ListItem>
+
+                    {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
+                    {props.talla1Props>0&&(
+                        <ListItemText sx={{ml:1}} primary={talla.talla1} secondary={props.talla1Props} />
+                    )}                                                                
+                    <ListItemText sx={{ml:1}} primary={talla.talla2} secondary={props.talla2Props} />
+                    <ListItemText sx={{ml:1}} primary={talla.talla3} secondary={props.talla3Props} />
                   {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla31} secondary={props.talla31Props} />
-                    </ListItem>
+                        <ListItemText sx={{ml:1}} primary={talla.talla31} secondary={props.talla31Props} />
                   }
-                  <ListItem >
-                      <ListItemText primary={talla.talla4} secondary={props.talla4Props} />
-                  </ListItem>
+                      <ListItemText sx={{ml:1}} primary={talla.talla4} secondary={props.talla4Props} />
                   {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla41} secondary={props.talla41Props} />
-                    </ListItem>
+                        <ListItemText  sx={{ml:1}} primary={talla.talla41} secondary={props.talla41Props} />
                   }
-                  <ListItem  >
-                      <ListItemText primary={talla.talla5} secondary={props.talla5Props} />
-                  </ListItem>
+                      <ListItemText sx={{ml:1}} primary={talla.talla5} secondary={props.talla5Props} />
                   {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla51} secondary={props.talla51Props} />
-                    </ListItem>
+                        <ListItemText sx={{ml:1}} primary={talla.talla51} secondary={props.talla51Props} />
                   }
-                </List>
-              </Grid>
-            </Grid>
-            <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',m:1}}>
-              <Grid container sx={{justifyContent:'center'}}>
-                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
-                  Seriado Restante
-                </Typography>
-              </Grid> 
-              <Grid container  sx={{display:'flex',justifyContent:'space-around'}}>
-                <List  sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-                  <ListItem>
-                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
-                      {props.talla1ResProps>0&&(
-                          <ListItemText primary={talla.talla1} secondary={props.talla1Props} />
-                      )}                                                                
-                  </ListItem>
-                  <ListItem sx={{display:'flex',flexDirection:'row',justifyContent:'space-around'}} >
-                      {/* Muestro la talla 1 que es o 34 star o 38 adulto solo si tiene datos */}
-                      {props.talla21ResProps>0&&(
-                          <ListItemText primary={talla.talla1} secondary={props.talla1ResProps} />
-                      )}
-                  </ListItem>
-                  <ListItem >
-                      <ListItemText primary={talla.talla2} secondary={props.talla2ResProps} />
-                  </ListItem>
-                  <ListItem  >
-                      <ListItemText primary={talla.talla3} secondary={props.talla3ResProps} />
-                  </ListItem>
-                  {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla31} secondary={props.talla31ResProps} />
-                    </ListItem>
-                  }
-                  <ListItem >
-                      <ListItemText primary={talla.talla4} secondary={props.talla4ResProps} />
-                  </ListItem>
-                  {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla41} secondary={props.talla41ResProps} />
-                    </ListItem>
-                  }
-                  <ListItem  >
-                      <ListItemText primary={talla.talla5} secondary={props.talla5ResProps} />
-                  </ListItem>
-                  {props.serieLoteProps==='nino'&&
-                    <ListItem  >
-                        <ListItemText primary={talla.talla51} secondary={props.talla51ResProps} />
-                    </ListItem>
-                  }
-                </List>
-              </Grid>
-            </Grid>
+                </ListItem>
+              </List>
+            </Grid> 
           </Grid>
           
            {/* Info 5 Insumos Aparado*/}
-           <Grid container xs={5.8} sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
+           <Grid container sx={{backgroundColor:'#ffffff',p:4,borderRadius:5,display:'flex',flexWrap:'wrap',mt:2}} >
             <Grid  item sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:2}}>
               <Grid item>
                 <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>

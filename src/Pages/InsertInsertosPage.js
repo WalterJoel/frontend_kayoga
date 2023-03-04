@@ -4,7 +4,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import {Paper,
     Table,Grid,Avatar,
     Button,BottomNavigation,BottomNavigationAction,
-    TableBody,TableCell,TableContainer,TableHead, tableCellClasses ,TablePagination,TableRow, Typography, TextField} from '@mui/material';
+    TableBody,TableCell,TableContainer,TableHead,TableRow, Typography, TextField} from '@mui/material';
 import { fontWeight } from "@mui/system";
 
 import {tallasDamaJson,tallasNinoJson,tallasVaronJson} from '../Elements/TallasGeneralJson';
@@ -129,16 +129,16 @@ export default function App() {
   }, [selected ]);
 
   return (
-    <Grid container sx={{zIndex:2,position:'relative',padding:3, borderRadius:5,
+    <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
     mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
       <Grid container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
 
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2}}  >
-              <Grid item>
+              <Grid >
                   <Avatar  sx={{width:70,height:70}}/>
               </Grid>
-              <Grid item >
+              <Grid >
                   <Typography variant='h4' sx={{p:1}}>
                       Stock Insertos
                   </Typography>
@@ -157,8 +157,8 @@ export default function App() {
               <BottomNavigationAction name='varon' value='varon' label="Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
-        <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'1em'}}>
-          <Table>
+        <Grid item container sx={{backgroundColor:'#f8f9fa',borderRadius:5,mt:2}}>
+          <TableContainer>
           <TableHead>
             <TableRow >
               <TableCell> </TableCell>
@@ -169,7 +169,7 @@ export default function App() {
               <TableCell sx={{fontWeight:'bold'}} >{talla.talla5}</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody >
+          <TableBody>
                   {insertos
                     .map((row,i) => {
                       return (
@@ -178,8 +178,9 @@ export default function App() {
                       //   La primera fila seteo con valores establecidos luego ya las tallas
                             if(f>0){
                             return (
-                              <TableCell key={f} align={column.align} sx={{ width: 100 }}>
-                                <TextField 
+                              <TableCell  key={f} align={column.align}>
+                                <TextField
+                                  sx={{width: '4rem'}} 
                                   name={column.name}
                                   required
                                   //id={row.id}
@@ -202,7 +203,7 @@ export default function App() {
                       );
                     })}
                 </TableBody>
-          </Table>
+          </TableContainer>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
             <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit} type="submit">Guardar</Button>
           </Grid>

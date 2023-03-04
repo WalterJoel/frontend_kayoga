@@ -156,21 +156,13 @@ const DetailLotesPage =() => {
                     <List >
                         <ListItem >
                             <ListItemText primary="Lote" secondary={'# '+detalleLote.idlote} />
-                            <ListItemText primary="Metraje" secondary={detalleLote.metraje} />
                             <ListItemText primary="Color" secondary={detalleLote.color} />
                             <ListItemText primary="Serie" secondary={detalleLote.serie} />
                         </ListItem>
                         <Divider/>
-
-                        <ListItem>
-                            <ListItemText primary="Fecha de Corte" secondary={detalleLote.fecha_creacion} />
-                            <ListItemText primary=" Garibaldi" secondary={detalleLote.garibaldi} />
-                            {/* <ListItemText primary=" Contrafuerte" secondary={detalleLote.contrafuerte} /> */}
-                        </ListItem>
                         <Divider/>
                         <ListItem>
-                            <ListItemText primary="Estado" secondary={detalleLote.estado} />
-                            <ListItemText primary="Descripcion del Cortador" secondary={detalleLote.descripcion} />
+                            <ListItemText primary="Fecha de Corte" secondary={detalleLote.fecha_creacion} />
                         </ListItem>
                     </List>
                 </Grid>
@@ -200,7 +192,7 @@ const DetailLotesPage =() => {
                 <Grid item  sx={{flexGrow:1 ,m:1}} >
                     <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                            ASIGNA UN APARADOR 
+                            APARADOR 
                         </Typography>
                         <Select
                             labelId="demo-multiple-name-label"
@@ -222,7 +214,7 @@ const DetailLotesPage =() => {
                     </Grid>
                 </Grid>
                 {/* Distribucion de Seriado */}
-                <Grid item  sx={{flexGrow:2 ,m:1,flexGrow:1}} >
+                <Grid item  sx={{flexGrow:1 ,m:1,flexGrow:1}} >
                     <Grid sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
                             ASIGNA UN MODELO  
@@ -232,7 +224,7 @@ const DetailLotesPage =() => {
                             // el campo valor_concatenado viene de la consulta sql
                             getOptionLabel={(option) => option.valor_concatenado}
                             options={modelos}
-                            sx={{ width: 300 }}
+                            //sx={{ width: 000 }}
                             onChange={handleChangeModelos}
                             renderOption={(props, option) => (
                                 <Box  value={option.idmodelo} component="li" {...props} key={option.idmodelo}>
@@ -242,11 +234,11 @@ const DetailLotesPage =() => {
                             renderInput={(params) => <TextField  {...params} required label="Buscar" />}
                         />
                     </Grid>
-                </Grid>
-                <Grid item >
+                </Grid> 
+                <Grid item sx={{flexGrow:1 ,m:1,flexGrow:1}}>
                     <Grid  sx={{backgroundColor:'#ffffff',borderRadius:5,p:3}}>
                         <Typography variant='body1' sx={{padding:1,fontWeight:'bold'}}>
-                           Agrega Detalles e insumos de Aparado  
+                           Insumos 
                         </Typography>
                         <TextField
                             name="detalle_insumos_aparado"

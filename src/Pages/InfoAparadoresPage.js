@@ -128,12 +128,11 @@ function InfoAparadoresPage(props) {
                         >
                         <BottomNavigationAction name='Aparado' value='Aparado' label="Lotes por Entregar" icon={<ListAltIcon/>}/>
                         <BottomNavigationAction name='Resuelto' value='Resuelto' label="Lotes Entregados" icon={<ListAltIcon/>}/>
-                        <BottomNavigationAction label="Third"  icon={<ListAltIcon/>}/>
                     </BottomNavigation>
                 
         
         {/* Contenedor de los Acordiones  */}
-        <Grid container sx={{display:'flex',mt:2,justifyContent:'center',p:1}}>
+        <Grid container sx={{mt:2,p:1,display:'flex',justifyContent:'center'}}>
             {
             lotes.map((lote,i)=>(
                 //Envio los props necesario 
