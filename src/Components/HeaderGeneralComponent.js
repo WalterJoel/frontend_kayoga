@@ -1,41 +1,20 @@
 import {BottomNavigation, 
     Grid,
-    Chip,Box,
     CardMedia, Button,Typography, } from "@mui/material";
-import aparadorImage from '../media/aparadorImage.jpg'
-import {React,useEffect} from 'react';
-import letraK from '../media/letrak.png';
-import logoK from '../media/k.png';
-import letterK from '../media/letter-k.png';
+import {Link, useNavigate } from 'react-router-dom';
 
-import { Link,useLocation} from 'react-router-dom';
+import {React,useEffect} from 'react';
+import logoK from '../media/k.png';
+
 
 const HeaderGeneralComponent=(props)=>{
-
+  
+  let navigate = useNavigate();
   const handleCerrarSesion = async(event) => {
     event.preventDefault();
-    //For Production
-    // await fetch('https://backendkayoga-production-fa5a.up.railway.app/signIn',{
-    //   headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //   body: JSON.stringify(datosLogin),
-    //   })
-    //   .then(function(response) {
-    //       if(response.ok) {
-    //           //setToken(response.json());
-    //         const promesa = response.json();
-    //         promesa.then(function(token) {
-    //           setToken(token);
-    //         });
-    //       } else {
-    //         alert('La cuenta ingresada no esta registrada, revisa bien');
-    //       }
-    //     })
-    //     .catch(function(error) {
-    //       console.log('Hubo un problema con la petición Fetch:' + error.message);
-    //     });
+    // Quitamos el token del local storage
+    localStorage.removeItem('token');
+    window.location.reload(false);
   };
 
     return(

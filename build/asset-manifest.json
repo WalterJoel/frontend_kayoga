@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.a8330c2d.css",
-    "main.js": "/static/js/main.aeef1053.js",
+    "main.js": "/static/js/main.2f527f40.js",
     "static/js/787.a0c438d2.chunk.js": "/static/js/787.a0c438d2.chunk.js",
     "static/media/aparadorImage.jpg": "/static/media/aparadorImage.bc1c02ea9f31e4020846.jpg",
     "static/media/entregarLoteImage.jpg": "/static/media/entregarLoteImage.db8bb3eb5d9265b2988a.jpg",
@@ -10,20 +10,18 @@
     "static/media/lotesImage.jpg": "/static/media/lotesImage.4f391b44db9cce69a70e.jpg",
     "static/media/inyeccionImage.jpg": "/static/media/inyeccionImage.eacc4e23e7cbc5ed34ea.jpg",
     "static/media/logoKayogaImage.png": "/static/media/logoKayogaImage.8804fc43cb7eac1a9e81.png",
-    "static/media/letrak.png": "/static/media/letrak.cdd85020f1ff59ef5534.png",
     "static/media/k.png": "/static/media/k.0ec07a5dfedf1de00359.png",
     "static/media/DataIcon2.png": "/static/media/DataIcon2.c79d56e159581f146caa.png",
-    "static/media/letter-k.png": "/static/media/letter-k.54f6a54260ff6c2765dc.png",
     "static/media/NewLoteIcon.png": "/static/media/NewLoteIcon.3b16f910d0535e53aacb.png",
     "static/media/ListaLotesIcon.png": "/static/media/ListaLotesIcon.88ed5e59b75699ffc0ba.png",
     "static/media/agujaImage.png": "/static/media/agujaImage.322e2d359e94845e7884.png",
     "index.html": "/index.html",
     "main.a8330c2d.css.map": "/static/css/main.a8330c2d.css.map",
-    "main.aeef1053.js.map": "/static/js/main.aeef1053.js.map",
+    "main.2f527f40.js.map": "/static/js/main.2f527f40.js.map",
     "787.a0c438d2.chunk.js.map": "/static/js/787.a0c438d2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8330c2d.css",
-    "static/js/main.aeef1053.js"
+    "static/js/main.2f527f40.js"
   ]
 }

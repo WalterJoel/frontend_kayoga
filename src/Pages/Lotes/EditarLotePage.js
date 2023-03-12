@@ -1,9 +1,7 @@
 import {useState,useEffect } from "react";
-import HashLoader from "react-spinners/HashLoader";
 import { useNavigate,useParams } from 'react-router-dom';
 import WarningIcon from '@mui/icons-material/Warning';
 import React from "react";
-import { positions } from '@mui/system';
 import { IconButton,TextField, Checkbox, Select } from '@mui/material';
 import {
   Typography,
@@ -73,7 +71,6 @@ const InsertNewLotePage=(props)=> {
                 promesa.then(function(lotes) {
                   setLote(lotes[0]);
                   asignarTalla(lotes[0].serie)
-                  console.log('lotes: ', lotes)
                 });      
             } else {
               console.log('Respuesta de red OK pero respuesta HTTP no OK');
@@ -103,7 +100,7 @@ const InsertNewLotePage=(props)=> {
         })
         .then(function(response) {
             if(response.ok) {
-                console.log(response.json()); navigate('/ListaLotesPorEditar')
+                navigate('/ListaLotesPorEditar')
             } else {
               alert('No se pudo guardar, intenta otra vez')
               console.log('Respuesta de red OK pero respuesta HTTP no OK');

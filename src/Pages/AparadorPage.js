@@ -83,23 +83,6 @@ function AparadorPage(props) {
                         </Typography>
                     </Grid>   
                 </Grid> 
-                {/* <Grid  item sx={{}} xs={5} >                   
-                        <Grid>
-                            <Select
-                                sx={{fontWeight:'bold'}}
-                                required
-                                label='feo'
-                                value = {aparadorSelected}
-                                name = 'idaparador' 
-                                onChange={handleChangeSelect}
-                                >
-                                <MenuItem key='1' value='1'> Alex</MenuItem>
-                                <MenuItem key='2' value='2'>Elesban</MenuItem>
-                                <MenuItem key='3' value='3'>  José Inga</MenuItem>
-
-                            </Select>
-                        </Grid> 
-                </Grid> */}
             </Grid>  
         <Grid container >
             <BottomNavigation
