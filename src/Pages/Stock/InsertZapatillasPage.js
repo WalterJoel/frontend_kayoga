@@ -236,6 +236,8 @@ export default function InsertZapatillasPage() {
               <BottomNavigationAction  value='varon_star' label="Star Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
+        <form onSubmit={handleSubmit}>
+
         <Grid item container sx={{backgroundColor:'#f2f3f4',borderRadius:5,mt:4}}>
           <TableContainer>
         {serieSelected==='nino' ?
@@ -293,7 +295,7 @@ export default function InsertZapatillasPage() {
                                 <TextField 
                                   name={column.name}
                                   required
-                                  sx={{width: '4rem'}} 
+                                  sx={{width: '5rem'}} 
 
                                   //id={row.id}
                                   //value={insertos[i][column.name]}
@@ -319,9 +321,11 @@ export default function InsertZapatillasPage() {
               </TableBody>
           </TableContainer>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
-            <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit}  type="submit">Guardar</Button>
+            <Button variant='outlined' sx={{fontWeight:'bold'}}  type="submit">Guardar</Button>
           </Grid>
         </Grid>
+        </form>
+
       </Grid>  
     </Grid>
   );

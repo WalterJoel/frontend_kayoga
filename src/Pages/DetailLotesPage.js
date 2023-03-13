@@ -82,7 +82,7 @@ const DetailLotesPage =() => {
         })
         .then(function(response) {
             if(response.ok) {
-                navigateTo('/');
+                navigateTo('/ListLotesPage');
             } else {
                 alert('No se pudo guardar')
               console.log('Respuesta de red OK pero respuesta HTTP no OK');

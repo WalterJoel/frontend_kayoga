@@ -110,8 +110,8 @@ export default function App() {
     })
     .then(function(response) {
         if(response.ok) {
-            //console.log(response.json());setLoading(false);navigate('/ListLotesPage')
-            alert('Datos Guardados Correctamente')
+          window.location.reload(false);
+          alert('Datos Guardados Correctamente')
         } else {
           console.log('Respuesta de red OK pero respuesta HTTP no OK');
         }
@@ -157,6 +157,7 @@ export default function App() {
               <BottomNavigationAction name='varon' value='varon' label="Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
+        <form onSubmit={handleSubmit}>
         <Grid item container sx={{backgroundColor:'#f8f9fa',borderRadius:5,mt:2}}>
           <TableContainer>
           <TableHead>
@@ -202,12 +203,14 @@ export default function App() {
                         </TableRow>
                       );
                     })}
-                </TableBody>
+          </TableBody>
+          
           </TableContainer>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
-            <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit} type="submit">Guardar</Button>
+            <Button variant='outlined' sx={{fontWeight:'bold'}}  type="submit">Guardar</Button>
           </Grid>
         </Grid>
+        </form>
       </Grid>  
     </Grid>
   );

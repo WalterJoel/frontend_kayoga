@@ -107,9 +107,7 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
 
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2, justifyContent:'space-around'}}  >
-              <Grid >
-                  <Avatar  sx={{width:70,height:70}}/>
-              </Grid>
+              
               <Grid >
                   <Typography variant='h4' sx={{p:1}}>
                       Orden de Inyección # {ordenInyeccionGenerada[0].idwatch_produccion_inyeccion}
@@ -129,7 +127,7 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
               </Grid>   
           </Grid> 
         </Grid>
-       
+        <form onSubmit={handleSubmit}>
         <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
           <Table sx={{maxWidth:'100%',maxHeight:'100%'}}>
           <TableHead>
@@ -172,9 +170,11 @@ const OrdenInyeccionGeneradaVistaSimple = () => {
                 </TableBody>
           </Table>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
-            <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit} type="submit">Guardar</Button>
+            <Button variant='outlined' sx={{fontWeight:'bold'}}  type="submit">Guardar</Button>
           </Grid>
         </Grid>
+        </form>
+
       </Grid>  
     </Grid>
     </>

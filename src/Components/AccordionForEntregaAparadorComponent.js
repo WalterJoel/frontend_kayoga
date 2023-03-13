@@ -106,7 +106,9 @@ const AcordionLotesComponent=(props)=>{
           >
           <Grid container sx={{display:'flex', flexDirection:'row',alignItems:'center'}} >
             <Avatar src={agujaImage} sx={{pr:2}}/>
-            <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
+            <Typography  color='primary'>Lote # {props.idLoteProps+' -- '}</Typography>
+            <Typography  color='primary'>{props.infomodeloProps}</Typography>
+
           </Grid>
         </AccordionSummary>
 

@@ -97,6 +97,9 @@ export default function HomePage(props){
                     <>
                        <Grid item>
                             <HomeCardsComponent action='Generar Orden Inyección' image={inyeccionImage} linkTo='/OrdenInyeccionPage' /> 
+                        </Grid>   
+                        <Grid item>
+                            <HomeCardsComponent action='Ver Producción' image={inyeccionImage} linkTo='/ProduccionInyeccion' /> 
                         </Grid>     
                     </>
                 )}

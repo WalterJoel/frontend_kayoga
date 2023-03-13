@@ -27,6 +27,7 @@ import InsertZapatillasPage from './Pages/Stock/InsertZapatillasPage';
 import EditarLotePage from './Pages/Lotes/EditarLotePage';
 import OrdenInyeccionGenerada from './Pages/Inyeccion/OrdenInyeccionGenerada';
 import OrdenInyeccionGeneradaVistaSimple from './Pages/Inyeccion/OrdenInyeccionGeneradaVistaSimple';
+import ProduccionInyeccion from './Pages/Inyeccion/ProduccionInyeccion';
 import ListaLotesPorEditar from './Pages/Lotes/ListaLotesPorEditar';
 import ListLotesCortadosPorEstampar from './Pages/Estampado/ListLotesCortadosPorEstampar';
 import jwtDecode from 'jwt-decode';
@@ -121,7 +122,8 @@ function App() {
           <Route path="SepararLotePage" element={<SepararLotePage/>} />             
           <Route path="OrdenInyeccionPage" element={<OrdenInyeccionPage/>} />       
           <Route path="InsertZapatillasPage" element={<InsertZapatillasPage/>} />       
-          <Route path="OrdenInyeccionGenerada" element={<OrdenInyeccionGenerada/>} />    
+          <Route path="OrdenInyeccionGenerada" element={<OrdenInyeccionGenerada/>} /> 
+          <Route path="ProduccionInyeccion" element={<ProduccionInyeccion/>} />    
           <Route path="OrdenInyeccionGeneradaVistaSimple" element={<OrdenInyeccionGeneradaVistaSimple/>} />               
           <Route path="ListaLotesPorEditar" element={<ListaLotesPorEditar/>} />        
       

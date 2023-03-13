@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
     Table,Grid,Avatar,
     Button,
-    TableBody,TableCell,TableHead,TableRow, Typography, TextField, TableContainer} from '@mui/material';
+    TableBody,TableCell,TableHead,TableRow, Typography, TextField} from '@mui/material';
 
     const columns = [
         {
@@ -24,7 +24,7 @@ import {
         }
       ];
     
-const OrdenInyeccionGenerada = () => {
+const ProduccionInyeccion= () => {
     
     const [ordenInyeccionGenerada,setOrdenInyeccionGenerada] = useState([]);
     const [paresInyectados,setParesInyectados] = useState([]);
@@ -101,6 +101,9 @@ const OrdenInyeccionGenerada = () => {
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2, justifyContent:'space-around'}}  >
               <Grid >
+                  <Avatar  sx={{width:70,height:70}}/>
+              </Grid>
+              <Grid >
                   <Typography variant='h4' sx={{p:1}}>
                       Orden de Inyección # {ordenInyeccionGenerada[0].idwatch_produccion_inyeccion}
                   </Typography>
@@ -121,7 +124,7 @@ const OrdenInyeccionGenerada = () => {
         </Grid>
        
         <Grid item container sx={{backgroundColor:'',borderRadius:5,p:'2em'}}>
-          <TableContainer >
+          <Table sx={{maxWidth:'50%'}} >
           <TableHead>
             <TableRow >
               <TableCell sx={{fontWeight:'bold',color:'red'}}> Modelo </TableCell>
@@ -162,7 +165,7 @@ const OrdenInyeccionGenerada = () => {
                       );
                     })}
                 </TableBody>
-          </TableContainer>
+          </Table>
           {/* <Grid item container sx={{justifyContent:'center',mt:4}}>
             <Button variant='outlined' sx={{fontWeight:'bold'}} onClick={handleSubmit} type="submit">Guardar</Button>
           </Grid> */}
@@ -174,4 +177,4 @@ const OrdenInyeccionGenerada = () => {
     }
 }
 
-export default OrdenInyeccionGenerada;
+export default ProduccionInyeccion;

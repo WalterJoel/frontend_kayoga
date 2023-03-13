@@ -47,11 +47,9 @@ const AcordionLotesComponent=(props)=>{
         .then(function(response) {
             if(response.ok) {
               //Navego a la misma pagina porq cuando renderiza manda a los lotes aparados
-              console.log(response.json()); 
               navigateToAparadorPage('/AparadorPage');
             } else {
             //setLoading(false)
-            console.log('Respuesta de red OK pero respuesta HTTP no OK');
           }
         })
       .catch(function(error) {
@@ -103,17 +101,17 @@ const AcordionLotesComponent=(props)=>{
             {props.infomodeloProps ?(
               <>
                 <Grid item sx={{display:'flex',justifyContent:'center'}}>
-                  <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
+                  <Typography  color='primary'>Lote # {' '+props.idLoteProps}</Typography>
                 </Grid>
-                <Grid item container sx={{display:'flex',justifyContent:'center'}}>
+                <Grid item  sx={{display:'flex',justifyContent:'center'}}>
                   {/* <Typography color='primary'>{ props.infomodeloProps.toUpperCase()}</Typography> */}
-                <Typography color='primary'>{ props.infomodeloProps}</Typography> 
+                    <Typography color='primary'> { "  --- "+ props.infomodeloProps}</Typography> 
                 </Grid> 
               </>
             ):(
               <>
                 <Grid item container sx={{display:'flex',justifyContent:'center'}}>
-                  <Typography  color='primary'>Lote # {props.idLoteProps}</Typography>
+                  <Typography  color='primary'>Lote # {' '+props.idLoteProps}</Typography>
                 </Grid>
                 <Grid item container sx={{display:'flex',justifyContent:'center'}}>
                   <Typography  color='primary'>{' Lona '+props.colorLonaProps + ' Serie '+ props.serieLoteProps}</Typography>
@@ -140,6 +138,19 @@ const AcordionLotesComponent=(props)=>{
               <Grid item>
                 <Typography variant="body2" color='primary'>
                   {props.colorLonaProps}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid  item container sx={{display:'flex',justifyContent:'center',flexDirection:'column',alignItemns:'center',m:1}}>
+              <Grid item>
+                <Typography variant="subtitle2" color='primary' sx={{fontWeight: 'bold'}}>
+                  Detalle
+                </Typography>
+              </Grid> 
+              <Grid item>
+                <Typography variant="body2" color='primary'>
+                  {props.descripcionCortadorProps}
                 </Typography>
               </Grid>
             </Grid>

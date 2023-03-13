@@ -90,12 +90,10 @@ function InfoAparadoresPage(props) {
                 {/* Info Title */}
                 <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
                     <Grid item container sx={{p:2}} xs={7}  >
-                        <Grid >
-                            <Avatar  sx={{width:70,height:70}}/>
-                        </Grid>
-                        <Grid >
+                        
+                        <Grid item>
                             <Typography variant='h4' sx={{p:1}}>
-                                Selecciona un Aparador
+                                Aparador
                             </Typography>
                         </Grid>   
                     </Grid> 
