@@ -3,7 +3,9 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import {Table,Grid,Avatar,
     Button,BottomNavigation,BottomNavigationAction,
-    TableBody,TableCell,TableHead,TableRow, Typography, TextField, TableContainer} from '@mui/material';
+    TableBody,TableCell,TableHead,TableRow, Typography, tableCellClasses ,TextField, TableContainer} from '@mui/material';
+    
+import { styled } from '@mui/material/styles';
 
 import { useNavigate } from 'react-router-dom';
 //Importo mis JSON
@@ -118,7 +120,16 @@ export default function InsertZapatillasPage() {
   const [botomSelected,setBotomSelected]=useState(()=>'');
   let navigate = useNavigate();
 
-
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: '#585858',
+      borderRadius:8,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 18,
+    },
+  }));
   async function getZapatillasBySerie(){
     const url = 'https://backendkayoga-production-fa5a.up.railway.app/getZapatillasBySerie/'+serieSelected+'/'+modelo;
     //const url = 'http://localhost:4000/getZapatillasBySerie/'+serieSelected+'/'+modelo;
@@ -207,7 +218,7 @@ export default function InsertZapatillasPage() {
   return (
     <Grid container sx={{zIndex:2,position:'absolute',padding:5, borderRadius:5,
     mt:'',display:'flex',alignItems:'center',justifyContent:'center'}}>
-      <Grid container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5,display:'flex',justifyContent:'center'}}>
+          <Grid item container sx={{backgroundColor:'#dfe3e9',p:2,borderRadius:5}}>
 
         <Grid item container sx={{ backgroundColor:'',flexDirection:'row',justifyContent:'space-between',alignItems:'center',m:1}} >                
           <Grid item container sx={{p:2}} xs={7}  >
@@ -236,10 +247,11 @@ export default function InsertZapatillasPage() {
               <BottomNavigationAction  value='varon_star' label="Star Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
-        <form onSubmit={handleSubmit}>
 
         <Grid item container sx={{backgroundColor:'#f2f3f4',borderRadius:5,mt:4}}>
-          <TableContainer>
+          <TableContainer sx={{p:3,justifyContent:'center'}}>
+          <form onSubmit={handleSubmit}>
+          <Table  stickyHeader aria-label="sticky table">
         {serieSelected==='nino' ?
             <TableHead>
                 <TableRow >
@@ -319,12 +331,17 @@ export default function InsertZapatillasPage() {
                     })}
                  
               </TableBody>
-          </TableContainer>
+              </Table>
+              
+          
+          
           <Grid item container sx={{justifyContent:'center',mt:4}}>
             <Button variant='outlined' sx={{fontWeight:'bold'}}  type="submit">Guardar</Button>
           </Grid>
+          </form>
+          </TableContainer>
         </Grid>
-        </form>
+      
 
       </Grid>  
     </Grid>

@@ -157,9 +157,9 @@ export default function App() {
               <BottomNavigationAction name='varon' value='varon' label="Varón" icon={<ListAltIcon/>}/>
           </BottomNavigation>
         </Grid>
-        <form onSubmit={handleSubmit}>
         <Grid item container sx={{backgroundColor:'#f8f9fa',borderRadius:5,mt:2}}>
           <TableContainer>
+          <form onSubmit={handleSubmit}>
           <TableHead>
             <TableRow >
               <TableCell> </TableCell>
@@ -205,12 +205,14 @@ export default function App() {
                     })}
           </TableBody>
           
-          </TableContainer>
           <Grid item container sx={{justifyContent:'center',mt:4}}>
             <Button variant='outlined' sx={{fontWeight:'bold'}}  type="submit">Guardar</Button>
           </Grid>
+          </form>
+          </TableContainer>
+          
         </Grid>
-        </form>
+
       </Grid>  
     </Grid>
   );

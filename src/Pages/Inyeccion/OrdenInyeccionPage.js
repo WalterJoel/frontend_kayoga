@@ -45,13 +45,11 @@ export default function OrdenInyeccionPage() {
   }
   function handleChangeTallaSelect(event){
     setTallaSelected(event.target.value);
-    console.log('talla seleccionada',event.target.value);
     getSeriadoRestanteByTalla();
   }
 
   async function verificarOrdenInyeccionAbierta(){
     //    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-        console.log(moldeSelected,serieSelected,tallaSelected )
         const url = 'https://backendkayoga-production-fa5a.up.railway.app/verificarOrdenInyeccionAbierta';
           await fetch(url,{
             headers: {
@@ -77,7 +75,6 @@ export default function OrdenInyeccionPage() {
   
   async function getSeriadoRestanteByTalla(){
 //    const url = 'https://backendkayoga-production-fa5a.up.railway.app/getLotesByIdAparadorAndEstado/'+idAparador+'/'+estadoLote;
-    console.log(moldeSelected,serieSelected,tallaSelected )
     const url = 'https://backendkayoga-production-fa5a.up.railway.app/getSeriadoRestanteByTalla/'+moldeSelected+'/'+serieSelected+'/'+tallaSelected;
       await fetch(url,{
         headers: {
@@ -103,7 +100,6 @@ export default function OrdenInyeccionPage() {
   }
  
   useEffect(() => {
-    console.log('render');
     verificarOrdenInyeccionAbierta();
     getSeriadoRestanteByTalla()
   }, [tallaSelected]);

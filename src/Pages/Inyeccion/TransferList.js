@@ -24,6 +24,7 @@ export default function TransferList(props) {
   let navigate = useNavigate();
   const [checked, setChecked] = useState([]);
   let [left, setLeft] = React.useState([]);
+  let [pares,setPares] = React.useState(0);
   const [right, setRight] = React.useState([]);
   const mostrarEditTalla = true;
   const leftChecked = intersection(checked, left);
@@ -33,8 +34,6 @@ export default function TransferList(props) {
     const name = e.target.name;
     const value = e.target.value;
     const clave = idlote.toString()+name.toString();
-    console.log('name: ',name,' -','value : ',value,'-',idlote,'-',clave);
-    console.log('Right0: ',right)
     
     setRight((prevState) =>
       prevState.map((row) =>
@@ -59,12 +58,14 @@ export default function TransferList(props) {
   };
   const handleCheckedRight = () => {
     //Agrego mis items
+    setPares(pares+leftChecked[0].cantidad)
     setRight(right.concat(leftChecked));
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
   };
 
   const handleCheckedLeft = () => {
+    setPares(pares-rightChecked[0].cantidad)
     setLeft(left.concat(rightChecked));
     setRight(not(right, rightChecked));
     setChecked(not(checked, rightChecked));
@@ -72,7 +73,6 @@ export default function TransferList(props) {
   const handleSubmit=(e)=>{
     if(right.length > 0){
       e.preventDefault()
-      console.log(right);
       alert('Estas seguro de enviar la informacion?');
       //Inserto los datos el tabla watch produccion
       //fetch('http://localhost:4000/saveOrdenInyeccion',{        
@@ -88,7 +88,6 @@ export default function TransferList(props) {
             alert('Datos guardados correctamente');
             navigate('/OrdenInyeccionGenerada')
           } else {
-            console.log(response);
           }
         })
         .catch(function(error) {
@@ -142,6 +141,9 @@ export default function TransferList(props) {
               {/* Aqui pongo la info modelo */}
               <ListItemText id={labelId} primary={`${value.infomodelo} `} />
               <ListItemText id={labelId}  sx={{fontWeight:'bold',color:'red',ml:1}} primary={'Talla: '+value['talla_name']+' / '+value.cantidad+' pares'} />
+              <ListItemText id={labelId}  sx={{fontWeight:'bold',color:'red',ml:1}} primary={'Lote # '+value['idlote']} />
+
+              <ListItemText id={labelId}  sx={{fontWeight:'bold',color:'red',ml:1}} primary={'Seriado restante : '+value['idseriadorestante']} />
               {mostrarEditTalla &&(
               <TextField  
                 name={value['talla_name']}
@@ -163,6 +165,11 @@ export default function TransferList(props) {
   
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid item container justifyContent="center" alignItems="center" >
+        <Typography variant='h4' sx={{p:1}}>
+            Cantidad de Pares: { pares} 
+        </Typography>
+      </Grid>
       <Grid item >{customList(left,!mostrarEditTalla) }</Grid>
 
     {/* Grid para los botones */}
