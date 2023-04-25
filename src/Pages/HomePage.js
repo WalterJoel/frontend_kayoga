@@ -36,6 +36,9 @@ export default function HomePage(props){
             <Grid  container sx={{justifyContent:"center"}} >
                 {(props.rolUser==='ADMIN' || props.rolUser==='GERENTE')&&(
                     <>
+                        <Grid item>
+                            <HomeCardsComponent action='Orden Inyección'  image={inyeccionImage} linkTo='/OrdenInyeccionGeneradaVistaSimple' /> 
+                        </Grid>   
                         <Grid item > 
                             <HomeCardsComponent action='Información de Aparadores' image={inyeccionImage} linkTo='/InfoAparadoresPage' /> 
                         </Grid>
@@ -82,7 +85,7 @@ export default function HomePage(props){
                     </>
                 )}
 
-                {(props.rolUser==='ADMIN' || props.rolUser==='MAQUINISTA')&&(
+                {(props.rolUser==='MAQUINISTA')&&(
                     <>
                        <Grid item>
                             <HomeCardsComponent action='Orden Inyección Generada'  image={inyeccionImage} linkTo='/OrdenInyeccionGenerada' /> 
