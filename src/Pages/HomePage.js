@@ -37,7 +37,7 @@ export default function HomePage(props){
                 {(props.rolUser==='ADMIN' || props.rolUser==='GERENTE')&&(
                     <>
                         <Grid item>
-                            <HomeCardsComponent action='Orden Inyección'  image={inyeccionImage} linkTo='/OrdenInyeccionGeneradaVistaSimple' /> 
+                            <HomeCardsComponent action='Orden Inyección'  image={inyeccionImage} linkTo='/OrdenInyeccionGenerada' /> 
                         </Grid>   
                         <Grid item > 
                             <HomeCardsComponent action='Información de Aparadores' image={inyeccionImage} linkTo='/InfoAparadoresPage' /> 
